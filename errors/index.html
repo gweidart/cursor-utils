@@ -2060,6 +2060,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#error-handling-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#error-code-format" class="md-nav__link">
     <span class="md-ellipsis">
       Error Code Format
@@ -2168,34 +2177,10 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#handling-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handling Errors
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Handling Errors">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
-  <a href="#reading-error-messages" class="md-nav__link">
+  <a href="#general-errors" class="md-nav__link">
     <span class="md-ellipsis">
-      Reading Error Messages
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#common-resolution-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Resolution Steps
+      General Errors
     </span>
   </a>
   
@@ -2207,18 +2192,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-custom-error-handlers" class="md-nav__link">
+  <a href="#using-the-error-system-in-code" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating Custom Error Handlers
+      Using the Error System in Code
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#submitting-bug-reports" class="md-nav__link">
+  <a href="#troubleshooting-common-errors" class="md-nav__link">
     <span class="md-ellipsis">
-      Submitting Bug Reports
+      Troubleshooting Common Errors
     </span>
   </a>
   
@@ -2255,6 +2240,15 @@
 <li>Links to related documentation</li>
 </ul>
 <p>When an error occurs, it is presented with detailed diagnostic information to help you troubleshoot the issue.</p>
+<h2 id="error-handling-architecture">Error Handling Architecture<a class="headerlink" href="#error-handling-architecture" title="Permanent link">&para;</a></h2>
+<p>The error handling system in Cursor Utils has been refactored to provide a more consistent and user-friendly experience:</p>
+<ul>
+<li><strong>Base Error Class</strong>: <code>CursorUtilsError</code> extends <code>DiagnosticError</code> to provide rich error information</li>
+<li><strong>Error Categories</strong>: Specialized error classes for each module (e.g., <code>WebError</code>, <code>ConfigError</code>)</li>
+<li><strong>Error Codes Enum</strong>: <code>ErrorCodes</code> enum provides standardized error codes</li>
+<li><strong>Decorators</strong>: <code>safe_execute</code> and <code>safe_execute_sync</code> decorators for standardized error handling</li>
+<li><strong>Centralized Handling</strong>: <code>handle_command_error</code> function for consistent error presentation</li>
+</ul>
 <h2 id="error-code-format">Error Code Format<a class="headerlink" href="#error-code-format" title="Permanent link">&para;</a></h2>
 <p>Error codes follow this format: <code>{category}-{number}</code></p>
 <ul>
@@ -2351,7 +2345,7 @@
 </tr>
 <tr>
 <td><code>install-006</code></td>
-<td>Tool is already installed</td>
+<td>Already installed</td>
 <td><a href="install-006/">ALREADY_INSTALLED</a></td>
 </tr>
 </tbody>
@@ -2368,13 +2362,13 @@
 <tbody>
 <tr>
 <td><code>update-001</code></td>
-<td>Update process failed</td>
+<td>Update failed</td>
 <td><a href="update-001/">UPDATE_FAILED</a></td>
 </tr>
 <tr>
 <td><code>update-999</code></td>
-<td>Unknown error during update</td>
-<td><a href="update-999/">UNKNOWN_ERROR</a></td>
+<td>Update not available</td>
+<td><a href="update-999/">UPDATE_NOT_AVAILABLE</a></td>
 </tr>
 </tbody>
 </table>
@@ -2390,13 +2384,13 @@
 <tbody>
 <tr>
 <td><code>version-001</code></td>
-<td>General version error</td>
+<td>Version error</td>
 <td><a href="version-001/">VERSION_ERROR</a></td>
 </tr>
 <tr>
 <td><code>version-002</code></td>
-<td>Invalid version format</td>
-<td><a href="version-002/">INVALID_VERSION</a></td>
+<td>Invalid version</td>
+<td><a href="version-002/">VERSION_INVALID</a></td>
 </tr>
 </tbody>
 </table>
@@ -2412,28 +2406,28 @@
 <tbody>
 <tr>
 <td><code>config-001</code></td>
-<td>Invalid API key</td>
-<td><a href="config-001/">INVALID_API_KEY</a></td>
+<td>Configuration file error</td>
+<td><a href="config-001/">CONFIG_FILE_ERROR</a></td>
 </tr>
 <tr>
 <td><code>config-002</code></td>
-<td>Error saving API key</td>
-<td><a href="config-002/">API_KEY_SAVE_ERROR</a></td>
+<td>Configuration validation error</td>
+<td><a href="config-002/">CONFIG_VALIDATION_ERROR</a></td>
 </tr>
 <tr>
 <td><code>config-003</code></td>
-<td>Error reading API key</td>
-<td><a href="config-003/">API_KEY_READ_ERROR</a></td>
+<td>Configuration key error</td>
+<td><a href="config-003/">CONFIG_KEY_ERROR</a></td>
 </tr>
 <tr>
 <td><code>config-004</code></td>
-<td>Error with .env file</td>
+<td>Environment file error</td>
 <td><a href="config-004/">ENV_FILE_ERROR</a></td>
 </tr>
 <tr>
 <td><code>config-005</code></td>
-<td>Error with configuration file</td>
-<td><a href="config-005/">CONFIG_FILE_ERROR</a></td>
+<td>Configuration save error</td>
+<td><a href="config-005/">CONFIG_SAVE_ERROR</a></td>
 </tr>
 </tbody>
 </table>
@@ -2449,33 +2443,33 @@
 <tbody>
 <tr>
 <td><code>web-001</code></td>
-<td>Error with Perplexity API</td>
-<td><a href="web-001/">WEB_API_ERROR</a></td>
+<td>Web configuration error</td>
+<td><a href="web-001/">WEB_CONFIG_ERROR</a></td>
 </tr>
 <tr>
 <td><code>web-002</code></td>
-<td>Error with web command configuration</td>
-<td><a href="web-002/">WEB_CONFIG_ERROR</a></td>
+<td>Web API error</td>
+<td><a href="web-002/">WEB_API_ERROR</a></td>
 </tr>
 <tr>
 <td><code>web-003</code></td>
-<td>Connection error during web command</td>
-<td><a href="web-003/">WEB_CONNECTION_ERROR</a></td>
+<td>Invalid API key</td>
+<td><a href="web-003/">INVALID_API_KEY</a></td>
 </tr>
 <tr>
 <td><code>web-004</code></td>
-<td>Timeout during web command</td>
-<td><a href="web-004/">WEB_TIMEOUT_ERROR</a></td>
+<td>Web query error</td>
+<td><a href="web-004/">WEB_QUERY_ERROR</a></td>
 </tr>
 <tr>
 <td><code>web-005</code></td>
-<td>Error with streaming response</td>
-<td><a href="web-005/">WEB_STREAM_ERROR</a></td>
+<td>Web connection error</td>
+<td><a href="web-005/">WEB_CONNECTION_ERROR</a></td>
 </tr>
 <tr>
 <td><code>web-006</code></td>
-<td>Error with model selection</td>
-<td><a href="web-006/">WEB_MODEL_ERROR</a></td>
+<td>Web timeout error</td>
+<td><a href="web-006/">WEB_TIMEOUT_ERROR</a></td>
 </tr>
 </tbody>
 </table>
@@ -2491,27 +2485,27 @@
 <tbody>
 <tr>
 <td><code>gemini-001</code></td>
-<td>Error with Gemini API</td>
+<td>Gemini API error</td>
 <td><a href="gemini-001/">GEMINI_API_ERROR</a></td>
 </tr>
 <tr>
 <td><code>gemini-002</code></td>
-<td>Error with Gemini model</td>
+<td>Gemini model error</td>
 <td><a href="gemini-002/">GEMINI_MODEL_ERROR</a></td>
 </tr>
 <tr>
 <td><code>gemini-003</code></td>
-<td>Error with Gemini API key</td>
+<td>Gemini API key error</td>
 <td><a href="gemini-003/">GEMINI_API_KEY_ERROR</a></td>
 </tr>
 <tr>
 <td><code>gemini-004</code></td>
-<td>Error saving Gemini API key</td>
+<td>Gemini API key save error</td>
 <td><a href="gemini-004/">GEMINI_API_KEY_SAVE_ERROR</a></td>
 </tr>
 <tr>
 <td><code>gemini-005</code></td>
-<td>Error with file in Gemini command</td>
+<td>Gemini file error</td>
 <td><a href="gemini-005/">GEMINI_FILE_ERROR</a></td>
 </tr>
 </tbody>
@@ -2528,27 +2522,27 @@
 <tbody>
 <tr>
 <td><code>repo-001</code></td>
-<td>Error cloning repository</td>
+<td>Repository clone error</td>
 <td><a href="repo-001/">REPO_CLONE_ERROR</a></td>
 </tr>
 <tr>
 <td><code>repo-002</code></td>
-<td>Repository size exceeds limits</td>
+<td>Repository too large</td>
 <td><a href="repo-002/">REPO_TOO_LARGE</a></td>
 </tr>
 <tr>
 <td><code>repo-003</code></td>
-<td>Error analyzing repository</td>
+<td>Repository analysis error</td>
 <td><a href="repo-003/">REPO_ANALYZE_ERROR</a></td>
 </tr>
 <tr>
 <td><code>repo-004</code></td>
-<td>Invalid repository URL</td>
-<td><a href="repo-004/">REPO_INVALID_URL</a></td>
+<td>Repository URL error</td>
+<td><a href="repo-004/">REPO_URL_ERROR</a></td>
 </tr>
 <tr>
 <td><code>repo-005</code></td>
-<td>Error with file in repository</td>
+<td>Repository file error</td>
 <td><a href="repo-005/">REPO_FILE_ERROR</a></td>
 </tr>
 </tbody>
@@ -2565,28 +2559,28 @@
 <tbody>
 <tr>
 <td><code>github-001</code></td>
-<td>GitHub authentication error</td>
-<td><a href="github-001/">GITHUB_AUTH_ERROR</a></td>
+<td>GitHub API error</td>
+<td><a href="github-001/">GITHUB_API_ERROR</a></td>
 </tr>
 <tr>
 <td><code>github-002</code></td>
-<td>GitHub API error</td>
-<td><a href="github-002/">GITHUB_API_ERROR</a></td>
+<td>GitHub authentication error</td>
+<td><a href="github-002/">GITHUB_AUTH_ERROR</a></td>
 </tr>
 <tr>
 <td><code>github-003</code></td>
-<td>GitHub repository not found</td>
-<td><a href="github-003/">GITHUB_REPO_NOT_FOUND</a></td>
+<td>GitHub repository error</td>
+<td><a href="github-003/">GITHUB_REPO_ERROR</a></td>
 </tr>
 <tr>
 <td><code>github-004</code></td>
-<td>GitHub permission error</td>
-<td><a href="github-004/">GITHUB_PERMISSION_ERROR</a></td>
+<td>GitHub PR error</td>
+<td><a href="github-004/">GITHUB_PR_ERROR</a></td>
 </tr>
 <tr>
 <td><code>github-005</code></td>
-<td>GitHub rate limit exceeded</td>
-<td><a href="github-005/">GITHUB_RATE_LIMIT</a></td>
+<td>GitHub issue error</td>
+<td><a href="github-005/">GITHUB_ISSUE_ERROR</a></td>
 </tr>
 </tbody>
 </table>
@@ -2602,91 +2596,69 @@
 <tbody>
 <tr>
 <td><code>project-001</code></td>
-<td>Project size exceeds limits</td>
+<td>Project too large</td>
 <td><a href="project-001/">PROJECT_TOO_LARGE</a></td>
 </tr>
 <tr>
 <td><code>project-002</code></td>
-<td>Error analyzing project</td>
+<td>Project analysis error</td>
 <td><a href="project-002/">PROJECT_ANALYZE_ERROR</a></td>
 </tr>
 <tr>
 <td><code>project-003</code></td>
-<td>Invalid project URL</td>
+<td>Project invalid URL</td>
 <td><a href="project-003/">PROJECT_INVALID_URL</a></td>
 </tr>
 <tr>
 <td><code>project-004</code></td>
-<td>Error with file in project</td>
+<td>Project file error</td>
 <td><a href="project-004/">PROJECT_FILE_ERROR</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="handling-errors">Handling Errors<a class="headerlink" href="#handling-errors" title="Permanent link">&para;</a></h2>
-<h3 id="reading-error-messages">Reading Error Messages<a class="headerlink" href="#reading-error-messages" title="Permanent link">&para;</a></h3>
-<p>When you encounter an error, it will be displayed in this format:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>× ERROR: [Error message]
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  Code: [error code] (e.g., install-001)
+<h3 id="general-errors">General Errors<a class="headerlink" href="#general-errors" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>general-001</code></td>
+<td>Unknown error</td>
+<td><a href="general-001.md">UNKNOWN_ERROR</a></td>
+</tr>
+<tr>
+<td><code>general-002</code></td>
+<td>General error</td>
+<td><a href="general-002.md">GENERAL_ERROR</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="using-the-error-system-in-code">Using the Error System in Code<a class="headerlink" href="#using-the-error-system-in-code" title="Permanent link">&para;</a></h2>
+<p>If you're contributing to Cursor Utils, here's how to use the error system:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ErrorCodes</span><span class="p">,</span> <span class="n">WebError</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.command_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_execute</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Causes:
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  - [Potential cause 1]
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  - [Potential cause 2]
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  Suggestion: [Hint or suggestion for resolution]
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  For more information: https://gweidart.github.io/cursor-utils/errors/[error-code].md
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nd">@safe_execute</span><span class="p">(</span><span class="n">WebError</span><span class="p">,</span> <span class="n">ErrorCodes</span><span class="o">.</span><span class="n">WEB_QUERY_ERROR</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">web_command</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="c1"># Command implementation</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">pass</span>
 </span></code></pre></div>
-<h3 id="common-resolution-steps">Common Resolution Steps<a class="headerlink" href="#common-resolution-steps" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p><strong>Check API Keys</strong>: Many errors relate to missing or invalid API keys. Run <code>cursor-utils config api_keys</code> to check and set up your API keys.</p>
-</li>
-<li>
-<p><strong>Check Configuration</strong>: Verify your configuration by running <code>cursor-utils config show</code>.</p>
-</li>
-<li>
-<p><strong>Check Internet Connection</strong>: For API-related errors, ensure you have a stable internet connection.</p>
-</li>
-<li>
-<p><strong>Check File Permissions</strong>: For file-related errors, check that you have the necessary permissions.</p>
-</li>
-<li>
-<p><strong>Check GitHub Token</strong>: For GitHub-related errors, verify your GitHub token with <code>cursor-utils config api_keys</code>.</p>
-</li>
-<li>
-<p><strong>Enable Debug Mode</strong>: Run commands with the <code>--debug</code> flag to get more detailed error information.</p>
-</li>
-</ol>
-<h2 id="creating-custom-error-handlers">Creating Custom Error Handlers<a class="headerlink" href="#creating-custom-error-handlers" title="Permanent link">&para;</a></h2>
-<p>You can create custom error handlers for your extensions of Cursor Utils:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CursorUtilsError</span><span class="p">,</span> <span class="n">ErrorCodes</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">handle_my_error</span><span class="p">():</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="c1"># Your code here</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">pass</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="c1"># Create a descriptive error</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="k">raise</span> <span class="n">CursorUtilsError</span><span class="p">(</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Failed to process data&quot;</span><span class="p">,</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            <span class="n">code</span><span class="o">=</span><span class="n">ErrorCodes</span><span class="o">.</span><span class="n">GENERAL_ERROR</span><span class="p">,</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>            <span class="n">causes</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                <span class="s2">&quot;The data format may be invalid&quot;</span><span class="p">,</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                <span class="s2">&quot;The input file might be corrupted&quot;</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>            <span class="p">],</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>            <span class="n">hint_stmt</span><span class="o">=</span><span class="s2">&quot;Try providing a valid JSON file&quot;</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="p">)</span>
+<p>For synchronous functions:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ErrorCodes</span><span class="p">,</span> <span class="n">ConfigError</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.command_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_execute_sync</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nd">@safe_execute_sync</span><span class="p">(</span><span class="n">ConfigError</span><span class="p">,</span> <span class="n">ErrorCodes</span><span class="o">.</span><span class="n">CONFIG_FILE_ERROR</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">config_command</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="c1"># Command implementation</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">pass</span>
 </span></code></pre></div>
-<h2 id="submitting-bug-reports">Submitting Bug Reports<a class="headerlink" href="#submitting-bug-reports" title="Permanent link">&para;</a></h2>
-<p>If you encounter an error that you cannot resolve, please submit a bug report with the following information:</p>
-<ol>
-<li>The full error message and code</li>
-<li>Steps to reproduce the error</li>
-<li>Your Cursor Utils version (<code>cursor-utils --version</code>)</li>
-<li>Your operating system and version</li>
-<li>Any relevant configuration settings or command options</li>
-</ol>
-<p>Submit bug reports on <a href="https://github.com/gweidart/cursor-utils/issues">GitHub Issues</a> with the "bug" label. </p>
+<h2 id="troubleshooting-common-errors">Troubleshooting Common Errors<a class="headerlink" href="#troubleshooting-common-errors" title="Permanent link">&para;</a></h2>
+<p>For detailed troubleshooting information about specific errors, click on the corresponding error code link in the tables above. </p>
 
 
 

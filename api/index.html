@@ -2229,14 +2229,18 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── repo/             # Repository analysis
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── project/          # Local project analysis
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── config/           # Configuration management
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   └── update/           # Self-update functionality
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── utils/                # Utility functions
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   └── file_rank_algo.py # File ranking algorithm
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── templates/            # Template files for code generation
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── errors.py             # Error handling system
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── types.py              # Type definitions
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── config.py             # Configuration management
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>└── version.py            # Version information
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   ├── install/          # Installation utilities
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   └── update/           # Self-update functionality
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── utils/                # Utility functions
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   ├── command_helpers.py # Standardized error handling
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   ├── api_helpers.py    # API key management
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   ├── config_helpers.py # Configuration utilities
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   └── file_rank_algo.py # File ranking algorithm
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>├── templates/            # Template files for code generation
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>├── errors.py             # Error handling system
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>├── types.py              # Type definitions
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>├── config.py             # Configuration management
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└── version.py            # Version information
 </span></code></pre></div>
 <h2 id="component-relationships">Component Relationships<a class="headerlink" href="#component-relationships" title="Permanent link">&para;</a></h2>
 <h3 id="data-flow">Data Flow<a class="headerlink" href="#data-flow" title="Permanent link">&para;</a></h3>
@@ -2305,22 +2309,18 @@
 <h3 id="error-handling-errorspy">Error Handling (<code>errors.py</code>)<a class="headerlink" href="#error-handling-errorspy" title="Permanent link">&para;</a></h3>
 <p>Provides a robust error handling system:</p>
 <ul>
-<li>Standardized error classes</li>
-<li>Diagnostic information</li>
+<li>Standardized error classes with diagnostic information</li>
 <li>Error codes and messages</li>
+<li>Decorators for consistent error handling</li>
 <li>Contextual error information</li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CursorUtilsError</span><span class="p">,</span> <span class="n">ErrorCodes</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">try</span><span class="p">:</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="c1"># Operation that might fail</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">raise</span> <span class="n">CursorUtilsError</span><span class="p">(</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Operation failed&quot;</span><span class="p">,</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="n">code</span><span class="o">=</span><span class="n">ErrorCodes</span><span class="o">.</span><span class="n">GENERAL_ERROR</span><span class="p">,</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="n">causes</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)],</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="n">hint_stmt</span><span class="o">=</span><span class="s2">&quot;Try this solution&quot;</span><span class="p">,</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.command_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_execute</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nd">@safe_execute</span><span class="p">(</span><span class="n">WebError</span><span class="p">,</span> <span class="n">ErrorCodes</span><span class="o">.</span><span class="n">WEB_QUERY_ERROR</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">web_command</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="c1"># Command implementation that might raise exceptions</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">pass</span>
 </span></code></pre></div>
 <h3 id="type-system-typespy">Type System (<code>types.py</code>)<a class="headerlink" href="#type-system-typespy" title="Permanent link">&para;</a></h3>
 <p>Defines type definitions used throughout the application:</p>
@@ -2328,6 +2328,7 @@
 <li>TypedDict definitions for structured data</li>
 <li>Literal types for constrained values</li>
 <li>Union types for flexible interfaces</li>
+<li>Protocol classes for interface definitions</li>
 <li>Custom type aliases for better readability</li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigDict</span><span class="p">,</span> <span class="n">ModelType</span>
@@ -2339,17 +2340,23 @@
 <h3 id="utilities-module-utils">Utilities Module (<code>utils/</code>)<a class="headerlink" href="#utilities-module-utils" title="Permanent link">&para;</a></h3>
 <p>Common utility functions and classes:</p>
 <ul>
-<li>File ranking algorithm</li>
-<li>File operations</li>
-<li>Network operations</li>
-<li>Text processing</li>
-<li>Output formatting</li>
+<li><code>command_helpers.py</code>: Standardized error handling for commands</li>
+<li><code>api_helpers.py</code>: Centralized API key management</li>
+<li><code>config_helpers.py</code>: Simplified configuration handling</li>
+<li><code>file_rank_algo.py</code>: File ranking algorithm for repository analysis</li>
 </ul>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.file_rank_algo</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileRanker</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Rank files by importance</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">ranker</span> <span class="o">=</span> <span class="n">FileRanker</span><span class="p">(</span><span class="n">type_weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size_weight</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">time_weight</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">ranked_files</span> <span class="o">=</span> <span class="n">ranker</span><span class="o">.</span><span class="n">rank_files</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.command_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_execute</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.api_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_api_key</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.config_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_config</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cursor_utils.utils.file_rank_algo</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileRanker</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># Use utility functions</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nd">@safe_execute</span><span class="p">(</span><span class="n">WebError</span><span class="p">,</span> <span class="n">ErrorCodes</span><span class="o">.</span><span class="n">WEB_QUERY_ERROR</span><span class="p">)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">web_command</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">api_key</span> <span class="o">=</span> <span class="n">get_api_key</span><span class="p">(</span><span class="n">APIKeyType</span><span class="o">.</span><span class="n">PERPLEXITY</span><span class="p">,</span> <span class="s2">&quot;PERPLEXITY_API_KEY&quot;</span><span class="p">)</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">ensure_config</span><span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="n">required_keys</span><span class="p">,</span> <span class="n">defaults</span><span class="p">)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">ranker</span> <span class="o">=</span> <span class="n">FileRanker</span><span class="p">(</span><span class="n">type_weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size_weight</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">time_weight</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="n">ranked_files</span> <span class="o">=</span> <span class="n">ranker</span><span class="o">.</span><span class="n">rank_files</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="command-specific-apis">Command-Specific APIs<a class="headerlink" href="#command-specific-apis" title="Permanent link">&para;</a></h2>
 <p>Each command provides its own API for programmatic use:</p>
@@ -2362,10 +2369,11 @@
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <p>Cursor Utils uses a comprehensive error handling system:</p>
 <ul>
-<li>All errors inherit from <code>CursorUtilsError</code></li>
+<li>All errors inherit from <code>CursorUtilsError</code> which extends <code>DiagnosticError</code></li>
 <li>Error codes are defined in <code>ErrorCodes</code> enum</li>
-<li>Errors include detailed diagnostic information</li>
-<li>Error messages provide helpful hints for resolution</li>
+<li>Specialized error classes for each module (e.g., <code>WebError</code>, <code>ConfigError</code>)</li>
+<li>Decorators (<code>safe_execute</code> and <code>safe_execute_sync</code>) for standardized error handling</li>
+<li>Centralized error handling with <code>handle_command_error</code> function</li>
 </ul>
 <h2 id="extension-points">Extension Points<a class="headerlink" href="#extension-points" title="Permanent link">&para;</a></h2>
 <p>Cursor Utils can be extended in several ways:</p>
