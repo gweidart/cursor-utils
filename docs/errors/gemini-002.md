@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an issue with the specified Googl
   
   Suggestion: Check the model name and try a different model
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/gemini-002.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/gemini-002.md
 ```
 
 ## Common Causes

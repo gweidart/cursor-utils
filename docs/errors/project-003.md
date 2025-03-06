@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an invalid URL while trying to ac
   
   Suggestion: Check the URL format and ensure the project exists
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/project-003.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/project-003.md
 ```
 
 ## Common Causes

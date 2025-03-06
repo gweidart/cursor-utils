@@ -33,10 +33,18 @@ Every command and subcommand includes comprehensive help:
 ```bash
 # Main help
 cursor-utils --help
+```
 
+```bash
 # Command-specific help
 cursor-utils web --help
+```
+
+```bash
 cursor-utils gemini --help
+```
+
+```bash
 cursor-utils github --help
 ```
 
@@ -97,13 +105,16 @@ Ask Perplexity to solve the equation x^2 - 4x + 4 = 0
 
 ### Agent Usage Examples
 
-```
+```bash
 # Basic query
 Ask Perplexity what are the latest developments in React 18?
+```
 
-
+```bash
 Ask Perplexity about recent academic papers on machine learning 
+```
 
+```bash
 # Custom model
 Ask Perplexity to explain Docker networking using the sonar-pro model
 ```
@@ -127,10 +138,11 @@ The Gemini command allows your Cursor Agents to take full advantage of Gemini's 
 ```bash
 # Query with file context
 Ask Gemini to help you refactor this: --append src/module.py code to use async/await.
+```
 
+```bash
 # Single file context
 Ask Gemini to analyze -a src/auth.py and collab with you to find security issues in these files
-
 ```
 
 ### Agent Usage Examples
@@ -138,10 +150,14 @@ Ask Gemini to analyze -a src/auth.py and collab with you to find security issues
 ```bash
 # Basic query
 Ask Gemini to explain the principles of clean code architecture
+```
 
+```bash
 # With file context
 Ask Gemini to --append ./src/slow_function.py optimize this function for performance
+```
 
+```bash
 # Context-aware request
 Ask Gemini to analyze this module: --append ./src/utils.py and suggest improvements
 ```
@@ -167,10 +183,14 @@ The repo command clones the target repo to a temp dir, & uses our propriatry alg
 ```bash
 # Analyze specific branch
 Use cursor-utils repo https://github.com/user/repo "Document the API" --branch develop
+```
 
+```bash
 # Focus on specific directories
 Use cursor-utils repo https://github.com/user/repo "Security review" --include src/auth --include src/api
+```
 
+```bash
 # Custom depth analysis
 Use cursor-utils repo https://github.com/user/repo "Code quality assessment" --depth comprehensive
 ```
@@ -191,13 +211,17 @@ The repository analysis uses a sophisticated algorithm that:
 
 ### Agent Usage Examples
 
-```
+```bash
 # Basic analysis
 Use cursor-utils repo https://github.com/user/repo to explain the purpose of this codebase
+```
 
+```bash
 # Targeted analysis
 Use cursor-utils repo to analyze the authentication system in https://github.com/user/repo focusing on the auth directory
+```
 
+```bash
 # Language-specific analysis
 Use cursor-utils repo to examine the JavaScript testing framework in https://github.com/user/repo
 ```
@@ -215,30 +239,39 @@ The `project` command analyzes your local directory structure similar to the rep
 ```bash
 cursor-utils project "Explain what this project does"
 ```
+
 The project command uses our propriatry algo to sort, analyze, and rank the files in your local repo / cwd to isolate the most important files. It then packs this ranking report along with the files its identified and sends it along with your query for Google's Gemini to analyze and provide context-aware answers and collaboration with your Cursor Agents:
 
-
 Simply ask your Cursor Agent to:
+
 ```bash
 # Specify project path
 Use cursor-utils project "Generate documentation"
+```
 
+```bash
 # Adjust file ranking weights
 Use cursor-utils project "Code review"
+```
 
+```bash
 # Control maximum analysis size
 Use cursor-utils project "Quick overview"
 ```
 
 ### Agent Usage Examples
 
-```
+```bash
 # Basic project analysis
 Use cursor-utils project to explain the architecture of this codebase
+```
 
+```bash
 # Specific task
 Use cursor-utils project to generate comprehensive API documentation
+```
 
+```bash
 # Targeted analysis
 Analyze the database models in this project and suggest optimizations
 ```
@@ -261,7 +294,9 @@ Use cursor-utils github to analyze owner/repo
 ```bash
 # Create a new repository with best practices
 Use cursor-utils github to setup new-repo-name
+```
 
+```bash
 # Clone and analyze
 Use cursor-utils github to clone owner/repo
 ```
@@ -271,7 +306,9 @@ Use cursor-utils github to clone owner/repo
 ```bash
 # Generate PR description from commits
 Use cursor-utils github to fetch pr owner/repo
+```
 
+```bash
 # Analyze a specific PR
 Use cursor-utils github to fetch pr number 123 owner/repo
 ```
@@ -282,7 +319,9 @@ Use cursor-utils github to fetch pr number 123 owner/repo
 ```bash
 # Summarize issues
 cursor-utils github issues owner/repo
+```
 
+```bash
 # Create a new issue
 cursor-utils github issue create owner/repo "Bug: Login failure" "Description of the issue"
 ```
@@ -294,10 +333,14 @@ Simply ask your Cursor Agent to:
 ```bash
 # Repository analysis
 Use cursor-utils github analyze fastapi/fastapi
+```
 
+```bash
 # PR generation
 Use cursor-utils github to create a pull request for my current branch with a comprehensive description
+```
 
+```bash
 # Issue summary
 Use cursor-utils github to summarize open issues in the tensorflow/tensorflow repository
 ```
@@ -310,8 +353,10 @@ The `config` command manages settings and API keys are intended to be run manual
 
 ```bash
 # Interactive API key setup
-cursor-utils config api_keys
+cursor-utils config
+```
 
+```bash
 # Config OR change API keys
 cursor-utils config api_keys
 ```
@@ -321,7 +366,7 @@ cursor-utils config api_keys
 ```bash
 # Show current configuration
 cursor-utils config --show
-
+```
 
 ### Configuration File
 
@@ -339,7 +384,9 @@ simply ask your Cursor Agent to:
 # Analyze a repository, then ask specific questions
 Use cursor-utils repo https://github.com/user/repo to give me an overview of the repo then
 ask Gemini "Based on that repo analysis, how would I implement feature X?"
+```
 
+```bash
 # Search for information, then apply to your project
 Ask Perplexity to research best practices for API security then
 use cursor-utils project audit my API endpoints for security issues

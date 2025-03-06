@@ -19,7 +19,7 @@ This error occurs when Cursor Utils attempts to perform an operation on a GitHub
   
   Suggestion: Check your GitHub token permissions and repository access
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/github-004.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/github-004.md
 ```
 
 ## Common Causes

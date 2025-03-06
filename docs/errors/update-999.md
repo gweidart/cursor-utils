@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters an unexpected or unclassified err
   
   Suggestion: Check logs for detailed information and report this issue
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/update-999.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/update-999.md
 ```
 
 ## Common Causes

@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters an issue with its main configurat
   
   Suggestion: Check the configuration file format and ensure all required fields are present
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/config-005.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/config-005.md
 ```
 
 ## Common Causes

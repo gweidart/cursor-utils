@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters an invalid repository URL. This c
   
   Suggestion: Check the URL format and ensure the repository exists
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/repo-004.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/repo-004.md
 ```
 
 ## Common Causes

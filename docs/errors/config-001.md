@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters an invalid API key. This can happ
   
   Suggestion: Check and update your API key in the configuration
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/config-001.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/config-001.md
 ```
 
 ## Common Causes

@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an issue with a file while workin
   
   Suggestion: Check the file format and encoding, or exclude problematic files
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/repo-005.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/repo-005.md
 ```
 
 ## Common Causes

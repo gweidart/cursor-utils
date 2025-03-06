@@ -2,7 +2,7 @@
 
 **Give your Cursor IDE Agents superpowers.**
 
-Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. Built with modern Python practices and a focus on developer experience, Cursor Utils seamlessly integrates with Cursor agents to provide enhanced workflow capabilities.
+Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. Built with modern Python practices and a focus on developer experience, Cursor Utils seamlessly integrates with Cursor Agents to provide enhanced workflow capabilities.
 
 ## What is Cursor Utils?
 
@@ -41,9 +41,9 @@ All this functionality is exposed through a clean, intuitive CLI that your Curso
 ```bash
 # Using UV (recommended)
 uv pip install cursor-utils
+```
 
-OR
-
+```bash
 # Using pip
 pip install cursor-utils
 ```
@@ -108,4 +108,4 @@ For detailed API documentation, check out our [API Reference](api/index.md).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/gweidart/cursor-utils/blob/main/LICENSE) file for details. 
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/gweidart/cursor-utils/blob/main/LICENSE) file for details.

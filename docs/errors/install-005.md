@@ -18,7 +18,7 @@ This error occurs when Cursor Utils cannot write to a file during the installati
   
   Suggestion: Check file permissions and ensure sufficient disk space
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/install-005.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/install-005.md
 ```
 
 ## Common Causes

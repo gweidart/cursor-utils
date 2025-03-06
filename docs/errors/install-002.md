@@ -17,7 +17,7 @@ This error occurs when Cursor Utils cannot find a required file during the insta
   
   Suggestion: Verify the file path or try reinstalling Cursor Utils
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/install-002.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/install-002.md
 ```
 
 ## Common Causes

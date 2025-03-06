@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters an invalid version format or spec
   
   Suggestion: Use a valid version format (e.g., 1.2.3 or 1.2.3-beta.1)
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/version-002.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/version-002.md
 ```
 
 ## Common Causes

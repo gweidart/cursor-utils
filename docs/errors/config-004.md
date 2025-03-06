@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters a general issue with the .env fil
   
   Suggestion: Check the .env file format and ensure it exists in the correct location
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/config-004.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/config-004.md
 ```
 
 ## Common Causes

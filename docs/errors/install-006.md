@@ -17,7 +17,7 @@ This error occurs when you attempt to install Cursor Utils in a location where i
   
   Suggestion: Use the update command instead, or specify a different installation path
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/install-006.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/install-006.md
 ```
 
 ## Common Causes

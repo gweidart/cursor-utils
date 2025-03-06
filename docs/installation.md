@@ -18,7 +18,9 @@ This guide covers all aspects of installing, configuring, and updating Cursor Ut
 ```bash
 # Install UV if you don't have it
 curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
+```bash
 # Install cursor-utils
 uv pip install cursor-utils
 ```
@@ -36,11 +38,20 @@ pip install cursor-utils
 For isolated installation, consider using a virtual environment:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # On Unix/macOS
-# or
-.venv\Scripts\activate     # On Windows
+uv venv --python pypy
+```
 
+```bash
+source .venv/bin/activate  # On Unix/macOS
+```
+
+```bash
+.venv\bin\activate     # On Windows
+```
+
+### Global installation
+
+```bash
 pip install cursor-utils
 ```
 
@@ -50,6 +61,9 @@ After installation, initialize Cursor Utils in your project directory:
 
 ```bash
 cd /path/to/your/project
+```
+
+```bash
 cursor-utils install .
 ```
 
@@ -165,19 +179,34 @@ If you want to contribute to Cursor Utils or install the latest development vers
 ```bash
 # Clone the repository
 git clone https://github.com/gweidart/cursor-utils.git
-cd cursor-utils
+```
 
+```bash
+cd cursor-utils
+```
+
+```bash
 # Create and activate a virtual environment
 uv venv .venv --python pypy
-source .venv/bin/activate  # On Unix/macOS
-# or
-.venv\Scripts\activate     # On Windows
+```
 
+```bash
+source .venv/bin/activate  # On Unix/macOS
+```
+
+```bash
+# or
+.venv\bin\activate     # On Windows
+```
+
+```bash
 # Install development dependencies
 uv pip sync requirements/requirements-dev.txt requirements/requirements-test.txt
+```
 
+```bash
 # Install the package in development mode
-pip install -e .
+uv pip install -e .
 ```
 
 This installs Cursor Utils in development mode, allowing you to modify the code and immediately see the effects without reinstalling.

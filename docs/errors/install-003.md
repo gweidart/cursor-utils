@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters an issue while processing a templ
   
   Suggestion: Check the template file for errors or use a default template
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/install-003.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/install-003.md
 ```
 
 ## Common Causes

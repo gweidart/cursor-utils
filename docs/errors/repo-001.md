@@ -19,7 +19,7 @@ This error occurs when Cursor Utils fails to clone a repository. This could be d
   
   Suggestion: Check the repository URL and your network connection
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/repo-001.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/repo-001.md
 ```
 
 ## Common Causes

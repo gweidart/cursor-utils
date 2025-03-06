@@ -19,7 +19,7 @@ This error occurs when Cursor Utils attempts to access a GitHub repository that 
   
   Suggestion: Check the repository name and ensure it exists
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/github-003.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/github-003.md
 ```
 
 ## Common Causes

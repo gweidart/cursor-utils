@@ -21,13 +21,19 @@ We're committed to fostering an open and welcoming environment. Please be respec
 
 2. **Clone your fork locally**:
 ```bash
-git clone https://github.com/YOUR-USERNAME/cursor-utils.git
+git clone https://github.com/gweidart/cursor-utils.git
+```
+
+```bash
 cd cursor-utils
 ```
 
 3. **Create and activate a virtual environment**:
 ```bash
 uv venv .venv
+```
+
+```bash
 source .venv/bin/activate  # On Unix/macOS
 # or
 .venv\Scripts\activate     # On Windows
@@ -70,13 +76,21 @@ git checkout -b fix/issue-description
 2. Add and commit your changes with a meaningful commit message:
 ```bash
 git add .
+```
+
+```bash
 git commit -m "Add feature: description of changes"
 ```
+
 3. Make sure tests pass and linting is clean:
 ```bash
 pytest
+```
+
+```bash
 pre-commit run --all-files
 ```
+
 4. Push your changes to your fork:
 ```bash
 git push origin feature/your-feature-name
@@ -167,13 +181,19 @@ def function_name(param1: str, param2: Optional[int] = None) -> bool:
 ```bash
 # Run all tests
 pytest
+```
 
+```bash
 # Run tests with coverage
 pytest --cov=cursor_utils
+```
 
+```bash
 # Run specific tests
 pytest tests/test_specific.py
+```
 
+```bash
 # Run tests matching a pattern
 pytest -k "test_pattern"
 ```

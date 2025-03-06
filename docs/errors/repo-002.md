@@ -18,7 +18,7 @@ This error occurs when Cursor Utils attempts to clone or analyze a repository th
   
   Suggestion: Use a smaller repository or specify a subdirectory/specific files
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/repo-002.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/repo-002.md
 ```
 
 ## Common Causes

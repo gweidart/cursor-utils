@@ -17,7 +17,7 @@ This error occurs when Cursor Utils encounters an invalid path during installati
   
   Suggestion: Specify a valid directory path where you have write permissions
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/install-001.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/install-001.md
 ```
 
 ## Common Causes
@@ -37,7 +37,9 @@ Verify that the path you're specifying exists:
 ```bash
 # Linux/macOS
 ls -la /path/to/directory
+```
 
+```bash
 # Windows (PowerShell)
 Get-ChildItem -Path C:\path\to\directory
 ```
@@ -49,7 +51,9 @@ If the directory doesn't exist, create it before installation:
 ```bash
 # Linux/macOS
 mkdir -p /path/to/directory
+```
 
+```bash
 # Windows (PowerShell)
 New-Item -Path "C:\path\to\directory" -ItemType Directory
 ```
@@ -61,7 +65,9 @@ Ensure you have the necessary permissions for the directory:
 ```bash
 # Linux/macOS
 chmod 755 /path/to/directory
+```
 
+```bash
 # Windows
 # Right-click the folder, select Properties, then Security tab, and adjust permissions
 ```

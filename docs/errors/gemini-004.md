@@ -18,7 +18,7 @@ This error occurs when Cursor Utils fails to save the Google Gemini API key to i
   
   Suggestion: Check file permissions and ensure you have write access
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/gemini-004.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/gemini-004.md
 ```
 
 ## Common Causes

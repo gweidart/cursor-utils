@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an issue while analyzing a reposi
   
   Suggestion: Try with a simpler repository or focus on specific subdirectories
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/repo-003.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/repo-003.md
 ```
 
 ## Common Causes

@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an issue while communicating with
   
   Suggestion: Check the error details and try again later
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/gemini-001.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/gemini-001.md
 ```
 
 ## Common Causes

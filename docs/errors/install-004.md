@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters an issue with directory operation
   
   Suggestion: Check directory permissions and ensure the path is valid
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/install-004.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/install-004.md
 ```
 
 ## Common Causes

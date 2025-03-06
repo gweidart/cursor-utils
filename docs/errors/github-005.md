@@ -19,7 +19,7 @@ This error occurs when Cursor Utils has exceeded the GitHub API rate limits. Git
   
   Suggestion: Wait for the rate limit to reset or use a token with higher limits
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/github-005.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/github-005.md
 ```
 
 ## Common Causes

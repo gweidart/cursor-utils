@@ -18,7 +18,7 @@ This error occurs when Cursor Utils cannot authenticate with GitHub due to inval
   
   Suggestion: Check your GitHub token and ensure it has the required permissions
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/github-001.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/github-001.md
 ```
 
 ## Common Causes

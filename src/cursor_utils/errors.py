@@ -25,7 +25,7 @@ from diagnostic import DiagnosticError, DiagnosticStyle
 class CursorUtilsError(DiagnosticError):
     """Base diagnostic error class for all Cursor Utils errors."""
 
-    docs_index = "https://github.com/gweidart/cursor-utils/errors/{code}.md"
+    docs_index = "https://gweidart.github.io/cursor-utils/errors/{code}"
     style = DiagnosticStyle(
         name="error",
         color="red",

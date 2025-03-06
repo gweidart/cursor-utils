@@ -141,7 +141,7 @@ When you encounter an error, it will be displayed in this format:
   
   Suggestion: [Hint or suggestion for resolution]
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/[error-code].md
+  For more information: https://gweidart.github.io/cursor-utils/errors/[error-code].md
 ```
 
 ### Common Resolution Steps

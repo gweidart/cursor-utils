@@ -18,7 +18,7 @@ This error occurs when Cursor Utils encounters a general issue related to versio
   
   Suggestion: Check installed versions and ensure compatibility
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/version-001.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/version-001.md
 ```
 
 ## Common Causes

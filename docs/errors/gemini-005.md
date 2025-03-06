@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an issue with a file while using 
   
   Suggestion: Check that the file exists and is accessible
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/gemini-005.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/gemini-005.md
 ```
 
 ## Common Causes

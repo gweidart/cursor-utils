@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an issue while analyzing a projec
   
   Suggestion: Try with a simpler project or focus on specific subdirectories
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/project-002.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/project-002.md
 ```
 
 ## Common Causes

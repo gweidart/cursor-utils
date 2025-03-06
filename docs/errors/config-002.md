@@ -18,7 +18,7 @@ This error occurs when Cursor Utils fails to save an API key to its configuratio
   
   Suggestion: Check file permissions and ensure you have write access to the configuration directory
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/config-002.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/config-002.md
 ```
 
 ## Common Causes

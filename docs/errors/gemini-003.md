@@ -19,7 +19,7 @@ This error occurs when Cursor Utils encounters an issue with the Google Gemini A
   
   Suggestion: Check and update your Gemini API key
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/gemini-003.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/gemini-003.md
 ```
 
 ## Common Causes

@@ -18,7 +18,7 @@ This error occurs when Cursor Utils fails to read an API key from its configurat
   
   Suggestion: Check that the .env file exists and has the correct permissions
   
-  For more information: https://github.com/gweidart/cursor-utils/errors/config-003.md
+  For more information: https://gweidart.github.io/cursor-utils/errors/config-003.md
 ```
 
 ## Common Causes
