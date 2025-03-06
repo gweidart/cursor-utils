@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    { name = "gweidart", email = "gweidart@example.com" }
+    { name = "gweidart", email = "gweidart@gmail.com" }
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -91,6 +91,7 @@ dev = [
     "monkeytype",
     "build",
     "twine",
+    "mkdocs",
 ]
 test = [
     "pytest",

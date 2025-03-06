@@ -21,6 +21,9 @@ console = rprint
 # Constants
 UTILS_TAG = "CURSOR UTILS INTEGRATION"
 
+# Current version
+__version__ = "0.1.0"
+
 
 # Legacy function aliases for backward compatibility
 def get_latest_version() -> str:
