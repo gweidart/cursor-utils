@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  cursor-utils:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cursor-utils:latest
+    volumes:
+      - ${HOME}/.cursor-utils:/root/.cursor-utils
+      - ${HOME}/.cursor-utils.toml:/root/.cursor-utils.toml
+      - ${PWD}:/workspace
+    working_dir: /workspace
+    environment:
+      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    entrypoint: ["cursor-utils"]
+    command: ["--help"] 

@@ -1,0 +1,138 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+.venv/
+__pycache__/
+.git/
+.DS_Store
+.env
+dist/
+tests/
+build/
+.egg-info/
+.vscode/
+target/
+/target/
+/target
+uv-main/
+mcp-server/*
+mcp-server
+/mcp-server/
+/mcp-server
+node_modules/
+debug/
+typings/
+release/
+.mcp/*
+.mcp
+*.pyi
+.cursor/*
+.cursor
+.venv
+.pytest_cache
+__pycache__
+ ".venv/",
+    "site_packages/",
+    "env/",
+    "node_modules/",
+    ".cursor",
+    "__pycache__/",
+    "*.pyc",
+    "*.pyo",
+    "*.egg-info/",
+    ".pytest_cache/",
+    ".mypy_cache/",
+    ".ruff_cache/",
+    ".venv/",
+    "venv/",
+    "dist/",
+    "build/",
+    "node_modules/",
+    "**/node_modules/**",
+    ".git/",
+    ".github/",
+    ".vscode/",
+    ".idea/",
+    "*.log",
+    "*.bak",
+    "*.tmp",
+    "*.swp",
+    "*.DS_Store",
+    "*.env",
+    "*.secrets.yaml",
+    "*.secrets.yml",
+    "docs/",
+    "build/",
+    "dist/",
+    "*.pdf",
+    "*.zip",
+    "*.tar.gz",
+    "*.tar.bz2",
+    "**/test_*.py",
+    "**/tests/*",
+    "**/fixtures/*",
+    "**/config/*",
+    "**/conf/*",
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.env
+.venv
+env/
+venv/
+ENV/
+*.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Testing
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# Distribution
+dist/
+build/
+
+# Logs
+*.log
+
+*.AppImage

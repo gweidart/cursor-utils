@@ -1,0 +1,168 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cursor-utils"
+version = "0.1.0"
+description = "Give your Cursor IDE Agents superpowers."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    { name = "gweidart", email = "gweidart@example.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Typing :: Typed",
+]
+keywords = [
+    "python",
+    "python3",
+    "openai",
+    "chatgpt",
+    "claude",
+    "anthropic",
+    "gemini",
+    "google",
+    "cursor ide",
+    "cursor-tools",
+    "cursor-utils",
+    "gpt",
+    "gpt-o1",
+    "gpt-4o",
+    "gpt-4o-mini",
+    "gpt-4",
+    "gpt-3.5-turbo",
+    "gpt-3.5-turbo-0125",
+    "sonnet-3.7",
+    "agent",
+    "agentic",
+    "cursor",
+    "ai",
+    "tools",
+    "cli",
+    "utils",
+    "agentic programming",
+    "agentic programming with python",
+    "agentic programming with python 3",
+    "agentic programming with python 3.10",
+    "agentic programming with python 3.11",
+    "agentic programming with python 3.12",
+]
+dependencies = [
+    "pyplexityai",
+    "click",
+    "rich",
+    "diagnostic",
+    "typing-extensions",
+    "httpx",
+    "packaging",
+    "python-dotenv",
+    "PyYAML",
+    "rich",
+    "typing-extensions",
+    "google-genai",
+    "types-PyYAML",
+    "psutil",
+    "pathspec",
+    "rich-click",
+    "packaging",
+    "importlib",
+    "pygithub",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "pyright",
+    "ruff",
+    "hatchling",
+    "pre-commit",
+    "monkeytype",
+    "build",
+    "twine",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-asyncio",
+    "pytest-timeout",
+]
+
+[project.urls]
+Homepage = "https://github.com/gweidart/cursor-utils"
+Repository = "https://github.com/gweidart/cursor-utils"
+Documentation = "https://github.com/gweidart/cursor-utils#readme"
+"Bug Tracker" = "https://github.com/gweidart/cursor-utils/issues"
+
+[project.scripts]
+cursor-utils = "cursor_utils.cli:main"
+
+[tool.hatch.build]
+include = [
+    "src/cursor_utils/**/*.py",
+    "src/cursor_utils/py.typed",
+    "src/cursor_utils/templates/**/*",
+    "src/py.typed",
+]
+exclude = [
+    "**/__pycache__",
+    "**/.ruff_cache",
+    "**/.pytest_cache",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cursor_utils"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "LICENSE",
+    "README.md",
+    "pyproject.toml",
+]
+
+[tool.hatch.version]
+path = "src/cursor_utils/version.py"
+pattern = "__version__ = \"(?P<version>[^\"]+)\""
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.pyright]
+include = ["src/cursor_utils"]
+exclude = ["__pycache__"]
+venv = ".venv"
+venvPath = "."
+pythonVersion = "3.10"
+pythonPlatform = "Linux"
+pythonImplementation = "pypy"
+pythonPath = [".venv/bin/python"]
+pythonInterpreter = [".venv/bin/python"]
+typeCheckingMode = "strict"
+useLibraryCodeForTypes = true
+reportMissingTypeStubs = false
+reportUnknownMemberType = true
+reportUnknownParameterType = true
+reportUnknownVariableType = true
+reportUnknownArgumentType = true
+reportPrivateUsage = true
+reportUnnecessaryIsInstance = true

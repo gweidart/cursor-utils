@@ -1,0 +1,159 @@
+site_name: Cursor Utils
+site_description: Give your Cursor IDE Agents superpowers.
+site_url: https://gweidart.github.io/cursor-utils/
+repo_url: https://github.com/gweidart/cursor-utils
+repo_name: gweidart/cursor-utils
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for dark mode (primary)
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      
+    # Palette toggle for light mode (secondary)
+    - media: "(prefers-color-scheme: light)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  
+  # Rose Pine Moon custom colors
+  custom_dir: docs/overrides
+  
+  # Logo and favicon
+  logo: assets/images/cursor-utils-logo.svg
+  favicon: assets/images/favicon.svg
+  icon:
+    repo: fontawesome/brands/github
+  
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.expand
+    - navigation.indexes
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - header.autohide
+    - navigation.footer
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - def_list
+  - md_in_html
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_source: true
+            show_submodules: true
+            docstring_style: google
+            docstring_section_style: spacy
+
+# Extra configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/gweidart/cursor-utils
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/cursor-utils/
+  generator: false
+
+# Navigation structure
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - API Reference:
+      - Overview: api/index.md
+      - CLI: api/cli.md
+      - Commands: api/commands.md
+      - Configuration: api/config.md
+      - Utils: api/utils.md
+      - Models: api/models.md
+  - Error Reference:
+      - Overview: errors/index.md
+      - Installation Errors:
+          - INVALID_PATH: errors/install-001.md
+          - FILE_NOT_FOUND: errors/install-002.md
+          - TEMPLATE_ERROR: errors/install-003.md
+          - DIRECTORY_ERROR: errors/install-004.md
+          - FILE_WRITE_ERROR: errors/install-005.md
+          - ALREADY_INSTALLED: errors/install-006.md
+      - Update Errors:
+          - UPDATE_FAILED: errors/update-001.md
+          - UNKNOWN_ERROR: errors/update-999.md
+      - Version Errors:
+          - VERSION_ERROR: errors/version-001.md
+          - INVALID_VERSION: errors/version-002.md
+      - Configuration Errors:
+          - INVALID_API_KEY: errors/config-001.md
+          - API_KEY_SAVE_ERROR: errors/config-002.md
+          - API_KEY_READ_ERROR: errors/config-003.md
+          - ENV_FILE_ERROR: errors/config-004.md
+          - CONFIG_FILE_ERROR: errors/config-005.md
+      - Web Command Errors:
+          - WEB_API_ERROR: errors/web-001.md
+          - WEB_CONFIG_ERROR: errors/web-002.md
+          - WEB_CONNECTION_ERROR: errors/web-003.md
+          - WEB_TIMEOUT_ERROR: errors/web-004.md
+          - WEB_STREAM_ERROR: errors/web-005.md
+          - WEB_MODEL_ERROR: errors/web-006.md
+      - Gemini API Errors:
+          - GEMINI_API_ERROR: errors/gemini-001.md
+          - GEMINI_MODEL_ERROR: errors/gemini-002.md
+          - GEMINI_API_KEY_ERROR: errors/gemini-003.md
+          - GEMINI_API_KEY_SAVE_ERROR: errors/gemini-004.md
+          - GEMINI_FILE_ERROR: errors/gemini-005.md
+      - Repository Errors:
+          - REPO_CLONE_ERROR: errors/repo-001.md
+          - REPO_TOO_LARGE: errors/repo-002.md
+          - REPO_ANALYZE_ERROR: errors/repo-003.md
+          - REPO_INVALID_URL: errors/repo-004.md
+          - REPO_FILE_ERROR: errors/repo-005.md
+      - GitHub Errors:
+          - GITHUB_AUTH_ERROR: errors/github-001.md
+          - GITHUB_API_ERROR: errors/github-002.md
+          - GITHUB_REPO_NOT_FOUND: errors/github-003.md
+          - GITHUB_PERMISSION_ERROR: errors/github-004.md
+          - GITHUB_RATE_LIMIT: errors/github-005.md
+      - Project Errors:
+          - PROJECT_TOO_LARGE: errors/project-001.md
+          - PROJECT_ANALYZE_ERROR: errors/project-002.md
+          - PROJECT_INVALID_URL: errors/project-003.md
+          - PROJECT_FILE_ERROR: errors/project-004.md
+  - Contributing: contributing.md
+  - License: license.md 
