@@ -35,6 +35,15 @@ All this functionality is exposed through a clean, intuitive CLI that your Curso
   - Clean CLI with rich terminal output
   - Robust error handling with detailed diagnostics
   - Modular, well-organized code structure
+<<<<<<< HEAD
+=======
+
+## Recent Improvements
+
+- **v0.1.2**: Enhanced `repo` and `project` commands to properly send files to Gemini, added error handling for binary files, implemented file size limits (2GB per file, 2GB total context) for large repositories and projects, and maintained support for both local and repository .gitignore files.
+- **v0.1.1**: Added error handling for API calls, improved configuration management, and enhanced documentation.
+- **v0.1.0**: Initial release with core functionality.
+>>>>>>> 609232f (- New utility modules for common functionality:)
 
 ## Installation
 
@@ -535,3 +544,8 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## License
 
 MIT License
+
+**File Size Limits:**
+- Repository Analysis: Up to 2GB per file, 2GB total context size
+- File Attachments: Text files of any reasonable size
+- Browser Downloads: Limited by available system memory

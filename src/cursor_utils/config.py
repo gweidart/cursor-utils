@@ -136,73 +136,87 @@ class Config:
 
     def load_config(self) -> ConfigDict:
         """
-        Load configuration from yaml file or create default if not exists.
+        Load configuration from file.
 
         Returns:
-            ConfigDict: The loaded or default configuration
+            ConfigDict: Configuration dictionary
 
         Raises:
-            ConfigError: If configuration cannot be loaded or created
+            ConfigError: If configuration file is invalid
 
         """
         try:
+            # Ensure config directory exists
+            self._ensure_config_dir()
+
+            # Check if config file exists
             if not self.config_path.exists():
+                # Create default config if it doesn't exist
                 default_config = self._load_default_config()
                 self.save_config(default_config)
-                self.console.print(
-                    "[#d7af00]Created new configuration file with defaults[/]"
-                )
                 return default_config
 
-            with open(self.config_path, "r") as f:
-                loaded_config = yaml.safe_load(f) or {}  # type: ignore
+            # Load config from file
+            with open(self.config_path, "r", encoding="utf-8") as f:
+                config_data: ConfigDict = yaml.safe_load(f)
 
-                # Validate and coerce to ConfigDict
-                config: ConfigDict = {
-                    "version": str(loaded_config.get("version", DEFAULT_VERSION)),  # type: ignore
-                    "settings": {
-                        "debug": bool(
-                            loaded_config.get("settings", {}).get("debug", False)  # type: ignore
-                        ),
-                        "log_level": str(
-                            loaded_config.get("settings", {}).get(  # type: ignore
-                                "log_level", DEFAULT_LOG_LEVEL
-                            )
-                        ),
-                    },
+            # Validate config
+            if not config_data:
+                raise ConfigError(
+                    message="Invalid configuration file",
+                    code=ErrorCodes.CONFIG_FILE_ERROR,
+                    causes=["Configuration file is not a valid YAML dictionary"],
+                    hint_stmt="Try deleting the configuration file and running 'cursor-utils config init' to recreate it.",
+                )
+
+            # Ensure required fields exist
+            if "version" not in config_data:
+                config_data["version"] = DEFAULT_VERSION
+
+            if "settings" not in config_data:
+                config_data["settings"] = {
+                    "debug": False,
+                    "log_level": DEFAULT_LOG_LEVEL,
                 }
+            else:
+                # Ensure settings fields exist
+                if "debug" not in config_data["settings"]:
+                    config_data["settings"]["debug"] = False
+                if "log_level" not in config_data["settings"]:
+                    config_data["settings"]["log_level"] = DEFAULT_LOG_LEVEL
 
-                # Add any custom options if they exist
-                if custom_options := loaded_config.get("custom_options"):  # type: ignore
-                    if isinstance(custom_options, dict):
-                        config["custom_options"] = {
-                            str(k): str(v)  # type: ignore
-                            for k, v in custom_options.items()  # type: ignore
-                        }
-
-                return config
-
+            # Save validated config
+            self.save_config(config_data)
+            return config_data
         except yaml.YAMLError as e:
             raise ConfigError(
-                message="Failed to parse configuration file",
+                message="Invalid YAML in configuration file",
                 code=ErrorCodes.CONFIG_FILE_ERROR,
                 causes=[str(e)],
-                hint_stmt="Check YAML syntax in configuration file.",
-            )
-        except Exception as e:
+                hint_stmt="Try deleting the configuration file and running 'cursor-utils config init' to recreate it.",
+            ) from e
+        except OSError as e:
             raise ConfigError(
-                message="Failed to load configuration file",
+                message="Error reading configuration file",
                 code=ErrorCodes.CONFIG_FILE_ERROR,
                 causes=[str(e)],
                 hint_stmt="Check file permissions and try again.",
-            )
+            ) from e
+        except Exception as e:
+            raise ConfigError(
+                message="Unexpected error loading configuration",
+                code=ErrorCodes.CONFIG_FILE_ERROR,
+                causes=[str(e)],
+                hint_stmt="Try deleting the configuration file and running 'cursor-utils config init' to recreate it.",
+            ) from e
 
-    def save_config(self, config: ConfigDict) -> None:
+    def save_config(self, config: ConfigDict, silent: bool = False) -> None:
         """
         Save configuration to yaml file.
 
         Args:
             config: Configuration dictionary to save
+            silent: Whether to suppress success message
 
         Raises:
             ConfigError: If configuration cannot be saved
@@ -214,7 +228,11 @@ class Config:
 
             with open(self.config_path, "w") as f:
                 yaml.safe_dump(config, f, default_flow_style=False, sort_keys=False)
-            self.console.print("[#00d700]Configuration saved successfully![/#00d700]")
+
+            if not silent:
+                self.console.print(
+                    "[#00d700]Configuration saved successfully![/#00d700]"
+                )
         except yaml.YAMLError as e:
             raise ConfigError(
                 message="Failed to serialize configuration",

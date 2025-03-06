@@ -23,7 +23,7 @@ All this functionality is exposed through a clean, intuitive CLI that your Curso
 
 ## Key Features
 
-- **Web Intelligence**: Query Perplexity AI for real-time, ai guided web answers with customizable search focus.
+- **Web Intelligence**: Query Perplexity AI for real-time, AI-guided web answers with customizable search focus.
 - **Repository Analysis**: Intelligently analyze local or remote repos, prioritizing the most relevant files.
 - **Gemini Integration**: Leverage Google's Gemini for code generation and contextual analysis.
 - **GitHub Automation**: Streamline GitHub workflows from PR generation to repo setup.
@@ -91,8 +91,12 @@ cursor-utils/
 │       │   ├── project/          # Local project analysis
 │       │   ├── repo/             # Repository analysis
 │       │   ├── config/           # Configuration management
+│       │   ├── install/          # Installation utilities
 │       │   └── update/           # Self-update functionality
 │       ├── utils/                # Utility functions
+│       │   ├── command_helpers.py # Standardized error handling
+│       │   ├── api_helpers.py    # API key management
+│       │   ├── config_helpers.py # Configuration utilities
 │       │   └── file_rank_algo.py # Repository analysis algorithm
 │       ├── templates/            # Template files
 │       ├── errors.py             # Error handling framework

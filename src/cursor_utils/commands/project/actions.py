@@ -29,7 +29,27 @@ from cursor_utils.commands.gemini.actions import (
 )
 from cursor_utils.commands.project.manager import ProjectError, ProjectManager
 from cursor_utils.errors import ErrorCodes
+from cursor_utils.types import GeminiConfig
 from cursor_utils.utils.file_rank_algo import FileInfo, FileRanker, ProcessedFileInfo
+
+
+def is_binary_file(file_path: Path) -> bool:
+    """
+    Check if a file is binary.
+
+    Args:
+        file_path: Path to the file
+
+    Returns:
+        bool: True if the file is binary, False otherwise
+
+    """
+    try:
+        with open(file_path, 'rb') as f:
+            chunk = f.read(1024)
+            return b'\0' in chunk  # A simple heuristic for binary files
+    except Exception:
+        return True  # If we can't read the file, assume it's binary
 
 
 def collect_file_info(
@@ -147,9 +167,13 @@ def save_top_files(
     """
     saved_files: list[Path] = []
     total_size = 0
+    total_context_size_limit = 2 * 1024 * 1024 * 1024  # 2GB total context size limit
 
     for file_info in ranked_files:
-        if total_size + file_info["size"] > max_size_bytes:
+        if (
+            total_size + file_info["size"] > max_size_bytes
+            or total_size >= total_context_size_limit
+        ):
             break
 
         try:
@@ -157,18 +181,21 @@ def save_top_files(
             if file_info["type"] in ["jpg", "jpeg", "png", "gif", "pdf", "zip", "exe"]:
                 continue
 
-            if file_info["size"] > 1024 * 1024:  # Skip files > 1 MB
+            if file_info["size"] > 2 * 1024 * 1024 * 1024:  # Skip files > 2GB
                 continue
 
-            with open(file_info["path"], "r", encoding="utf-8") as src_file:
+            # Check if the file is binary
+            file_path = Path(file_info["path"])
+            if is_binary_file(file_path):
+                continue
+
+            # Read the file content
+            with open(
+                file_info["path"], "r", encoding="utf-8", errors="replace"
+            ) as src_file:
                 content = src_file.read()
 
-                # Skip binary files
-                if "\0" in content:
-                    continue
-
                 # Create output file
-                file_path = Path(file_info["path"])
                 relative_path = file_path.relative_to(file_path.parent.parent)
                 output_path = output_dir / relative_path
                 output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -232,7 +259,7 @@ async def analyze_project(
 
     try:
         # Ensure configuration
-        config = ensure_config(manager.gemini_manager)
+        config: GeminiConfig = ensure_config(manager.gemini_manager)
 
         with manager.create_progress() as progress:
             # Check project size
@@ -281,26 +308,54 @@ async def analyze_project(
                     hint_stmt="Try a different project or adjust the maximum size.",
                 )
 
-            # Create context file with file list
-            context_file = temp_dir / "project_context.txt"
+            # Create a combined context file with the ranking report and the actual file contents
+            context_file = temp_dir / "project_context.md"
             with open(context_file, "w", encoding="utf-8") as f:
-                f.write("Project structure:\n\n")
-                for file in saved_files:
-                    rel_path = file.relative_to(output_dir)
-                    f.write(f"- {rel_path}\n")
+                # First add the ranking report
+                f.write("# Project Analysis Report\n\n")
+                f.write(prepare_ranking_report(ranked_files))
+                f.write("\n\n## Project Files\n\n")
+
+                # Then add the content of each saved file
+                for file_path in saved_files:
+                    rel_path = file_path.relative_to(output_dir)
+                    f.write(f"### File: {rel_path}\n\n")
+                    f.write("```\n")
+                    try:
+                        with open(
+                            file_path, "r", encoding="utf-8", errors="replace"
+                        ) as src_file:
+                            f.write(src_file.read())
+                    except Exception as e:
+                        if debug:
+                            console.print(
+                                f"[#d7af00]Warning: Failed to read file {rel_path}: {e!s}[/]"
+                            )
+                        f.write(f"*Error reading file {rel_path}*\n\n")
+                    f.write("\n```\n\n")
+
+        # Check the size of the combined context file
+        context_size = context_file.stat().st_size
+        if context_size > 2 * 1024 * 1024 * 1024:  # 2GB
+            console.print(
+                f"[bold yellow]Warning: Combined context is very large ({context_size / 1024 / 1024 / 1024:.2f} GB). This may exceed Gemini's limits.[/]"
+            )
 
         # Build query with context
-        repo_query = (
-            "I want you to analyze this project structure and files. "
-            f"Here's my question: {query}"
+        project_query = (
+            "I've analyzed a local project and want insights about it. "
+            f"User Query: {query}\n\n"
+            "Please use the attached files to provide a detailed analysis. "
+            "The Project Analysis Report contains an overview of the most important files, "
+            "and the other sections contain the actual source code from the project."
         )
 
         console.print("[#afafd7]Asking Gemini...[/]")
-        console.print(f"[dim af87ff]Query: {query}[/]")
+        console.print(f"[dim #af87ff]Query: {query}[/]")
 
         # Stream response from Gemini
         async for chunk in stream_query_with_context(
-            query=repo_query,
+            query=project_query,
             model=config["model"],
             max_output_tokens=config["max_output_tokens"],
             temperature=config["temperature"],

@@ -22,7 +22,7 @@ console = rprint
 UTILS_TAG = "CURSOR UTILS INTEGRATION"
 
 # Current version
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 # Legacy function aliases for backward compatibility

@@ -15,7 +15,6 @@ import argparse
 import re
 import sys
 from pathlib import Path
-from typing import Tuple
 
 
 def get_current_version() -> str:
@@ -34,7 +33,7 @@ def get_current_version() -> str:
     return match.group(1)
 
 
-def parse_version(version: str) -> Tuple[int, int, int]:
+def parse_version(version: str) -> tuple[int, int, int]:
     """Parse a version string into a tuple of (major, minor, patch)."""
     try:
         parts = version.split(".")

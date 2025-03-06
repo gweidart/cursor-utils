@@ -22,6 +22,36 @@ This modular design ensures:
 - Testable components
 - Maintainable code
 
+## Standardized Error Handling
+
+All commands use standardized error handling through the `safe_execute` and `safe_execute_sync` decorators:
+
+```python
+# For async commands
+from cursor_utils.errors import ErrorCodes, WebError
+from cursor_utils.utils.command_helpers import safe_execute
+
+@safe_execute(WebError, ErrorCodes.WEB_QUERY_ERROR)
+async def web_action(query: str) -> None:
+    # Command implementation
+    pass
+
+# For synchronous commands
+from cursor_utils.errors import ErrorCodes, ConfigError
+from cursor_utils.utils.command_helpers import safe_execute_sync
+
+@safe_execute_sync(ConfigError, ErrorCodes.CONFIG_FILE_ERROR)
+def config_action() -> None:
+    # Command implementation
+    pass
+```
+
+This approach ensures:
+- Consistent error messages
+- Proper error categorization
+- Helpful diagnostic information
+- Clear suggestions for resolution
+
 ## Web Command
 
 The web command interfaces with Perplexity AI to provide real-time web search capabilities.
@@ -45,34 +75,34 @@ def web(query, model=None, focus=None, mode=None):
 ### Core Functionality
 
 The web command:
-1. Validates the API key
-2. Configures the Perplexity client
+1. Validates the API key using `get_api_key`
+2. Configures the Perplexity client with appropriate settings
 3. Streams the query to Perplexity AI
-4. Processes and formats the streaming response
-5. Displays the result in rich markdown format
+4. Formats and displays the response
 
-### Usage Examples
+### Error Handling
 
 ```python
-from cursor_utils.commands.web import actions
+# commands/web/actions.py
+from cursor_utils.errors import ErrorCodes, WebError
+from cursor_utils.utils.command_helpers import safe_execute
+from cursor_utils.utils.api_helpers import get_api_key
 
-# Simple query
-response = await actions.stream_query(
-    query="Latest Python features",
-    model="sonar",
-    mode="copilot",
-    search_focus="internet",
-    api_key="your_api_key",
-)
-
-# Process streaming response
-async for chunk in response:
-    print(chunk["text"])
+@safe_execute(WebError, ErrorCodes.WEB_QUERY_ERROR)
+async def execute_web(query: str, model: Optional[str] = None, focus: Optional[str] = None, mode: Optional[str] = None) -> None:
+    # Get API key
+    api_key = get_api_key(APIKeyType.PERPLEXITY, "PERPLEXITY_API_KEY")
+    
+    # Configure client
+    client = PerplexityClient(api_key=api_key)
+    
+    # Execute query
+    await client.query(query, model=model, focus=focus, mode=mode)
 ```
 
 ## Gemini Command
 
-The Gemini command utilizes Google's Gemini API for AI-powered code generation and analysis.
+The Gemini command leverages Google's Gemini AI models for code generation and analysis.
 
 ### Implementation
 
@@ -81,12 +111,10 @@ The Gemini command utilizes Google's Gemini API for AI-powered code generation a
 @click.command()
 @click.argument("query", nargs=-1, required=True)
 @click.option(
-    "--append",
-    type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True),
-    multiple=True,
-    help="File to include as context (can be used multiple times)",
+    "--append", "-a",
+    help="Append file content to the query",
 )
-def gemini(query, file=None, temp=None, max_tokens=None):
+def gemini(query, append=None):
     """Query Google Gemini with your question."""
     # Implementation
 ```
@@ -94,35 +122,41 @@ def gemini(query, file=None, temp=None, max_tokens=None):
 ### Core Functionality
 
 The Gemini command:
-1. Validates the API key
-2. Loads any provided files as context
-3. Configures the Gemini client with custom parameters
-4. Processes the query with context
-5. Displays the streamed response with formatting
+1. Validates the API key using `get_api_key`
+2. Loads file content if specified with `--append`
+3. Configures the Gemini client with appropriate settings
+4. Sends the query to Gemini AI
+5. Formats and displays the response
 
-### Usage Examples
+### Error Handling
 
 ```python
-from cursor_utils.commands.gemini import actions
+# commands/gemini/actions.py
+from cursor_utils.errors import ErrorCodes, GeminiError
+from cursor_utils.utils.command_helpers import safe_execute
+from cursor_utils.utils.api_helpers import get_api_key
 
-# Query with file context
-response = await actions.stream_query_with_context(
-    query="Explain this code",
-    file_paths=["/path/to/file.py"],
-    model="gemini-pro",
-    temperature=0.7,
-    max_tokens=2000,
-    api_key="your_api_key",
-)
-
-# Process response
-async for chunk in response:
-    print(chunk["text"])
+@safe_execute(GeminiError, ErrorCodes.GEMINI_API_ERROR)
+async def execute_gemini(query: str, file_path: Optional[str] = None) -> None:
+    # Get API key
+    api_key = get_api_key(APIKeyType.GEMINI, "GEMINI_API_KEY")
+    
+    # Load file content if specified
+    file_content = None
+    if file_path:
+        with open(file_path, "r") as f:
+            file_content = f.read()
+    
+    # Configure client
+    client = GeminiClient(api_key=api_key)
+    
+    # Execute query
+    await client.query(query, context=file_content)
 ```
 
-## Repository Analysis Command
+## Repo Command
 
-The repo command analyzes GitHub repositories using a sophisticated file ranking algorithm.
+The repo command analyzes GitHub repositories to provide intelligent insights.
 
 ### Implementation
 
@@ -131,54 +165,51 @@ The repo command analyzes GitHub repositories using a sophisticated file ranking
 @click.command()
 @click.argument("repo_url", required=True)
 @click.argument("query", nargs=-1, required=True)
-def repo(repo_url, query, branch="main", include=None, max_size=2048):
-    """Analyze a repository with context-aware answers."""
+@click.option(
+    "--branch",
+    help="Specify a branch to analyze",
+)
+def repo(repo_url, query, branch=None):
+    """Analyze a GitHub repository."""
     # Implementation
 ```
 
 ### Core Functionality
 
 The repo command:
-1. Clones the repository
-2. Ranks files using a priority algorithm
-3. Filters and selects the most relevant files
-4. Generates a report of the analysis
-5. Sends the context and query to Gemini
-6. Displays the response with rich formatting
+1. Clones the repository to a temporary directory
+2. Analyzes the repository structure
+3. Ranks files by importance using `FileRanker`
+4. Sends the query and ranked files to Gemini AI
+5. Formats and displays the response
 
-### File Ranking Algorithm
-
-The repository analysis uses a sophisticated file ranking algorithm:
+### Error Handling
 
 ```python
+# commands/repo/actions.py
+from cursor_utils.errors import ErrorCodes, RepoError
+from cursor_utils.utils.command_helpers import safe_execute
 from cursor_utils.utils.file_rank_algo import FileRanker
 
-ranker = FileRanker(
-    type_weight=1.0,    # Importance of file type
-    size_weight=0.8,    # Importance of file size
-    time_weight=1.2,    # Importance of file creation time
-)
-
-ranked_files = ranker.rank_files(files)
+@safe_execute(RepoError, ErrorCodes.REPO_CLONE_ERROR)
+async def execute_repo(repo_url: str, query: str, branch: Optional[str] = None) -> None:
+    # Clone repository
+    repo_path = await clone_repository(repo_url, branch)
+    
+    # Analyze repository
+    files = analyze_repository(repo_path)
+    
+    # Rank files
+    ranker = FileRanker()
+    ranked_files = ranker.rank_files(files)
+    
+    # Execute query
+    await execute_query(query, ranked_files)
 ```
 
-### Usage Examples
+## Project Command
 
-```python
-from cursor_utils.commands.repo import actions
-
-# Analyze repository
-response = await actions.analyze_repository(
-    repo_url="https://github.com/user/repo",
-    query="Explain the architecture",
-)
-
-print(response)
-```
-
-## Project Analysis Command
-
-The project command analyzes local projects similar to the repo command.
+The project command analyzes local projects to provide intelligent insights.
 
 ### Implementation
 
@@ -188,53 +219,48 @@ The project command analyzes local projects similar to the repo command.
 @click.argument("query", nargs=-1, required=True)
 @click.option(
     "--path",
-    type=click.Path(exists=True, file_okay=False, dir_okay=True),
-    default=".",
-    help="Path to the project directory",
+    help="Specify a project path to analyze",
 )
-@click.option(
-    "--max-size",
-    type=int,
-    default=2048,
-    help="Maximum size in MB to analyze",
-)
-def project(query, path=".", max_size=2048):
-    """Analyze a local project with context-aware answers."""
+def project(query, path=None):
+    """Analyze a local project."""
     # Implementation
 ```
 
 ### Core Functionality
 
 The project command:
-1. Scans the local directory
-2. Respects .gitignore patterns
-3. Ranks files by importance
-4. Selects the most relevant files
-5. Generates a report of the analysis
-6. Sends the context and query to Gemini
-7. Displays the response with rich formatting
+1. Analyzes the project structure
+2. Ranks files by importance using `FileRanker`
+3. Sends the query and ranked files to Gemini AI
+4. Formats and displays the response
 
-### Usage Examples
+### Error Handling
 
 ```python
-from cursor_utils.commands.project import actions
+# commands/project/actions.py
+from cursor_utils.errors import ErrorCodes, ProjectError
+from cursor_utils.utils.command_helpers import safe_execute
+from cursor_utils.utils.file_rank_algo import FileRanker
 
-# Analyze local project
-response = await actions.analyze_project(
-    project_path="/path/to/project",
-    query="Document the API",
-    max_size_mb=1024,
-    type_weight=1.0,
-    size_weight=0.8,
-    time_weight=1.2,
-)
-
-print(response)
+@safe_execute(ProjectError, ErrorCodes.PROJECT_ANALYZE_ERROR)
+async def execute_project(query: str, path: Optional[str] = None) -> None:
+    # Determine project path
+    project_path = path or os.getcwd()
+    
+    # Analyze project
+    files = analyze_project(project_path)
+    
+    # Rank files
+    ranker = FileRanker()
+    ranked_files = ranker.rank_files(files)
+    
+    # Execute query
+    await execute_query(query, ranked_files)
 ```
 
-## GitHub Integration Command
+## GitHub Command
 
-The github command provides utilities for interacting with GitHub repositories.
+The GitHub command provides advanced GitHub repository management capabilities.
 
 ### Implementation
 
@@ -242,63 +268,57 @@ The github command provides utilities for interacting with GitHub repositories.
 # commands/github/command.py
 @click.group()
 def github():
-    """GitHub repository management commands."""
+    """GitHub repository management."""
     pass
 
 @github.command()
-@click.argument("owner", required=True)
-@click.argument("repo", required=True)
-def analyze(owner, repo):
+@click.argument("owner_repo", required=True)
+def analyze(owner_repo):
     """Analyze a GitHub repository."""
     # Implementation
-    
-@github.command()
-@click.argument("owner", required=True)
-@click.argument("repo", required=True)
-def pr(owner, repo):
-    """Generate PR description from commits."""
-    # Implementation
 
 @github.command()
-@click.argument("issues", required=True)
-@click.argument("repo", required=True)
-def issues(repo_name):
-    """Fetch remote repository issues"""
-
-@github.command()
-@click.argument("repo_name", required=True)
-def setup(repo_name):
-    """Set up a new GitHub repository with best practices."""
+@click.argument("name", required=True)
+@click.option(
+    "--private/--public",
+    default=True,
+    help="Create a private repository",
+)
+def setup(name, private):
+    """Set up a new GitHub repository."""
     # Implementation
 ```
 
 ### Core Functionality
 
-The GitHub command provides:
-1. Repository analysis
-2. Pull request management
-3. Issue management
-4. Repository setup with best practices
-5. Detailed reporting and statistics
+The GitHub command:
+1. Validates the GitHub token using `get_api_key`
+2. Performs the requested GitHub operation
+3. Formats and displays the response
 
-### Usage Examples
+### Error Handling
 
 ```python
-from cursor_utils.commands.github import actions
+# commands/github/actions.py
+from cursor_utils.errors import ErrorCodes, GitHubError
+from cursor_utils.utils.command_helpers import safe_execute
+from cursor_utils.utils.api_helpers import get_api_key
 
-# Analyze repository
-analysis = await actions.analyze_repository("owner", "repo")
-
-# Generate PR description
-pr_description = await actions.generate_pr_description("owner", "repo", pr_number=123)
-
-# Set up new repository
-result = await actions.setup_repository("new-repo", private=True, template="python")
+@safe_execute(GitHubError, ErrorCodes.GITHUB_API_ERROR)
+async def execute_github_analyze(owner_repo: str) -> None:
+    # Get GitHub token
+    token = get_api_key(APIKeyType.GITHUB, "GITHUB_TOKEN")
+    
+    # Configure client
+    client = GitHubClient(token=token)
+    
+    # Execute analysis
+    await client.analyze_repository(owner_repo)
 ```
 
-## Configuration Command
+## Config Command
 
-The config command manages Cursor Utils configuration and API keys.
+The config command manages settings and API keys.
 
 ### Implementation
 
@@ -306,170 +326,171 @@ The config command manages Cursor Utils configuration and API keys.
 # commands/config/command.py
 @click.group()
 def config():
-    """Manage cursor-utils configuration."""
+    """Configuration management."""
     pass
 
 @config.command()
 @click.option(
     "--show",
     is_flag=True,
-    help="Skip interactive prompts and only show current status.",
+    help="Show current configuration",
 )
-def api_keys(non_interactive=False):
-    """Configure API keys for enhanced features."""
+def api_keys(show):
+    """Manage API keys."""
     # Implementation
 ```
 
 ### Core Functionality
 
 The config command:
-1. Manages API keys securely
-2. Displays configuration status
-3. Sets and updates configuration values
-4. Validates configuration integrity
+1. Loads and validates configuration
+2. Performs the requested configuration operation
+3. Saves configuration changes
 
-### Configuration Structure
-
-The configuration is stored in `~/.cursor-utils.yaml` with the following structure:
-
-```yaml
-version: "0.1.0"
-settings:
-  debug: false
-  log_level: "INFO"
-web:
-  model: "sonar"
-  mode: "copilot"
-  search_focus: "internet"
-gemini:
-  model: "gemini-pro"
-  max_output_tokens: 8000
-  temperature: 0.7
-github:
-  token_source: "env"
-  default_owner: ""
-  default_repo: ""
-```
-
-### Usage Examples
+### Error Handling
 
 ```python
-from cursor_utils.config import Config
+# commands/config/actions.py
+from cursor_utils.errors import ErrorCodes, ConfigError
+from cursor_utils.utils.command_helpers import safe_execute_sync
+from cursor_utils.utils.config_helpers import load_config, save_config
 
-# Get configuration
-config = Config()
-
-# Get a value
-value = config.get("web.model")
-
-# Set a value
-config.set("web.mode", "concise")
-
-# Save configuration
-config.save()
+@safe_execute_sync(ConfigError, ErrorCodes.CONFIG_FILE_ERROR)
+def execute_config_api_keys(show: bool = False) -> None:
+    # Load configuration
+    config = load_config(manager, "api_keys")
+    
+    # Show configuration if requested
+    if show:
+        display_config(config)
+        return
+    
+    # Update configuration
+    updated_config = update_api_keys(config)
+    
+    # Save configuration
+    save_config(manager, "api_keys", updated_config)
 ```
 
-## Update Command
+## Install Command
 
-The update command handles checking for and applying updates.
-
-### Implementation
-
-```python
-# commands/update/command.py
-@click.command()
-@click.option(
-    "--check",
-    is_flag=True,
-    help="Only check for updates, don't install them.",
-)
-def update(check_only=False):
-    """Check for and apply updates."""
-    # Implementation
-```
-
-### Core Functionality
-
-The update command:
-1. Checks for new versions of Cursor Utils
-2. Compares with the current version
-3. Backs up configuration
-4. Applies updates using UV or pip
-5. Verifies the installation
-6. Migrates configuration if needed
-
-### Usage Examples
-
-```python
-from cursor_utils.commands.update import actions
-
-# Check for updates
-latest_version = actions.check_for_updates()
-if latest_version:
-    # Apply updates
-    success = actions.apply_update(latest_version)
-```
-
-## Installation Command
-
-The install command handles initial setup and configuration.
+The install command initializes Cursor Utils in a project.
 
 ### Implementation
 
 ```python
 # commands/install/command.py
 @click.command()
-@click.argument(
-    "directory",
-    type=click.Path(exists=True, file_okay=False, dir_okay=True),
-    required=True,
+@click.option(
+    "--force",
+    is_flag=True,
+    help="Force installation even if already installed",
 )
-def install(directory, force=False):
-    """Install Cursor Utils in a directory."""
+def install(force):
+    """Initialize Cursor Utils in the current directory."""
     # Implementation
 ```
 
 ### Core Functionality
 
 The install command:
-1. Creates necessary configuration files
-2. Sets up templates
-3. Guides through API key configuration
-4. Initializes the environment for Cursor Utils
-5. Validates the installation
+1. Checks if Cursor Utils is already installed
+2. Creates necessary configuration files
+3. Sets up default templates
+4. Guides the user through API key configuration
 
-### Usage Examples
+### Error Handling
 
 ```python
-from cursor_utils.commands.install import actions
+# commands/install/actions.py
+from cursor_utils.errors import ErrorCodes, InstallError
+from cursor_utils.utils.command_helpers import safe_execute_sync
 
-# Install in directory
-success = actions.install_in_directory("/path/to/project", force=False)
+@safe_execute_sync(InstallError, ErrorCodes.INSTALL_ALREADY_INSTALLED)
+def execute_install(force: bool = False) -> None:
+    # Check if already installed
+    if is_installed() and not force:
+        raise ValueError("Cursor Utils is already installed")
+    
+    # Create configuration files
+    create_config_files()
+    
+    # Set up templates
+    setup_templates()
+    
+    # Guide through API key configuration
+    configure_api_keys()
 ```
 
-## Extending Commands
+## Update Command
 
-Cursor Utils is designed to be extensible. You can add new commands by:
+The update command updates Cursor Utils to the latest version.
 
-1. Creating a new directory in `commands/`
-2. Implementing the command interface with Click
-3. Adding the core functionality
-4. Registering the command in `cli.py`
-
-### Command Template
+### Implementation
 
 ```python
-# commands/new_command/command.py
-import rich_click as click
-
+# commands/update/command.py
 @click.command()
-@click.argument("arg", required=True)
-@click.option("--option", help="Description of option")
-def new_command(arg, option=None):
-    """Description of the new command."""
+def update():
+    """Update Cursor Utils to the latest version."""
     # Implementation
+```
+
+### Core Functionality
+
+The update command:
+1. Checks for new versions
+2. Backs up configuration
+3. Updates the package
+4. Migrates configuration if needed
+5. Verifies the updated installation
+
+### Error Handling
+
+```python
+# commands/update/actions.py
+from cursor_utils.errors import ErrorCodes, UpdateError
+from cursor_utils.utils.command_helpers import safe_execute_sync
+
+@safe_execute_sync(UpdateError, ErrorCodes.UPDATE_FAILED)
+def execute_update() -> None:
+    # Check for new versions
+    new_version = check_for_updates()
     
-# Register in cli.py
-from cursor_utils.commands.new_command import new_command
-main.add_command(new_command)
-``` 
+    # Back up configuration
+    backup_configuration()
+    
+    # Update package
+    update_package(new_version)
+    
+    # Migrate configuration
+    migrate_configuration()
+    
+    # Verify installation
+    verify_installation()
+```
+
+## Best Practices for Command Implementation
+
+When implementing commands:
+
+1. **Use standardized error handling**:
+   - Use `safe_execute` for async functions
+   - Use `safe_execute_sync` for synchronous functions
+   - Provide appropriate error classes and codes
+
+2. **Centralize API key management**:
+   - Use `get_api_key` to retrieve API keys
+   - Use `validate_api_key` to validate API keys
+   - Handle missing or invalid keys gracefully
+
+3. **Simplify configuration handling**:
+   - Use `ensure_config` to validate and apply defaults
+   - Use `load_config` to load configuration sections
+   - Use `save_config` to save configuration changes
+
+4. **Follow consistent command structure**:
+   - Define command interface in `command.py`
+   - Implement core functionality in `actions.py`
+   - Manage command state in `manager.py`
+   - Export command from `__init__.py` 

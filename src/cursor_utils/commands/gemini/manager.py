@@ -33,7 +33,16 @@ class GeminiManager:
         self.config = Config()
 
     def load_config(self) -> Optional[GeminiConfig]:
-        """Load gemini configuration from yaml file."""
+        """
+        Load gemini configuration from yaml file.
+
+        Returns:
+            Optional[GeminiConfig]: Gemini configuration if found, None otherwise
+
+        Raises:
+            WebError: If configuration cannot be loaded
+
+        """
         try:
             config = self.config.load_config()
             gemini_config = config.get("gemini", {})
@@ -42,12 +51,55 @@ class GeminiManager:
                 for k in ("model", "max_output_tokens", "temperature", "top_p", "top_k")
             ):
                 return None
+
+            # Validate configuration values
+            model = gemini_config.get("model", "")
+            max_output_tokens = gemini_config.get("max_output_tokens", 2048)
+            temperature = gemini_config.get("temperature", 0.7)
+            top_p = gemini_config.get("top_p", 0.95)
+            top_k = gemini_config.get("top_k", 40)
+
+            # Validate and sanitize values
+            if not isinstance(model, str) or not model:
+                console.print(
+                    "[#d7af00]Warning: Invalid model in configuration. Using default.[/]"
+                )
+                model = "gemini-2.0-flash"
+
+            if not isinstance(max_output_tokens, int) or max_output_tokens <= 0:
+                console.print(
+                    "[#d7af00]Warning: Invalid max_output_tokens in configuration. Using default.[/]"
+                )
+                max_output_tokens = 2048
+
+            if (
+                not isinstance(temperature, int | float)
+                or temperature < 0
+                or temperature > 1
+            ):
+                console.print(
+                    "[#d7af00]Warning: Invalid temperature in configuration. Using default.[/]"
+                )
+                temperature = 0.7
+
+            if not isinstance(top_p, int | float) or top_p < 0 or top_p > 1:
+                console.print(
+                    "[#d7af00]Warning: Invalid top_p in configuration. Using default.[/]"
+                )
+                top_p = 0.95
+
+            if not isinstance(top_k, int) or top_k <= 0:
+                console.print(
+                    "[#d7af00]Warning: Invalid top_k in configuration. Using default.[/]"
+                )
+                top_k = 40
+
             return {
-                "model": gemini_config["model"],
-                "max_output_tokens": gemini_config["max_output_tokens"],
-                "temperature": gemini_config["temperature"],
-                "top_p": gemini_config["top_p"],
-                "top_k": gemini_config["top_k"],
+                "model": model,
+                "max_output_tokens": max_output_tokens,
+                "temperature": temperature,
+                "top_p": top_p,
+                "top_k": top_k,
             }
         except Exception as e:
             raise WebError(
@@ -64,9 +116,40 @@ class GeminiManager:
         temperature: float,
         top_p: float,
         top_k: int,
+        silent: bool = False,
     ) -> None:
-        """Save gemini configuration to yaml file."""
+        """
+        Save gemini configuration to yaml file.
+
+        Args:
+            model: Model to use for queries
+            max_output_tokens: Maximum number of tokens to generate
+            temperature: Temperature for sampling
+            top_p: Top-p for sampling
+            top_k: Top-k for sampling
+            silent: Whether to suppress success message
+
+        Raises:
+            WebError: If configuration cannot be saved
+
+        """
         try:
+            # Validate parameters
+            if not model:
+                raise ValueError("Model cannot be empty")
+
+            if max_output_tokens <= 0:
+                raise ValueError("max_output_tokens must be positive")
+
+            if temperature < 0 or temperature > 1:
+                raise ValueError("temperature must be between 0 and 1")
+
+            if top_p < 0 or top_p > 1:
+                raise ValueError("top_p must be between 0 and 1")
+
+            if top_k <= 0:
+                raise ValueError("top_k must be positive")
+
             # Load existing config
             config = self.config.load_config()
 
@@ -81,7 +164,16 @@ class GeminiManager:
             config["gemini"] = gemini_config
 
             # Save updated config
-            self.config.save_config(config)
+            self.config.save_config(config, silent=silent)
+            if not silent:
+                console.print("[#5f87ff]Gemini configuration saved successfully[/]")
+        except ValueError as e:
+            raise WebError(
+                message="Invalid configuration values",
+                code=ErrorCodes.WEB_CONFIG_ERROR,
+                causes=[str(e)],
+                hint_stmt="Please provide valid configuration values",
+            ) from e
         except Exception as e:
             raise WebError(
                 message="Failed to save gemini configuration",
@@ -91,11 +183,38 @@ class GeminiManager:
             ) from e
 
     def get_client(self, api_key: str) -> genai.Client:
-        """Get or create Google Gemini client."""
+        """
+        Get or create Google Gemini client.
+
+        Args:
+            api_key: Google Gemini API key
+
+        Returns:
+            genai.Client: Google Gemini client
+
+        Raises:
+            WebError: If client cannot be created
+
+        """
+        if not api_key:
+            raise WebError(
+                message="API key is required",
+                code=ErrorCodes.INVALID_API_KEY,
+                causes=["No API key provided"],
+                hint_stmt="Please provide a valid Google Gemini API key",
+            )
+
         try:
             # Always create a new client to ensure we're using the correct API key
             self._client = genai.Client(api_key=api_key)
             return self._client
+        except ValueError as e:
+            raise WebError(
+                message="Invalid API key format",
+                code=ErrorCodes.INVALID_API_KEY,
+                causes=[str(e)],
+                hint_stmt="Please check your API key format",
+            ) from e
         except Exception as e:
             raise WebError(
                 message="Failed to create Google Gemini client",

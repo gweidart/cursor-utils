@@ -13,12 +13,11 @@ Project Dependencies:
     This file is used by: command: For command execution
 """
 
-import os
+import asyncio
 import pathlib
 from collections.abc import AsyncGenerator, Generator
-from typing import Any, Optional, Union
+from typing import Any, Optional, Protocol, cast
 
-import rich_click as click
 from google.genai import types as genai_types
 from google.genai.errors import ClientError
 from rich.console import Console
@@ -26,8 +25,14 @@ from rich.markdown import Markdown
 from rich.panel import Panel
 
 from cursor_utils.commands.gemini.manager import GeminiManager
+from cursor_utils.config import APIKeyType
 from cursor_utils.errors import ErrorCodes, WebError
 from cursor_utils.types import GeminiConfig, StreamResponse
+from cursor_utils.utils.api_helpers import (
+    get_api_key as get_api_key_helper,
+    validate_api_key,
+)
+from cursor_utils.utils.config_helpers import ensure_config as ensure_config_helper
 
 console = Console()
 
@@ -38,37 +43,42 @@ DEFAULT_TOP_P = 0.95
 DEFAULT_TOP_K = 40
 
 
-def ensure_config(manager: GeminiManager) -> GeminiConfig:
+# Protocol for Gemini client to satisfy type checker
+class GeminiClientProtocol(Protocol):
+    """Protocol for Gemini client."""
+
+    models: Any
+    files: Any
+
+
+# Protocol for Gemini models to satisfy type checker
+class GeminiModelsProtocol(Protocol):
+    """Protocol for Gemini models."""
+
+    def generate_content_stream(
+        self, *, model: str, contents: list[str], config: Any
+    ) -> Generator[Any, None, None]:
+        """Generate content stream."""
+        ...
+
+
+def ensure_config(manager: GeminiManager, silent: bool = False) -> GeminiConfig:
     """Ensure configuration exists or guide user to create it."""
+    required_keys = ["model", "max_output_tokens", "temperature", "top_p", "top_k"]
+    defaults = {
+        "model": DEFAULT_MODEL,
+        "max_output_tokens": DEFAULT_MAX_OUTPUT_TOKENS,
+        "temperature": DEFAULT_TEMPERATURE,
+        "top_p": DEFAULT_TOP_P,
+        "top_k": DEFAULT_TOP_K,
+    }
+
     try:
-        config = manager.load_config()
-        if config is not None and all(
-            k in config
-            for k in ("model", "max_output_tokens", "temperature", "top_p", "top_k")
-        ):
-            return config
-
-        console.print("[yellow]No gemini configuration found. Let's create one![/]")
-
-        model = DEFAULT_MODEL if not config else config["model"]
-        max_output_tokens = (
-            DEFAULT_MAX_OUTPUT_TOKENS if not config else config["max_output_tokens"]
-        )
-        temperature = DEFAULT_TEMPERATURE if not config else config["temperature"]
-        top_p = DEFAULT_TOP_P if not config else config["top_p"]
-        top_k = DEFAULT_TOP_K if not config else config["top_k"]
-
-        manager.save_config(model, max_output_tokens, temperature, top_p, top_k)
-        return {
-            "model": model,
-            "max_output_tokens": max_output_tokens,
-            "temperature": temperature,
-            "top_p": top_p,
-            "top_k": top_k,
-        }
+        config = ensure_config_helper(manager, required_keys, defaults, silent=silent)
+        return cast(GeminiConfig, config)
     except Exception as e:
         raise WebError(
-            message="Failed to load or create gemini configuration",
+            message="Failed to load or create Gemini configuration",
             code=ErrorCodes.WEB_CONFIG_ERROR,
             causes=[str(e)],
             hint_stmt="Check your configuration file permissions and format",
@@ -76,39 +86,27 @@ def ensure_config(manager: GeminiManager) -> GeminiConfig:
 
 
 def get_api_key() -> str:
-    """Get API key from environment or prompt user."""
-    api_key = os.getenv("GEMINI_API_KEY", "")
-    if not api_key:
-        try:
-            api_key = click.prompt(
-                "Please enter your Google Gemini API key (will be stored in environment)",
-                type=str,
-                hide_input=True,
-            )
-            # Suggest adding to environment
-            console.print(
-                "\n[yellow]Tip: Add this to your environment to avoid prompts:[/]"
-                "\n[dim]export GEMINI_API_KEY='your-api-key'[/]"
-            )
-        except click.Abort:
-            raise
-        except Exception as e:
-            raise WebError(
-                message="Failed to get API key",
-                code=ErrorCodes.INVALID_API_KEY,
-                causes=[str(e)],
-                hint_stmt="Ensure you have set GEMINI_API_KEY in your environment",
-            ) from e
+    """
+    Get Google Gemini API key from environment or prompt user.
 
-    if not api_key.strip():
+    Returns:
+        str: API key
+
+    Raises:
+        WebError: If API key is invalid or not provided
+
+    """
+    try:
+        api_key = get_api_key_helper(APIKeyType.GEMINI, "GEMINI_API_KEY")
+        validate_api_key(api_key, APIKeyType.GEMINI, "GEMINI_API_KEY")
+        return api_key
+    except Exception as e:
         raise WebError(
-            message="API key cannot be empty",
+            message="Failed to get Google Gemini API key",
             code=ErrorCodes.INVALID_API_KEY,
-            causes=["Empty API key provided"],
-            hint_stmt="Set a valid GEMINI_API_KEY in your environment",
-        )
-
-    return api_key
+            causes=[str(e)],
+            hint_stmt="Set GEMINI_API_KEY environment variable or run 'cursor-utils config api_keys'",
+        ) from e
 
 
 async def stream_query(
@@ -121,69 +119,80 @@ async def stream_query(
     api_key: str,
     manager: GeminiManager,
 ) -> AsyncGenerator[StreamResponse, None]:
-    """Stream query response from Google Gemini."""
-    # Input validation
-    if not query.strip():
-        raise WebError(
-            message="Empty query is not allowed",
-            code=ErrorCodes.WEB_API_ERROR,
-            causes=["Query cannot be empty"],
-            hint_stmt="Please provide a non-empty query",
-        )
-
-    client = manager.get_client(api_key)
-
+    """Stream query response from Gemini API."""
     try:
-        # Get streaming response from Gemini
-        response: Generator[Any, None, None] = client.models.generate_content_stream(  # type: ignore
-            model=model,
-            contents=[query],
-            config={
-                "max_output_tokens": max_output_tokens,
-                "temperature": temperature,
-                "top_p": top_p,
-                "top_k": top_k,
-            },
+        # Configure generation parameters
+        generation_config = genai_types.GenerationConfig(
+            max_output_tokens=max_output_tokens,
+            temperature=temperature,
+            top_p=top_p,
+            top_k=top_k,
         )
 
-        # Convert regular generator to async generator
+        # Import here to avoid circular imports
+        from google.genai import genai  # type: ignore
+
+        # Create a client with the API key
+        gemini_client = cast(Any, genai.Client(api_key=api_key))  # type: ignore
+
+        # Stream the response
+        response = cast(
+            Generator[genai_types.GenerateContentResponse, None, None],
+            gemini_client.models.generate_content_stream(
+                model=model,
+                contents=[query],
+                config=generation_config,
+            ),
+        )
+
         for chunk in response:
-            text = chunk.text if hasattr(chunk, "text") else ""
-            if text is None:
-                text = ""
-            yield {"text": text, "done": False}
+            if hasattr(chunk, "text") and chunk.text:
+                yield {"text": chunk.text, "done": False}
+                await asyncio.sleep(0)  # Yield control to event loop
 
         yield {"text": "", "done": True}
-    except WebError:
-        raise
     except ClientError as e:
-        if "NOT_FOUND" in str(e):
+        if "API key not valid" in str(e):
             raise WebError(
-                message=f"Invalid model: {model}",
-                code=ErrorCodes.GEMINI_MODEL_ERROR,
-                causes=[str(e)],
-                hint_stmt="Check the model name and try again",
-            ) from e
-        elif "RESOURCE_EXHAUSTED" in str(e):
-            raise WebError(
-                message="API rate limit exceeded",
+                message="Invalid Gemini API key",
                 code=ErrorCodes.GEMINI_API_KEY_ERROR,
                 causes=[str(e)],
-                hint_stmt="Please try again later or reduce the number of concurrent requests",
+                hint_stmt="Please check your API key and try again. You can set a new API key with 'cursor-utils config set-api-key gemini'.",
+            ) from e
+        elif "model not found" in str(e).lower():
+            raise WebError(
+                message="Invalid Gemini model",
+                code=ErrorCodes.GEMINI_MODEL_ERROR,
+                causes=[str(e)],
+                hint_stmt=f"The model '{model}' is not available. Please check the model name and try again.",
+            ) from e
+        elif "quota exceeded" in str(e).lower():
+            raise WebError(
+                message="Gemini API quota exceeded",
+                code=ErrorCodes.GEMINI_API_ERROR,
+                causes=[str(e)],
+                hint_stmt="You have exceeded your Gemini API quota. Please try again later or upgrade your API plan.",
             ) from e
         else:
             raise WebError(
-                message="Error during API call",
+                message="Gemini API error",
                 code=ErrorCodes.GEMINI_API_ERROR,
                 causes=[str(e)],
-                hint_stmt="Check your internet connection and API key",
+                hint_stmt="An error occurred while calling the Gemini API. Please try again later.",
             ) from e
-    except Exception as e:
+    except (ConnectionError, TimeoutError) as e:
         raise WebError(
-            message="Error during API call",
+            message="Connection error",
             code=ErrorCodes.GEMINI_API_ERROR,
             causes=[str(e)],
-            hint_stmt="Check your internet connection and API key",
+            hint_stmt="Could not connect to the Gemini API. Please check your internet connection and try again.",
+        ) from e
+    except Exception as e:
+        raise WebError(
+            message="Unexpected error",
+            code=ErrorCodes.GEMINI_API_ERROR,
+            causes=[str(e)],
+            hint_stmt="An unexpected error occurred. Please try again later.",
         ) from e
 
 
@@ -211,7 +220,7 @@ async def stream_query_with_context(
     client = manager.get_client(api_key)
 
     try:
-        contents: list[Union[genai_types.Content, genai_types.File, str]] = []
+        contents: genai_types.ContentListUnion | genai_types.ContentListUnionDict = []
 
         # Handle file context if provided
         if context_file:

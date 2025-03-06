@@ -16,8 +16,12 @@ cursor_utils/
 │   ├── repo/             # Repository analysis
 │   ├── project/          # Local project analysis
 │   ├── config/           # Configuration management
+│   ├── install/          # Installation utilities
 │   └── update/           # Self-update functionality
 ├── utils/                # Utility functions
+│   ├── command_helpers.py # Standardized error handling
+│   ├── api_helpers.py    # API key management
+│   ├── config_helpers.py # Configuration utilities
 │   └── file_rank_algo.py # File ranking algorithm
 ├── templates/            # Template files for code generation
 ├── errors.py             # Error handling system
@@ -106,23 +110,19 @@ config.set("section.key", "value")
 
 Provides a robust error handling system:
 
-- Standardized error classes
-- Diagnostic information
+- Standardized error classes with diagnostic information
 - Error codes and messages
+- Decorators for consistent error handling
 - Contextual error information
 
 ```python
 from cursor_utils.errors import CursorUtilsError, ErrorCodes
+from cursor_utils.utils.command_helpers import safe_execute
 
-try:
-    # Operation that might fail
-except Exception as e:
-    raise CursorUtilsError(
-        message="Operation failed",
-        code=ErrorCodes.GENERAL_ERROR,
-        causes=[str(e)],
-        hint_stmt="Try this solution",
-    )
+@safe_execute(WebError, ErrorCodes.WEB_QUERY_ERROR)
+async def web_command(query: str) -> None:
+    # Command implementation that might raise exceptions
+    pass
 ```
 
 ### Type System (`types.py`)
@@ -132,6 +132,7 @@ Defines type definitions used throughout the application:
 - TypedDict definitions for structured data
 - Literal types for constrained values
 - Union types for flexible interfaces
+- Protocol classes for interface definitions
 - Custom type aliases for better readability
 
 ```python
@@ -146,18 +147,24 @@ model: ModelType = "sonar"
 
 Common utility functions and classes:
 
-- File ranking algorithm
-- File operations
-- Network operations
-- Text processing
-- Output formatting
+- `command_helpers.py`: Standardized error handling for commands
+- `api_helpers.py`: Centralized API key management
+- `config_helpers.py`: Simplified configuration handling
+- `file_rank_algo.py`: File ranking algorithm for repository analysis
 
 ```python
+from cursor_utils.utils.command_helpers import safe_execute
+from cursor_utils.utils.api_helpers import get_api_key
+from cursor_utils.utils.config_helpers import ensure_config
 from cursor_utils.utils.file_rank_algo import FileRanker
 
-# Rank files by importance
-ranker = FileRanker(type_weight=1.0, size_weight=0.8, time_weight=1.2)
-ranked_files = ranker.rank_files(files)
+# Use utility functions
+@safe_execute(WebError, ErrorCodes.WEB_QUERY_ERROR)
+async def web_command(query: str) -> None:
+    api_key = get_api_key(APIKeyType.PERPLEXITY, "PERPLEXITY_API_KEY")
+    config = ensure_config(manager, required_keys, defaults)
+    ranker = FileRanker(type_weight=1.0, size_weight=0.8, time_weight=1.2)
+    ranked_files = ranker.rank_files(files)
 ```
 
 ## Command-Specific APIs
@@ -173,10 +180,11 @@ Each command provides its own API for programmatic use:
 
 Cursor Utils uses a comprehensive error handling system:
 
-- All errors inherit from `CursorUtilsError`
+- All errors inherit from `CursorUtilsError` which extends `DiagnosticError`
 - Error codes are defined in `ErrorCodes` enum
-- Errors include detailed diagnostic information
-- Error messages provide helpful hints for resolution
+- Specialized error classes for each module (e.g., `WebError`, `ConfigError`)
+- Decorators (`safe_execute` and `safe_execute_sync`) for standardized error handling
+- Centralized error handling with `handle_command_error` function
 
 ## Extension Points
 

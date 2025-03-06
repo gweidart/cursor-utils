@@ -9,6 +9,7 @@ Project Dependencies:
     This file uses: asyncio: For async execution
     This file uses: cursor_utils.commands.project.actions: For project analysis
     This file uses: cursor_utils.commands.project.manager: For project management
+    This file uses: cursor_utils.utils.command_helpers: For standardized command execution
     This file is used by: cursor_utils.commands.project: For command registration
 """
 
@@ -16,9 +17,14 @@ import asyncio
 from pathlib import Path
 
 import rich_click as click
+from rich.console import Console
 
 from cursor_utils.commands.project.actions import analyze_project
 from cursor_utils.commands.project.manager import ProjectError, ProjectManager
+from cursor_utils.errors import ErrorCodes
+from cursor_utils.utils.command_helpers import safe_execute
+
+console = Console()
 
 
 @click.command()
@@ -74,29 +80,31 @@ def project(
         cursor-utils project --path /path/to/project "Document the API"
 
     """
-    debug = ctx.obj.get("debug", False)
+    debug = ctx.obj.get("DEBUG", False)
 
-    try:
-        asyncio.run(
-            async_project(
-                ctx=ctx,
-                query=query,
-                path=path,
-                max_size=max_size,
-                type_weight=type_weight,
-                size_weight=size_weight,
-                time_weight=time_weight,
-                debug=debug,
-            )
+    # Define a wrapper function to avoid type issues with asyncio
+    async def run_command() -> None:
+        await async_project(
+            ctx=ctx,
+            query=query,
+            path=path,
+            max_size=max_size,
+            type_weight=type_weight,
+            size_weight=size_weight,
+            time_weight=time_weight,
+            debug=debug,
         )
-    except ProjectError as e:
-        manager = ProjectManager()
-        manager.console.print(f"[#d70000]Error:[/] {e}")
+
+    # Run the async function
+    try:
+        asyncio.run(run_command())
     except Exception as e:
-        manager = ProjectManager()
-        manager.console.print(f"[#d70000]An unexpected error occurred:[/] {e}")
+        console.print(f"[red]Error:[/red] {e}")
+        if debug:
+            console.print_exception()
 
 
+@safe_execute(ProjectError, ErrorCodes.PROJECT_ANALYZE_ERROR)
 async def async_project(
     ctx: click.Context,
     query: tuple[str, ...],

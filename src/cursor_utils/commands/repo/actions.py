@@ -139,6 +139,25 @@ def prepare_ranking_report(ranked_files: list[ProcessedFileInfo]) -> str:
     return "".join(report)
 
 
+def is_binary_file(file_path: Path) -> bool:
+    """
+    Check if a file is binary.
+
+    Args:
+        file_path: Path to the file
+
+    Returns:
+        bool: True if the file is binary, False otherwise
+
+    """
+    try:
+        with open(file_path, 'rb') as f:
+            chunk = f.read(1024)
+            return b'\0' in chunk  # A simple heuristic for binary files
+    except Exception:
+        return True  # If we can't read the file, assume it's binary
+
+
 def save_top_files(
     ranked_files: list[ProcessedFileInfo], output_dir: Path, max_size_bytes: int
 ) -> list[Path]:
@@ -157,9 +176,13 @@ def save_top_files(
     output_dir.mkdir(parents=True, exist_ok=True)
     saved_files: list[Path] = []
     total_size = 0
+    total_context_size_limit = 2 * 1024 * 1024 * 1024  # 2GB total context size limit
 
     for file_info in ranked_files:
-        if total_size + file_info["size"] > max_size_bytes:
+        if (
+            total_size + file_info["size"] > max_size_bytes
+            or total_size >= total_context_size_limit
+        ):
             break
 
         # Create relative path for destination
@@ -169,6 +192,16 @@ def save_top_files(
 
         # Copy file
         try:
+            # Skip binary files
+            if is_binary_file(Path(src_path)):
+                continue
+
+            # Skip very large files
+            if (
+                file_info["size"] > 2 * 1024 * 1024 * 1024
+            ):  # 2GB limit for individual files
+                continue
+
             shutil.copy2(src_path, dest_path)
             saved_files.append(dest_path)
             total_size += file_info["size"]
@@ -216,7 +249,7 @@ async def clone_and_analyze_repo(
         api_key = get_api_key()
 
         # Get Gemini configuration
-        config = ensure_config(manager.gemini_manager)
+        config = ensure_config(manager.gemini_manager, silent=True)
 
         # Create progress display
         with manager.create_progress() as progress:
@@ -283,21 +316,56 @@ async def clone_and_analyze_repo(
                 f.write(report)
 
             # Save top files up to the size limit
-            _ = save_top_files(ranked_files, output_dir, max_size_bytes)
+            saved_files = save_top_files(ranked_files, output_dir, max_size_bytes)
             progress.update(prep_task, completed=True)
+
+        # Create a combined context file with the report and top files
+        combined_context_file = output_dir / "combined_context.md"
+        with open(combined_context_file, "w", encoding="utf-8") as f:
+            # First add the report
+            f.write("# Repository Analysis Report\n\n")
+            f.write(report)
+            f.write("\n\n## Repository Files\n\n")
+
+            # Then add the content of each saved file
+            for file_path in saved_files:
+                file_name = file_path.name
+                try:
+                    f.write(f"### File: {file_name}\n\n")
+                    f.write("```\n")
+                    with open(
+                        file_path, "r", encoding="utf-8", errors="replace"
+                    ) as src_file:
+                        f.write(src_file.read())
+                    f.write("\n```\n\n")
+                except Exception as e:
+                    if debug:
+                        console.print(
+                            f"[#d7af00]Warning: Failed to read file {file_name}: {e!s}[/]"
+                        )
+                    f.write(f"*Error reading file {file_name}*\n\n")
+
+        # Check the size of the combined context file
+        context_size = combined_context_file.stat().st_size
+        if context_size > 2 * 1024 * 1024 * 1024:  # 2GB
+            console.print(
+                f"[bold yellow]Warning: Combined context is very large ({context_size / 1024 / 1024 / 1024:.2f} GB). This may exceed Gemini's limits.[/]"
+            )
 
         # Craft query with repository analysis
         enhanced_query = (
             f"I've analyzed a GitHub repository and want insights about it. "
             f"The repository is from: {repo_url}\n\n"
             f"User Query: {query}\n\n"
-            f"Please use the attached files to provide a detailed analysis."
+            f"Please use the attached files to provide a detailed analysis. "
+            f"The ranking_report.md file contains an overview of the most important files, "
+            f"and the other files are the actual source code from the repository."
         )
 
         # Send to Gemini
         console.print(f"[#afafd7]Querying Gemini about[/] [#5f87ff]{repo_url}[/]...")
 
-        # Send the query with the report file as context
+        # Send the query with the combined context file
         response_text = ""
         with Live("", refresh_per_second=4) as live:
             async for chunk in stream_query_with_context(
@@ -309,7 +377,7 @@ async def clone_and_analyze_repo(
                 top_k=config.get("top_k", 40),
                 api_key=api_key,
                 manager=manager.gemini_manager,
-                context_file=report_path,
+                context_file=combined_context_file,
             ):
                 if chunk["text"]:
                     response_text += chunk["text"]
@@ -334,5 +402,5 @@ async def clone_and_analyze_repo(
             except Exception:
                 if debug:
                     console.print(
-                        "[d7af00]Warning: Failed to clean up output directory[/]"
+                        "[#d7af00]Warning: Failed to clean up output directory[/]"
                     )

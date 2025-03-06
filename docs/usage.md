@@ -2,7 +2,7 @@
 
 This guide covers all features of Cursor Utils in detail, with examples, advanced usage patterns, and tips for getting the most out of each command.
 
-However, **cursor-utils and its commands were designed to be used by your Cursor Agent via terminal commands**. Nonetheless, i have included a fully featured, user friendly CLI interface. Therefore, you can run all cursor-utils commands manually yourself if you wish.
+Cursor Utils is designed to be used by your Cursor Agent via terminal commands. However, you can also run all cursor-utils commands manually yourself if you wish.
 
 ## Core Concepts
 
@@ -12,6 +12,7 @@ Cursor Utils is designed around several key concepts:
 2. **Contextual Intelligence** - Commands identify, gather and prioritize contextual information automatically 
 3. **API Integration** - External services are seamlessly integrated for enhanced functionality
 4. **CLI Ergonomics** - All commands follow consistent patterns with rich output formatting
+5. **Error Handling** - Standardized error handling with detailed diagnostics
 
 ## Command Overview
 
@@ -48,17 +49,23 @@ cursor-utils gemini --help
 cursor-utils github --help
 ```
 
-## Ask Perplexity (aka Web Command)
+## Ask Perplexity (Web Command)
 
 The `web` command queries Perplexity AI for real-time information from the internet.
 
-Simply ask your Cursor Agent to:
-
 ### Basic Usage
+
+Simply ask your Cursor Agent to:
 
 ```bash
 # Use web search
 Ask Perplexity what the latest Python 3.14 feature set is?
+```
+
+Or run manually:
+
+```bash
+cursor-utils web "What is the latest Python 3.14 feature set?"
 ```
 
 ### Advanced Parameters
@@ -78,11 +85,11 @@ Ask Perplexity to assist you in writing a SQL query to find duplicate records
 Ask Perplexity to solve the equation x^2 - 4x + 4 = 0
 ```
 
-*Please note: You can run all of these commands manually by simply replacing "Ask Perplexity" with "cursor-utils web" and executing it in the terminal*
+### Available Config Options
 
-### Available Config options set in cursor-utils.yaml
+Configuration options can be set in the `cursor-utils.yaml` file.
 
-### Focus Options
+#### Focus Options
 
 - `internet` (default) - General web search
 - `scholar` - Academic and research papers
@@ -91,14 +98,14 @@ Ask Perplexity to solve the equation x^2 - 4x + 4 = 0
 - `youtube` - Video content and tutorials
 - `reddit` - Community discussions and solutions
 
-### Available Models
+#### Available Models
 
 - `sonar` (default) - Fast, efficient model for general queries
 - `sonar-pro` - Enhanced model with better reasoning
 - `sonar-reasoning` - Specialized for complex reasoning tasks
 - `sonar-pro-reasoning` - Premium model with advanced reasoning capabilities
 
-### Response Modes
+#### Response Modes
 
 - `copilot` (default) - Conversational, detailed responses
 - `concise` - Brief, to-the-point answers
@@ -119,19 +126,25 @@ Ask Perplexity about recent academic papers on machine learning
 Ask Perplexity to explain Docker networking using the sonar-pro model
 ```
 
-## Ask Gemini aka (Gemini Integration)
+## Ask Gemini (Gemini Integration)
 
 The `gemini` command leverages Google's Gemini AI models for code generation, analysis, and contextual understanding with support for very large context windows.
 
-Simply ask your Cursor Agent to:
-
 ### Basic Usage
+
+Simply ask your Cursor Agent to:
 
 ```bash
 Ask Gemini to explain the actor model in concurrent programming
 ```
 
-The Gemini command allows your Cursor Agents to take full advantage of Gemini's industry leading 2Million token context window to query and collaborate back and forth to iterate and refine before bringing you an even more polished result.
+Or run manually:
+
+```bash
+cursor-utils gemini "Explain the actor model in concurrent programming"
+```
+
+The Gemini command allows your Cursor Agents to take full advantage of Gemini's large token context window to query and collaborate back and forth to iterate and refine before bringing you a polished result.
 
 ### Advanced Usage
 
@@ -168,15 +181,21 @@ The `repo` command analyzes GitHub repositories to provide intelligent insights.
 
 **This command respects both .gitignore files present in the remote repo at the time of analysis, AND .gitignore files in the CWD the cmd is executed in.** *if present*.
 
-Simply ask your Cursor Agent to:
+### Basic Usage
 
-### Basic manual Usage
+Simply ask your Cursor Agent to:
 
 ```bash
 Use cursor-utils repo https://github.com/user/repo "Explain the architecture of this codebase"
 ```
 
-The repo command clones the target repo to a temp dir, & uses our propriatry algo to sort, analyze, and rank the files in your remote repo to isolate the most important files. It then packs this ranking report along with the files its identified and sends it along with your query for Google's Gemini to analyze and provide context-aware answers and collaboration with your Cursor Agents.
+Or run manually:
+
+```bash
+cursor-utils repo https://github.com/user/repo "Explain the architecture of this codebase"
+```
+
+The repo command clones the target repo to a temp dir, and uses a proprietary algorithm to sort, analyze, and rank the files in your remote repo to isolate the most important files. It then packs this ranking report along with the files it's identified and sends it along with your query for Google's Gemini to analyze and provide context-aware answers.
 
 ### Advanced Usage
 
@@ -230,19 +249,27 @@ Use cursor-utils repo to examine the JavaScript testing framework in https://git
 
 The `project` command analyzes your local directory structure similar to the repo command.
 
-*Please Note: this command will treat the directory it is executed in as the projects root directory.*
+*Please Note: this command will treat the directory it is executed in as the project's root directory.*
 
 **This command respects .gitignore files that are present in the same CWD as cmd execution**
 
-### Basic manual Usage
+### Basic Usage
+
+Simply ask your Cursor Agent to:
+
+```bash
+Use cursor-utils project "Explain what this project does"
+```
+
+Or run manually:
 
 ```bash
 cursor-utils project "Explain what this project does"
 ```
 
-The project command uses our propriatry algo to sort, analyze, and rank the files in your local repo / cwd to isolate the most important files. It then packs this ranking report along with the files its identified and sends it along with your query for Google's Gemini to analyze and provide context-aware answers and collaboration with your Cursor Agents:
+The project command uses a proprietary algorithm to sort, analyze, and rank the files in your local repo/cwd to isolate the most important files. It then packs this ranking report along with the files it's identified and sends it along with your query for Google's Gemini to analyze and provide context-aware answers.
 
-Simply ask your Cursor Agent to:
+### Advanced Usage
 
 ```bash
 # Specify project path
@@ -280,13 +307,20 @@ Analyze the database models in this project and suggest optimizations
 
 The `github` command provides advanced GitHub repository management capabilities.
 
-Collab with your Cursor Agents and let them take care of tasks you dont want to. Simply tell your Cursor Agent to use cursor-utils github to help you wwith pretty much anything & everything regarding GitHub repo mgmt:
+Collaborate with your Cursor Agents and let them take care of tasks you don't want to. Simply tell your Cursor Agent to use cursor-utils github to help you with pretty much anything & everything regarding GitHub repo management.
+
+### Basic Usage
 
 Simply ask your Cursor Agent to:
 
-run:
 ```bash
 Use cursor-utils github to analyze owner/repo
+```
+
+Or run manually:
+
+```bash
+cursor-utils github analyze owner/repo
 ```
 
 ### Repository Management
@@ -313,8 +347,7 @@ Use cursor-utils github to fetch pr owner/repo
 Use cursor-utils github to fetch pr number 123 owner/repo
 ```
 
-
-### Basic manual usage examples:
+### Issue Management
 
 ```bash
 # Summarize issues
@@ -327,8 +360,6 @@ cursor-utils github issue create owner/repo "Bug: Login failure" "Description of
 ```
 
 ### Agent Usage Examples
-
-Simply ask your Cursor Agent to:
 
 ```bash
 # Repository analysis
@@ -347,7 +378,7 @@ Use cursor-utils github to summarize open issues in the tensorflow/tensorflow re
 
 ## Configuration Management
 
-The `config` command manages settings and API keys are intended to be run manually by users to config sensitive key values and configure the api services used by the Cursor Agents.
+The `config` command manages settings and API keys. It is intended to be run manually by users to configure sensitive key values and configure the API services used by the Cursor Agents.
 
 ### API Key Management
 
@@ -378,7 +409,7 @@ The main configuration file is stored at `~/.cursor-utils.yaml` and can be manua
 
 Commands can be combined for powerful workflows:
 
-simply ask your Cursor Agent to:
+Simply ask your Cursor Agent to:
 
 ```bash
 # Analyze a repository, then ask specific questions
@@ -400,6 +431,17 @@ For troubleshooting, use debug mode:
 cursor-utils --debug web "Why is this failing?"
 ```
 
+## Error Handling
+
+Cursor Utils provides standardized error handling with detailed diagnostics. If you encounter an error, you'll see:
+
+- Error code (e.g., `web-001`)
+- Error message
+- Possible causes
+- Suggested solutions
+
+For more information about specific error codes, visit the [Error Documentation](errors/index.md).
+
 ## Best Practices
 
 1. **Be Specific**: The more specific your queries, the better the results
@@ -417,4 +459,5 @@ If you encounter issues:
 2. Verify your network connection
 3. Run commands with `--debug` flag for verbose output
 4. Check the error message for specific API errors
-5. Consult the [GitHub issues](https://github.com/gweidart/cursor-utils/issues) 
+5. Consult the [GitHub issues](https://github.com/gweidart/cursor-utils/issues)
+6. Ask your Cursor Agent to Ask Gemini to help fix whatever it is thats going on. No, seriously... give it a try.

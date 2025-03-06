@@ -1,34 +1,34 @@
 """
-Gemini command implementation for querying Google Gemini.
+Gemini command implementation for interacting with Google's Gemini API.
 
 Key Components:
-    gemini: Command function for querying Google Gemini
+    gemini: Command function for querying Google's Gemini API
 
 Project Dependencies:
-    This file uses: actions: For command operations
-    This file uses: manager: For configuration management
-    This file uses: types: For type definitions
+    This file uses: actions: For Gemini operations
+    This file uses: manager: For configuration and client management
     This file uses: errors: For standardized error handling
-    This file is used by: gemini.__init__: For command registration
+    This file is used by: cursor_utils.commands.gemini: For command registration
 """
 
 import asyncio
 import pathlib
-from typing import Optional
+from collections.abc import Coroutine
+from typing import Any, Optional, cast
 
 import rich_click as click
 from rich.console import Console
-from rich.live import Live
-from rich.spinner import Spinner
 
 from cursor_utils.commands.gemini.actions import (
     ensure_config,
     format_response,
     get_api_key,
+    stream_query,
     stream_query_with_context,
 )
 from cursor_utils.commands.gemini.manager import GeminiManager
 from cursor_utils.errors import ErrorCodes, WebError
+from cursor_utils.utils.command_helpers import safe_execute
 
 console = Console()
 
@@ -43,14 +43,12 @@ MODELS = [
 @click.argument("query", nargs=-1, required=True)
 @click.option(
     "--model",
-    type=click.Choice(MODELS),
-    help="Override the model specified in config",
+    help="Model to use for query (default: from config)",
 )
 @click.option(
-    "-a",
     "--append",
-    type=click.Path(exists=True, dir_okay=False, path_type=pathlib.Path),
-    help="Path to a local file to append as context",
+    type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True),
+    help="Append file content to query",
 )
 @click.pass_context
 def gemini(
@@ -60,19 +58,22 @@ def gemini(
     append: Optional[pathlib.Path] = None,
 ) -> None:
     """
-    Query Google Gemini with your question.
+    Query Google's Gemini API with your question.
 
-    The query can be any text - it will be sent to Google Gemini for processing.
-    Results are streamed back in real-time with markdown formatting.
+    QUERY: The query to send to Gemini
 
     Examples:
-        cursor-utils gemini "What is the capital of France?"
-        cursor-utils gemini --model gemini-2.0-pro "Explain quantum computing"
+        cursor-utils gemini "Explain quantum computing"
+        cursor-utils gemini --model gemini-2.0-pro "Generate Python code for a web scraper"
+        cursor-utils gemini --append ./src/main.py "Explain this code"
 
     """
-    asyncio.run(async_gemini(ctx, query, model, append))
+    # Cast to Coroutine to satisfy type checker
+    coro = cast(Coroutine[Any, Any, None], async_gemini(ctx, query, model, append))
+    asyncio.run(coro)
 
 
+@safe_execute(WebError, ErrorCodes.GEMINI_API_ERROR)
 async def async_gemini(
     ctx: click.Context,
     query: tuple[str, ...],
@@ -80,113 +81,70 @@ async def async_gemini(
     append: Optional[pathlib.Path] = None,
 ) -> None:
     """Async implementation of gemini command."""
-    debug = ctx.obj.get("DEBUG", False)
-
     # Initialize manager
     manager = GeminiManager()
 
     # Get configuration
-    try:
-        config = ensure_config(manager)
-    except WebError as e:
-        console.print(str(e))
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
-    except click.Abort:
-        ctx.exit(1)
-    except Exception as e:
-        err = WebError(
-            message="Unexpected error setting up configuration",
-            code=ErrorCodes.WEB_CONFIG_ERROR,
-            causes=[str(e)],
-            hint_stmt="This is likely a bug, please report it",
-        )
-        console.print(str(err))
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
+    config = ensure_config(manager)
+
+    # Override config with command line options
+    if model:
+        config["model"] = model
 
     # Get API key
-    try:
-        api_key = get_api_key()
-    except WebError as e:
-        console.print(str(e))
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
-    except click.Abort:
-        ctx.exit(1)
-    except Exception as e:
-        err = WebError(
-            message="Unexpected error getting API key",
-            code=ErrorCodes.INVALID_API_KEY,
-            causes=[str(e)],
-            hint_stmt="This is likely a bug, please report it",
-        )
-        console.print(str(err))
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
+    api_key = get_api_key()
 
-    # Use model from command line if specified
-    model_to_use = model or config["model"]
-    max_output_tokens = config["max_output_tokens"]
-    temperature = config["temperature"]
-    top_p = config["top_p"]
-    top_k = config["top_k"]
+    # Format query from tuple of strings
+    formatted_query = " ".join(query)
 
-    # Prepare query
-    query_text = " ".join(query)
-    if debug:
-        console.print(f"[dim]Debug: Using model {model_to_use}[/]")
-        console.print(f"[dim]Debug: Query: {query_text}[/]")
-        if append:
-            console.print(f"[dim]Debug: Using context file: {append}[/]")
+    # Stream response from Gemini
+    console.print(f"[#afafd7]Querying Gemini:[/] [#5f87ff]{formatted_query}[/]")
 
-    try:
-        # Create spinner for initial connection
-        with Live(
-            Spinner("dots", text="Connecting to Google Gemini..."),
-            console=console,
-            refresh_per_second=10,
-        ) as live:
-            # Initialize response accumulator
-            full_response = ""
+    response_text = ""
 
-            # Stream and update response
-            async for chunk in stream_query_with_context(
-                query=query_text,
-                model=model_to_use,
-                max_output_tokens=max_output_tokens,
-                temperature=temperature,
-                top_p=top_p,
-                top_k=top_k,
-                api_key=api_key,
-                manager=manager,
-                context_file=append,
-            ):
-                if chunk["done"]:
-                    break
-                full_response += chunk["text"]
-                live.update(format_response(full_response))
+    # If append option is used, use stream_query_with_context
+    if append:
+        console.print(f"[#afafd7]Including file:[/] [#5f87ff]{append}[/]")
+        async for chunk in stream_query_with_context(
+            query=formatted_query,
+            model=config["model"],
+            max_output_tokens=config["max_output_tokens"],
+            temperature=config["temperature"],
+            top_p=config["top_p"],
+            top_k=config["top_k"],
+            api_key=api_key,
+            manager=manager,
+            context_file=append,
+        ):
+            if chunk["text"]:
+                response_text += chunk["text"]
+                console.clear()
+                console.print(
+                    f"[#afafd7]Querying Gemini:[/] [#5f87ff]{formatted_query}[/]"
+                )
+                console.print(response_text)
+    else:
+        # Use regular stream_query
+        async for chunk in stream_query(
+            query=formatted_query,
+            model=config["model"],
+            max_output_tokens=config["max_output_tokens"],
+            temperature=config["temperature"],
+            top_p=config["top_p"],
+            top_k=config["top_k"],
+            api_key=api_key,
+            manager=manager,
+        ):
+            if chunk["text"]:
+                response_text += chunk["text"]
+                console.clear()
+                console.print(
+                    f"[#afafd7]Querying Gemini:[/] [#5f87ff]{formatted_query}[/]"
+                )
+                console.print(response_text)
 
-    except asyncio.CancelledError:
-        console.print("\n[yellow]Query cancelled by user[/]")
-        ctx.exit(130)
-    except WebError as e:
-        console.print(str(e))
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
-    except Exception as e:
-        err = WebError(
-            message="Unexpected error during query",
-            code=ErrorCodes.WEB_API_ERROR,
-            causes=[str(e)],
-            hint_stmt="This is likely a bug, please report it",
-        )
-        console.print(str(err))
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
+    # Final output with formatting
+    if response_text:
+        console.clear()
+        console.print(f"[#afafd7]Gemini response for:[/] [#5f87ff]{formatted_query}[/]")
+        console.print(format_response(response_text))

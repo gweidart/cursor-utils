@@ -84,11 +84,32 @@ def repo(
         cursor-utils repo https://github.com/user/repo "Identify security issues"
 
     """
-    asyncio.run(
-        async_repo(
-            ctx, repo_url, query, max_size, type_weight, size_weight, time_weight
+    try:
+        # Run the async function in a new event loop
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(
+            async_repo(
+                ctx, repo_url, query, max_size, type_weight, size_weight, time_weight
+            )
         )
-    )
+        loop.close()
+    except RepoError as e:
+        console.print(f"[red]✗[/red] {e!s}")
+        if ctx.obj.get("DEBUG", False):
+            console.print_exception()
+        ctx.exit(1)
+    except Exception as e:
+        error = RepoError(
+            message="An unexpected error occurred",
+            code=ErrorCodes.UNKNOWN_ERROR,
+            causes=[str(e)],
+            hint_stmt="Check the logs for more details.",
+        )
+        console.print(f"[red]✗[/red] {error!s}")
+        if ctx.obj.get("DEBUG", False):
+            console.print_exception()
+        ctx.exit(1)
 
 
 async def async_repo(
@@ -109,33 +130,14 @@ async def async_repo(
     # Initialize manager
     manager = RepoManager()
 
-    try:
-        # Execute repo clone and analysis
-        await clone_and_analyze_repo(
-            repo_url,
-            formatted_query,
-            max_size,
-            type_weight,
-            size_weight,
-            time_weight,
-            manager,
-            debug,
-        )
-    except RepoError as e:
-        console.print(f"[red]✗[/red] {e!s}")
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
-    except click.Abort:
-        ctx.exit(1)
-    except Exception as e:
-        error = RepoError(
-            message="An unexpected error occurred",
-            code=ErrorCodes.UNKNOWN_ERROR,
-            causes=[str(e)],
-            hint_stmt="Check the logs for more details.",
-        )
-        console.print(f"[red]✗[/red] {error!s}")
-        if debug:
-            console.print_exception()
-        ctx.exit(1)
+    # Execute repo clone and analysis
+    await clone_and_analyze_repo(
+        repo_url,
+        formatted_query,
+        max_size,
+        type_weight,
+        size_weight,
+        time_weight,
+        manager,
+        debug,
+    )

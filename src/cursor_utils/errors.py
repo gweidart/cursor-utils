@@ -53,36 +53,58 @@ class CursorUtilsError(DiagnosticError):
 class ErrorCodes(str, Enum):
     """Error codes for Cursor Utils."""
 
+    # General errors
+    UNKNOWN_ERROR = "general-001"
+    GENERAL_ERROR = "general-002"
+
+    # Installation errors
+    INSTALL_FAILED = "install-001"
+    INSTALL_ALREADY_EXISTS = "install-002"
+
+    # Update errors
+    UPDATE_FAILED = "update-001"
+    UPDATE_NOT_AVAILABLE = "update-002"
+
+    # Version errors
+    VERSION_ERROR = "version-001"
+    VERSION_INVALID = "version-002"
+
+    # Configuration errors
+    CONFIG_FILE_ERROR = "config-001"
+    CONFIG_VALIDATION_ERROR = "config-002"
+
+    # Web errors
+    WEB_CONFIG_ERROR = "web-001"
+    WEB_API_ERROR = "web-002"
+    INVALID_API_KEY = "web-003"
+    WEB_QUERY_ERROR = "web-004"
+
+    # GitHub errors
+    GITHUB_API_ERROR = "github-001"
+    GITHUB_AUTH_ERROR = "github-002"
+    GITHUB_REPO_ERROR = "github-003"
+
+    # Repository errors
+    REPO_CLONE_ERROR = "repo-001"
+    REPO_TOO_LARGE = "repo-002"
+    REPO_ANALYZE_ERROR = "repo-003"
+
     # Install errors
-    INVALID_PATH = "install-001"
-    FILE_NOT_FOUND = "install-002"
+    INVALID_PATH = "install-0017"
+    FILE_NOT_FOUND = "install-008"
     TEMPLATE_ERROR = "install-003"
     DIRECTORY_ERROR = "install-004"
     FILE_WRITE_ERROR = "install-005"
     ALREADY_INSTALLED = "install-006"
 
-    # Update errors
-    UPDATE_FAILED = "update-001"
-    UNKNOWN_ERROR = "update-999"
-
-    # Version errors
-    VERSION_ERROR = "version-001"
-    INVALID_VERSION = "version-002"
-
     # Config errors
-    INVALID_API_KEY = "config-001"
-    API_KEY_SAVE_ERROR = "config-002"
-    API_KEY_READ_ERROR = "config-003"
     ENV_FILE_ERROR = "config-004"
-    CONFIG_FILE_ERROR = "config-005"
 
     # Web command errors
-    WEB_API_ERROR = "web-001"
-    WEB_CONFIG_ERROR = "web-002"
-    WEB_CONNECTION_ERROR = "web-003"
-    WEB_TIMEOUT_ERROR = "web-004"
-    WEB_STREAM_ERROR = "web-005"
-    WEB_MODEL_ERROR = "web-006"
+    WEB_CONNECTION_ERROR = "web-005"
+    WEB_TIMEOUT_ERROR = "web-006"
+    WEB_STREAM_ERROR = "web-007"
+    WEB_MODEL_ERROR = "web-008"
 
     # Gemini API errors
     GEMINI_API_ERROR = "gemini-001"
@@ -91,20 +113,6 @@ class ErrorCodes(str, Enum):
     GEMINI_API_KEY_SAVE_ERROR = "gemini-004"
     GEMINI_FILE_ERROR = "gemini-005"
 
-    # Repository errors
-    REPO_CLONE_ERROR = "repo-001"
-    REPO_TOO_LARGE = "repo-002"
-    REPO_ANALYZE_ERROR = "repo-003"
-    REPO_INVALID_URL = "repo-004"
-    REPO_FILE_ERROR = "repo-005"
-
-    # GitHub errors
-    GITHUB_AUTH_ERROR = "github-001"
-    GITHUB_API_ERROR = "github-002"
-    GITHUB_REPO_NOT_FOUND = "github-003"
-    GITHUB_PERMISSION_ERROR = "github-004"
-    GITHUB_RATE_LIMIT = "github-005"
-
     # Project errors
     PROJECT_TOO_LARGE = "project-001"
     PROJECT_ANALYZE_ERROR = "project-002"
@@ -112,12 +120,11 @@ class ErrorCodes(str, Enum):
     PROJECT_FILE_ERROR = "project-004"
 
     # General errors
-    GENERAL_ERROR = "general-001"
-    GENERAL_FILE_ERROR = "general-002"
-    GENERAL_URL_ERROR = "general-003"
-    GENERAL_ANALYZE_ERROR = "general-004"
-    GENERAL_CLONE_ERROR = "general-005"
-    GENERAL_INVALID_URL = "general-006"
+    GENERAL_FILE_ERROR = "general-009"
+    GENERAL_URL_ERROR = "general-010"
+    GENERAL_ANALYZE_ERROR = "general-011"
+    GENERAL_CLONE_ERROR = "general-012"
+    GENERAL_INVALID_URL = "general-013"
 
 
 class InstallError(CursorUtilsError):

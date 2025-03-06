@@ -116,6 +116,7 @@ Cursor Utils follows strict coding standards to maintain code quality and consis
 - Use `TypedDict` for complex dictionary structures
 - Use `Optional` for parameters that may be `None`
 - Use `Union` for parameters that may have multiple types
+- Use `Protocol` classes for interface definitions
 
 ### Documentation
 
@@ -150,6 +151,25 @@ def function_name(param1: str, param2: Optional[int] = None) -> bool:
         >>> function_name("example", 42)
         True
     """
+```
+
+### Error Handling
+
+- Use the standardized error handling system in `cursor_utils.errors`
+- Use the `safe_execute` and `safe_execute_sync` decorators for command functions
+- Provide clear error messages and helpful hints for users
+- Use appropriate error codes from `ErrorCodes` enum
+
+Example error handling:
+
+```python
+from cursor_utils.errors import ErrorCodes, WebError
+from cursor_utils.utils.command_helpers import safe_execute
+
+@safe_execute(WebError, ErrorCodes.WEB_QUERY_ERROR)
+async def web_command(query: str) -> None:
+    # Command implementation
+    pass
 ```
 
 ### Code Structure

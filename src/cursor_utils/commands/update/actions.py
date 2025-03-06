@@ -600,49 +600,61 @@ class UpdateOrchestrator:
 
         if env_info["in_virtual_env"] == "True":
             # Virtual environment instructions
-            instructions.extend([
-                "Since you're in a virtual environment, use:",
-                "",
-                f"    python -m pip install --upgrade cursor-utils{version_spec}",
-            ])
+            instructions.extend(
+                [
+                    "Since you're in a virtual environment, use:",
+                    "",
+                    f"    python -m pip install --upgrade cursor-utils{version_spec}",
+                ]
+            )
 
             if "UV" in env_info["available_managers"]:
-                instructions.extend([
-                    "",
-                    "Or with UV:",
-                    "",
-                    f"    uv pip install --upgrade cursor-utils{version_spec}",
-                ])
+                instructions.extend(
+                    [
+                        "",
+                        "Or with UV:",
+                        "",
+                        f"    uv pip install --upgrade cursor-utils{version_spec}",
+                    ]
+                )
         else:
             # System installation instructions
             if env_info["platform"] == "Windows":
-                instructions.extend([
-                    "For Windows, use:",
-                    "",
-                    f"    pip install --user --upgrade cursor-utils{version_spec}",
-                ])
+                instructions.extend(
+                    [
+                        "For Windows, use:",
+                        "",
+                        f"    pip install --user --upgrade cursor-utils{version_spec}",
+                    ]
+                )
 
                 if "UV" in env_info["available_managers"]:
-                    instructions.extend([
-                        "",
-                        "Or with UV:",
-                        "",
-                        f"    uv pip install --user --upgrade cursor-utils{version_spec}",
-                    ])
+                    instructions.extend(
+                        [
+                            "",
+                            "Or with UV:",
+                            "",
+                            f"    uv pip install --user --upgrade cursor-utils{version_spec}",
+                        ]
+                    )
             else:
-                instructions.extend([
-                    f"For {env_info['platform']}, use:",
-                    "",
-                    f"    pip install --user --upgrade cursor-utils{version_spec}",
-                ])
+                instructions.extend(
+                    [
+                        f"For {env_info['platform']}, use:",
+                        "",
+                        f"    pip install --user --upgrade cursor-utils{version_spec}",
+                    ]
+                )
 
                 if "UV" in env_info["available_managers"]:
-                    instructions.extend([
-                        "",
-                        "Or with UV:",
-                        "",
-                        f"    uv pip install --user --upgrade cursor-utils{version_spec}",
-                    ])
+                    instructions.extend(
+                        [
+                            "",
+                            "Or with UV:",
+                            "",
+                            f"    uv pip install --user --upgrade cursor-utils{version_spec}",
+                        ]
+                    )
 
         return "\n".join(instructions)
 

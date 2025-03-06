@@ -46,7 +46,7 @@ source .venv/bin/activate  # On Unix/macOS
 ```
 
 ```bash
-.venv\bin\activate     # On Windows
+.venv\Scripts\activate     # On Windows
 ```
 
 ### Global installation
@@ -107,14 +107,12 @@ Cursor Utils version: 0.1.x
 For a more comprehensive check, run:
 
 ```bash
-cursor-utils --verify
+cursor-utils --debug
 ```
 
 This will:
-- Verify all dependencies are correctly installed
-- Check API key configurations
-- Test connectivity to required services
-- Validate your installation environment
+- Enable debug mode for more verbose output
+- Show additional information about your configuration
 
 ## Troubleshooting
 
@@ -134,7 +132,7 @@ This will:
 If you encounter issues not covered here:
 
 1. Check the [GitHub issues](https://github.com/gweidart/cursor-utils/issues) for similar problems
-2. Run `cursor-utils doctor` for diagnostic information
+2. Run `cursor-utils --debug` for diagnostic information
 3. Open a new issue with detailed information about your environment and the error
 
 ## Upgrading
@@ -166,11 +164,7 @@ If you need to remove Cursor Utils:
 uv pip uninstall cursor-utils
 ```
 
-This will remove the package but preserve your configuration files. To completely remove all traces:
-
-```bash
-cursor-utils uninstall --clean
-```
+This will remove the package but preserve your configuration files.
 
 ## Development Installation
 
@@ -196,7 +190,7 @@ source .venv/bin/activate  # On Unix/macOS
 
 ```bash
 # or
-.venv\bin\activate     # On Windows
+.venv\Scripts\activate     # On Windows
 ```
 
 ```bash
