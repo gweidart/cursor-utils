@@ -2236,7 +2236,7 @@
 
 <h1 id="cursor-utils">Cursor Utils<a class="headerlink" href="#cursor-utils" title="Permanent link">&para;</a></h1>
 <p><strong>Give your Cursor IDE Agents superpowers.</strong></p>
-<p>Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. Built with modern Python practices and a focus on developer experience, Cursor Utils seamlessly integrates with Cursor agents to provide enhanced workflow capabilities.</p>
+<p>Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. Built with modern Python practices and a focus on developer experience, Cursor Utils seamlessly integrates with Cursor Agents to provide enhanced workflow capabilities.</p>
 <h2 id="what-is-cursor-utils">What is Cursor Utils?<a class="headerlink" href="#what-is-cursor-utils" title="Permanent link">&para;</a></h2>
 <p>Cursor IDE is already an amazing tool for developers. Cursor Utils takes this a step further by:</p>
 <ul>
@@ -2276,55 +2276,53 @@
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Using UV (recommended)</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>OR
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Using pip</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Using pip</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
 </span></code></pre></div>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
 <p>Simply ask your Cursor Agent to:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Use web search</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>what<span class="w"> </span>the<span class="w"> </span>latest<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.14<span class="w"> </span>feature<span class="w"> </span><span class="nb">set</span><span class="w"> </span>is?
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Use web search</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>what<span class="w"> </span>the<span class="w"> </span>latest<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.14<span class="w"> </span>feature<span class="w"> </span><span class="nb">set</span><span class="w"> </span>is?
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Ask Google&#39;s Gemini</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>understand<span class="w"> </span>async/await<span class="w"> </span><span class="k">in</span><span class="w"> </span>Python
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Ask Google&#39;s Gemini</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>understand<span class="w"> </span>async/await<span class="w"> </span><span class="k">in</span><span class="w"> </span>Python
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Analyze a repository</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>to<span class="w"> </span>explain<span class="w"> </span>the<span class="w"> </span>architecture<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>repository.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Analyze a repository</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>to<span class="w"> </span>explain<span class="w"> </span>the<span class="w"> </span>architecture<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>repository.
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Analyze your current project</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>potential<span class="w"> </span>security<span class="w"> </span>issues<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>codebase
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Analyze your current project</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>potential<span class="w"> </span>security<span class="w"> </span>issues<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>codebase
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Set up GitHub integration</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span>setup<span class="w"> </span>my-new-repo
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Set up GitHub integration</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span>setup<span class="w"> </span>my-new-repo
 </span></code></pre></div>
 <h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cursor-utils/
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── src/
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>│   └── cursor_utils/
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│       ├── cli.py                # CLI entrypoint
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│       ├── commands/             # Command implementations
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│       │   ├── web/              # Web search via Perplexity
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│       │   ├── gemini/           # Google Gemini integration
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│       │   ├── github/           # GitHub automation
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>│       │   ├── project/          # Local project analysis
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│       │   ├── repo/             # Repository analysis
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>│       │   ├── config/           # Configuration management
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>│       │   └── update/           # Self-update functionality
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>│       ├── utils/                # Utility functions
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>│       │   └── file_rank_algo.py # Repository analysis algorithm
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>│       ├── templates/            # Template files
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>│       ├── errors.py             # Error handling framework
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>│       ├── types.py              # TypedDict and custom types
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>│       └── config.py             # Configuration system
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>├── tests/                        # Test suite
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>└── docs/                         # Documentation
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cursor-utils/
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── src/
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│   └── cursor_utils/
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│       ├── cli.py                # CLI entrypoint
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│       ├── commands/             # Command implementations
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│       │   ├── web/              # Web search via Perplexity
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│       │   ├── gemini/           # Google Gemini integration
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│       │   ├── github/           # GitHub automation
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>│       │   ├── project/          # Local project analysis
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>│       │   ├── repo/             # Repository analysis
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>│       │   ├── config/           # Configuration management
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>│       │   └── update/           # Self-update functionality
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>│       ├── utils/                # Utility functions
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>│       │   └── file_rank_algo.py # Repository analysis algorithm
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>│       ├── templates/            # Template files
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>│       ├── errors.py             # Error handling framework
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>│       ├── types.py              # TypedDict and custom types
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>│       └── config.py             # Configuration system
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>├── tests/                        # Test suite
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>└── docs/                         # Documentation
 </span></code></pre></div>
 <h2 id="api-documentation">API Documentation<a class="headerlink" href="#api-documentation" title="Permanent link">&para;</a></h2>
 <p>For detailed API documentation, check out our <a href="api/">API Reference</a>.</p>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
-<p>This project is licensed under the MIT License - see the <a href="https://github.com/gweidart/cursor-utils/blob/main/LICENSE">LICENSE</a> file for details. </p>
+<p>This project is licensed under the MIT License - see the <a href="https://github.com/gweidart/cursor-utils/blob/main/LICENSE">LICENSE</a> file for details.</p>
 
 
 

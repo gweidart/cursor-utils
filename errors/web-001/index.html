@@ -2455,7 +2455,7 @@
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  Suggestion: Check your API key and internet connection, then try again
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  For more information: https://github.com/gweidart/cursor-utils/errors/web-001.md
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  For more information: https://gweidart.github.io/cursor-utils/errors/web-001.md
 </span></code></pre></div>
 <h2 id="common-causes">Common Causes<a class="headerlink" href="#common-causes" title="Permanent link">&para;</a></h2>
 <ol>
@@ -2478,13 +2478,13 @@
 <p>Ensure the API key is correctly set in your environment:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Linux/macOS</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>grep<span class="w"> </span>PERPLEXITY_API_KEY<span class="w"> </span>~/.env
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Windows (PowerShell)</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Get-Content<span class="w"> </span>~/.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>Select-String<span class="w"> </span>PERPLEXITY_API_KEY
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Windows (PowerShell)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Get-Content<span class="w"> </span>~/.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>Select-String<span class="w"> </span>PERPLEXITY_API_KEY
 </span></code></pre></div>
 <h3 id="test-your-internet-connection">Test your internet connection<a class="headerlink" href="#test-your-internet-connection" title="Permanent link">&para;</a></h3>
 <p>Verify that you have a working internet connection:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ping<span class="w"> </span>api.perplexity.ai
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ping<span class="w"> </span>api.perplexity.ai
 </span></code></pre></div>
 <h3 id="check-api-status">Check API status<a class="headerlink" href="#check-api-status" title="Permanent link">&para;</a></h3>
 <p>Visit the <a href="https://status.perplexity.ai">Perplexity Status Page</a> to see if there are any reported service issues.</p>
@@ -2495,7 +2495,7 @@
 - Adding delays between requests</p>
 <h3 id="run-in-debug-mode">Run in debug mode<a class="headerlink" href="#run-in-debug-mode" title="Permanent link">&para;</a></h3>
 <p>Execute the command with the debug flag to get more detailed error information:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cursor-utils<span class="w"> </span>web<span class="w"> </span><span class="s2">&quot;your query&quot;</span><span class="w"> </span>--debug
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cursor-utils<span class="w"> </span>web<span class="w"> </span><span class="s2">&quot;your query&quot;</span><span class="w"> </span>--debug
 </span></code></pre></div>
 <h2 id="related-commands">Related Commands<a class="headerlink" href="#related-commands" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2513,7 +2513,7 @@
 <h2 id="advanced-troubleshooting">Advanced Troubleshooting<a class="headerlink" href="#advanced-troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="check-request-and-response-details">Check request and response details<a class="headerlink" href="#check-request-and-response-details" title="Permanent link">&para;</a></h3>
 <p>When running in debug mode, you can see the full request and response details in the logs:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cat<span class="w"> </span>~/.cursor-utils/logs/cursor-utils.log
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat<span class="w"> </span>~/.cursor-utils/logs/cursor-utils.log
 </span></code></pre></div>
 <p>Look for entries with "WEB_API_ERROR" or related to the Perplexity API.</p>
 <h3 id="check-for-json-parsing-errors">Check for JSON parsing errors<a class="headerlink" href="#check-for-json-parsing-errors" title="Permanent link">&para;</a></h3>
@@ -2531,7 +2531,7 @@
 <ol>
 <li>
 <p>Update Cursor Utils to the latest version:
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cursor-utils<span class="w"> </span>update
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cursor-utils<span class="w"> </span>update
 </span></code></pre></div></p>
 </li>
 <li>
