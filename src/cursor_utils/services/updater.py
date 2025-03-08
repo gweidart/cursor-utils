@@ -72,7 +72,7 @@ class UpdaterService:
         except ImportError:
             # If that fails, try to get it from the cursor-utils.mdc file
             try:
-                rules_dir = Path.home() / ".cursor" / "rules"
+                rules_dir = Path.cwd() / ".cursor" / "rules"
                 mdc_file = rules_dir / "cursor-utils.mdc"
 
                 if not mdc_file.exists():

@@ -67,7 +67,7 @@ def install_command(
     console = Console()
 
     # Step 1: Create ~/.cursor/rules/ directory if it doesn't exist
-    rules_dir = Path.home() / ".cursor" / "rules"
+    rules_dir = Path.cwd() / ".cursor" / "rules"
     try:
         print_info(f"Checking if {rules_dir} exists...")
         if not rules_dir.exists():
