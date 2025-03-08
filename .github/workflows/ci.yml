@@ -14,7 +14,6 @@ jobs:
         python:
           # CPython versions
           - { version: "3.10", impl: "cpython" }
-          - { version: "3.11", impl: "cpython" }
           # PyPy versions
           - { version: "pypy-3.10", impl: "pypy" }
 
