@@ -78,12 +78,6 @@ dev = [
     "pyright",
     "ruff",
     "mkdocs",
-    "mkdocs-material",
-    "mkdocs-material-extensions",
-    "mkdocs-material-plugins",
-    "mkdocs-material-plugins-tabs",
-    "mkdocs-material-plugins-search",
-    "mkdocs-material-plugins-search",
 ]
 test = [
 
