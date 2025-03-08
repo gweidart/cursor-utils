@@ -24,7 +24,7 @@ using pipx:
 pipx install cursor-utils
 ```
 
-### Read our docs: [docs](https://gweidart.github.io/cursor-utils)
+### Read our [docs](https://gweidart.github.io/cursor-utils)
 
 Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. It integrates Cursor Agents seamlessly with popular AI services like Google's Gemini and Perplexity to provide context-aware code analysis, web research, content generation, and GitHub management capabilities.
 
