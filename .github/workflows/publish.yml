@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag to publish (e.g., v0.1.0)'
+        required: true
+        type: string
 
 jobs:
   release:
@@ -17,6 +23,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        ref: ${{ github.event.inputs.tag_name || github.ref }}
         
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -36,6 +43,7 @@ jobs:
       with:
         files: dist/*
         generate_release_notes: true
+        tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
         
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1 
