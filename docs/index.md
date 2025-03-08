@@ -1,12 +1,12 @@
-# Cursor Utils
+# Cursor-Utils
 
 **Give your Cursor IDE Agents superpowers.**
 
-Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. Built with modern Python practices and a focus on developer experience, Cursor Utils seamlessly integrates with Cursor Agents to provide enhanced workflow capabilities.
+Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. It integrates Cursor Agents seamlessly with popular AI services like Google's Gemini and Perplexity to provide context-aware code analysis, web research, content generation, and GitHub management capabilities.
 
 ## What is Cursor Utils?
 
-Cursor IDE is already an amazing tool for developers. Cursor Utils takes this a step further by:
+Cursor IDE is already an amazing tool for developers. Cursor-Utils is an amazing tool for Cursor Agents:
 
 - Enabling your Cursor Agents to access real-time web information
 - Providing sophisticated project analysis tools
@@ -15,101 +15,63 @@ Cursor IDE is already an amazing tool for developers. Cursor Utils takes this a 
 
 All this functionality is exposed through a clean, intuitive CLI that your Cursor Agents can use directly.
 
-  **Benchmarks:** Extensive benchmarking and profiling reflects:
+## Getting Started
+
+To get started with Cursor-Utils, follow these steps:
+
+1. [Install Cursor-Utils](installation.md) on your system
+2. [Configure API keys](usage.md#api-key-setup) for external services
+3. We designed cursor-utils to be used by Cursor Agents. Therefore there's really nothing else you need to do besides configuring the api keys. 
+   
+   **However if you want to explore the [available commands](api/index.md) and their options, you can do so.**
+
+## Why Cursor-Utils?
+
+  Our **Benchmarks** speak for themselves. Extensive benchmarking and profiling reflect:
 
   - an 87.8% increase in Cursor Agent Accuracy, Correctness, and Quality of answers using only Zero Shot Prompting & Cursor-Utils.
 
-  - a 98.2% increase in developer workflow productivity using only Cursor IDE & Cursor-Utils.
+  - a 98.2% increase in developer workflow productivity using only Cursor IDE & Cursor-Utils. 
 
-## Key Features
+Cursor-Utils addresses common challenges in the development workflow:
 
-- **Web Intelligence**: Query Perplexity AI for real-time, AI-guided web answers with customizable search focus.
-- **Repository Analysis**: Intelligently analyze local or remote repos, prioritizing the most relevant files.
-- **Gemini Integration**: Leverage Google's Gemini for code generation and contextual analysis.
-- **GitHub Automation**: Streamline GitHub workflows from PR generation to repo setup.
-- **Project Management**: Analyze local projects with intelligent file ranking, AI Agents collaborate with other AI services to iterate and perfect the answers / results you expect. 
+- **Reducing Context Switching**: Get answers directly in your terminal without switching to a browser
+- **Accelerating Onboarding**: Quickly understand new codebases with AI-powered analysis
+- **Streamlining Research**: Find relevant information faster with intelligent web search
+- **Enhancing Productivity**: Automate documentation, code generation, and GitHub tasks
+- **Improving Collaboration**: Share standardized insights and documentation with team members
 
-- **Configuration Management**: Simple API key and settings management
-- **Modern Architecture**:
-  - Type-safe Python codebase with comprehensive typing
-  - Clean CLI with rich terminal output
-  - Robust error handling with detailed diagnostics
-  - Modular, well-organized code structure
+## Example Workflow
 
-## Installation
+### Simply ask your Cursor Agent to:
 
 ```bash
-# Using UV (recommended)
-uv pip install cursor-utils
+# Analyze a new codebase you're working with
+Use cursor-utils repo https://github.com/organization/project "Explain the authentication system"
 ```
 
 ```bash
-# Using pip
-pip install cursor-utils
-```
-
-## Quick Start
-
-Simply ask your Cursor Agent to:
-
-```bash
-# Use web search
-Ask Perplexity what the latest Python 3.14 feature set is?
+# Research a technical concept
+Ask Perplexity about "Best practices for GraphQL error handling"
 ```
 
 ```bash
-# Ask Google's Gemini
-Ask Gemini to help me understand async/await in Python
+# Generate a code snippet for your current project
+Ask Gemini to "Write a Python function to validate JWT tokens"
 ```
 
 ```bash
-# Analyze a repository
-Use cursor-utils repo https://github.com/user/repo to explain the architecture of this repository.
+# Create an issue based on your findings
+Use cursor-utils github to create-issue --owner your-org --repo your-repo --title "Improve JWT validation"
 ```
 
-```bash
-# Analyze your current project
-Use cursor-utils project to identify potential security issues in this codebase
-```
+## Next Steps
 
-```bash
-# Set up GitHub integration
-Use cursor-utils github to setup my-new-repo
-```
+- Read the [installation guide](installation.md) to set up Cursor-Utils
+- Explore the [usage documentation](usage.md) for detailed usage patterns
+- Learn about [configuration options](api/commands/config.md) to customize your experience
 
-## Project Structure
+## Community and Support
 
-```
-cursor-utils/
-├── src/
-│   └── cursor_utils/
-│       ├── cli.py                # CLI entrypoint
-│       ├── commands/             # Command implementations
-│       │   ├── web/              # Web search via Perplexity
-│       │   ├── gemini/           # Google Gemini integration
-│       │   ├── github/           # GitHub automation
-│       │   ├── project/          # Local project analysis
-│       │   ├── repo/             # Repository analysis
-│       │   ├── config/           # Configuration management
-│       │   ├── install/          # Installation utilities
-│       │   └── update/           # Self-update functionality
-│       ├── utils/                # Utility functions
-│       │   ├── command_helpers.py # Standardized error handling
-│       │   ├── api_helpers.py    # API key management
-│       │   ├── config_helpers.py # Configuration utilities
-│       │   └── file_rank_algo.py # Repository analysis algorithm
-│       ├── templates/            # Template files
-│       ├── errors.py             # Error handling framework
-│       ├── types.py              # TypedDict and custom types
-│       └── config.py             # Configuration system
-├── tests/                        # Test suite
-└── docs/                         # Documentation
-```
-
-## API Documentation
-
-For detailed API documentation, check out our [API Reference](api/index.md).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/gweidart/cursor-utils/blob/main/LICENSE) file for details.
+- [Contributing guidelines](contributing.md) for developers interested in enhancing Cursor-Utils
+- [License information](license.md) for usage terms and conditions 

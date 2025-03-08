@@ -1,10 +1,17 @@
-"""Cursor Utils - A modern CLI utility toolkit for Cursor."""
+"""
+Cursor-Utils: Enhanced capabilities for Cursor IDE users and AI agents.
 
-from importlib import metadata
+Key Components:
+    cli: Command-line interface for the package
+    core: Core functionality including configuration and error handling
+    services: External service clients (Gemini, GitHub, Perplexity)
+    utils: Utility functions for filesystem, git, and text processing
 
-try:
-    __version__ = metadata.version(__name__)
-except metadata.PackageNotFoundError:  # pragma: no cover
-    __version__ = "unknown"
+Project Dependencies:
+    This file uses: version: To expose the package version
+    This file is used by: External packages importing cursor_utils
+"""
+
+from cursor_utils.version import __version__
 
 __all__ = ["__version__"]

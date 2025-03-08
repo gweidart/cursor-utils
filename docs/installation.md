@@ -1,206 +1,154 @@
 # Installation Guide
 
-This guide covers all aspects of installing, configuring, and updating Cursor Utils.
+This guide provides detailed instructions for installing and configuring Cursor-Utils on various platforms.
 
 ## System Requirements
 
-- Python 3.10 or newer (Python 3.11+ recommended for optimal performance)
-- Cursor IDE (latest version recommended)
-- 20MB of free disk space
-- Internet connection for API-dependent features
+Before installing Cursor-Utils, ensure your system meets the following requirements:
+
+- **Python**: Python 3.10 or newer
+- **Operating System**: Linux, macOS, or Windows
+- **Disk Space**: At least 20MB of available disk space
+- **Network**: Internet connection required for API access
+- **Optional Dependencies**: Git (for repository analysis features)
 
 ## Installation Methods
 
-### Using UV (Recommended)
+### Using pip (Recommended)
 
-[UV](https://github.com/astral-sh/uv) is a blazing-fast Python package installer and resolver that significantly outperforms pip in speed and dependency resolution.
+The simplest way to install Cursor-Utils is using pip:
 
 ```bash
-# Install UV if you don't have it
-curl -LsSf https://astral.sh/uv/install.sh | sh
+pip install cursor-utils
 ```
+using uv:
 
 ```bash
-# Install cursor-utils
 uv pip install cursor-utils
 ```
-
-UV will handle all dependencies correctly and ensure a clean installation.
-
-### Using pip
-
-If you prefer using the standard package manager:
+using Poetry:
 
 ```bash
-pip install cursor-utils
+poetry add cursor-utils
 ```
 
-For isolated installation, consider using a virtual environment:
+
+### From Source
+
+To install the latest development version:
 
 ```bash
-uv venv --python pypy
+git clone https://github.com/gweidart/cursor-utils.git
+cd cursor-utils
+pip install -e .
 ```
+
+### Using pipx (Isolated Environment)
+
+For a clean, isolated installation:
 
 ```bash
-source .venv/bin/activate  # On Unix/macOS
+pipx install cursor-utils
 ```
+
+If you don't have pipx installed:
 
 ```bash
-.venv\Scripts\activate     # On Windows
+pip install pipx
+pipx ensurepath
+pipx install cursor-utils
 ```
 
-### Global installation
+## Verifying Installation
 
-```bash
-pip install cursor-utils
-```
-
-## Post-Installation Setup
-
-After installation, initialize Cursor Utils in your project directory:
-
-```bash
-cd /path/to/your/project
-```
-
-```bash
-cursor-utils install .
-```
-
-This will:
-1. Create necessary configuration files
-2. Set up default templates
-3. Guide you through API key configuration
-4. Initialize integration with Cursor IDE
-
-Follow the interactive prompts to complete the setup process.
-
-## API Key Configuration
-
-Cursor Utils works best with the following API keys:
-
-1. **Perplexity AI API Key** - For web search capabilities
-2. **Google Gemini API Key** - For code generation and analysis
-3. **GitHub Token** - For GitHub integration features
-
-You can configure these during initial setup or later using:
-
-```bash
-cursor-utils config api_keys
-```
-
-Keys are stored securely in your local environment and never transmitted to external services except the corresponding API providers.
-
-## Verifying Your Installation
-
-To verify that Cursor Utils is installed correctly:
+To verify that Cursor-Utils has been installed correctly:
 
 ```bash
 cursor-utils --version
 ```
 
-You should see output similar to:
-```
-Cursor Utils version: 0.1.x
-```
+This should display the version number of the installed package.
 
-For a more comprehensive check, run:
+## API Key Setup
+
+Cursor-Utils requires API keys for certain commands. Set up these keys using the `config` command:
+
+### Google Gemini API
+
+1. Visit [Google AI Studio](https://ai.google.dev/) to obtain a Gemini API key
+2. Configure the key in Cursor-Utils:
 
 ```bash
-cursor-utils --debug
+cursor-utils config set gemini_api_key YOUR_GEMINI_API_KEY
 ```
 
-This will:
-- Enable debug mode for more verbose output
-- Show additional information about your configuration
+### Perplexity API
+
+1. Get a Perplexity API key from [Perplexity API docs](https://docs.perplexity.ai/)
+2. Configure the key:
+
+```bash
+cursor-utils config set perplexity_api_key YOUR_PERPLEXITY_API_KEY
+```
+
+### GitHub API (Optional)
+
+For GitHub integration, you need a GitHub Personal Access Token:
+
+1. Create a token at [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
+2. Configure the token:
+
+```bash
+cursor-utils config set github_token YOUR_GITHUB_TOKEN
+```
+
+## Updating Cursor-Utils
+
+To update to the latest version:
+
+```bash
+pip install --upgrade cursor-utils
+```
 
 ## Troubleshooting
 
 ### Common Installation Issues
 
-**Problem**: `Command not found` error when running `cursor-utils`
-**Solution**: Ensure the Python installation directory is in your PATH. You may need to log out and log back in after installation.
+#### Permission Errors
 
-**Problem**: Dependency conflicts
-**Solution**: Use UV or a virtual environment for installation to isolate dependencies.
+If you encounter permission errors during installation:
 
-**Problem**: Permission errors during installation
-**Solution**: On Unix-like systems, use `sudo` or install in user mode with `uv pip install --user cursor-utils`
+```bash
+pip install --user cursor-utils
+```
+
+#### Dependency Conflicts
+
+If you experience dependency conflicts:
+
+```bash
+pip install --upgrade pip
+pip install cursor-utils --ignore-installed
+```
+
+#### Path Issues
+
+If the `cursor-utils` command is not found after installation:
+
+1. Ensure Python's bin directory is in your PATH
+2. For user installations, verify that `~/.local/bin` is in your PATH
+
+Add to your shell profile (~/.bashrc, ~/.zshrc, etc.):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
 
 ### Getting Help
 
-If you encounter issues not covered here:
+If you continue to experience issues:
 
-1. Check the [GitHub issues](https://github.com/gweidart/cursor-utils/issues) for similar problems
-2. Run `cursor-utils --debug` for diagnostic information
-3. Open a new issue with detailed information about your environment and the error
-
-## Upgrading
-
-To update Cursor Utils to the latest version:
-
-```bash
-cursor-utils update
-```
-
-This command will:
-1. Check for new versions
-2. Back up your configuration
-3. Update the package
-4. Migrate configuration if needed
-5. Verify the updated installation
-
-You can also update manually using:
-
-```bash
-uv pip install --upgrade cursor-utils
-```
-
-## Uninstallation
-
-If you need to remove Cursor Utils:
-
-```bash
-uv pip uninstall cursor-utils
-```
-
-This will remove the package but preserve your configuration files.
-
-## Development Installation
-
-If you want to contribute to Cursor Utils or install the latest development version:
-
-```bash
-# Clone the repository
-git clone https://github.com/gweidart/cursor-utils.git
-```
-
-```bash
-cd cursor-utils
-```
-
-```bash
-# Create and activate a virtual environment
-uv venv .venv --python pypy
-```
-
-```bash
-source .venv/bin/activate  # On Unix/macOS
-```
-
-```bash
-# or
-.venv\Scripts\activate     # On Windows
-```
-
-```bash
-# Install development dependencies
-uv pip sync requirements/requirements-dev.txt requirements/requirements-test.txt
-```
-
-```bash
-# Install the package in development mode
-uv pip install -e .
-```
-
-This installs Cursor Utils in development mode, allowing you to modify the code and immediately see the effects without reinstalling.
+1. Check the [GitHub repository](https://github.com/gweidart/cursor-utils) for known issues
+2. Verify system requirements are met
+3. Try installation in a clean virtual environment
+4. Consult the advanced documentation at https://gweidart.github.io/cursor-utils/

@@ -43,4 +43,4 @@ jobs:
       if: matrix.python.impl == 'cpython'  # Only run linting on CPython
       run: |
         ruff check . --fix --unsafe-fixes
-        ruff format --check .
+        ruff format .

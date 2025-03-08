@@ -1,460 +1,556 @@
-# Utilities Reference
+# Utilities API
 
-This reference provides documentation on the utility modules used in Cursor Utils, focusing on the actual implementations present in the codebase.
+Cursor-Utils provides a collection of utility modules that handle common operations for filesystem access, Git operations, text processing, and file ranking. These utilities are used throughout the application to provide consistent behavior and error handling.
 
-## Utility Architecture
+## Overview
 
-Cursor Utils has a comprehensive utility architecture with several key modules:
+The utilities are organized into the following modules:
 
+| Module | Description | Primary Functions |
+|--------|-------------|-------------------|
+| [Filesystem (fs)](#filesystem-utilities) | File and directory operations | Reading/writing files, directory management |
+| [Git Operations (git)](#git-utilities) | Git repository interactions | Clone, checkout, analyze repositories |
+| [Text Processing (text)](#text-utilities) | Text manipulation functions | Text formatting, ANSI handling, code highlighting |
+| [File Ranking (file_rank_algo)](#file-ranking-utilities) | Algorithms for ranking files | File ranking based on multiple factors |
+
+## Filesystem Utilities
+
+The `fs` module provides functions for file and directory operations with consistent error handling.
+
+### Core Functions
+
+#### `ensure_directory(path)`
+
+Ensure a directory exists, creating it if necessary.
+
+**Parameters**:
+- `path` (Union[str, Path]): The directory path
+
+**Returns**:
+- `Path`: The directory path as a Path object
+
+**Raises**:
+- `FilesystemError`: If the directory cannot be created
+
+**Example**:
+```python
+from cursor_utils.utils.fs import ensure_directory
+
+# Create a directory if it doesn't exist
+config_dir = ensure_directory("~/.config/my-app")
 ```
-cursor_utils/utils/
-├── __init__.py         # Exports utility functions
-├── command_helpers.py  # Standardized error handling
-├── api_helpers.py      # API key management
-├── config_helpers.py   # Configuration utilities
-└── file_rank_algo.py   # Repository analysis algorithm
+
+#### `get_temp_dir(prefix="cursor_utils_")`
+
+Get a temporary directory with the specified prefix.
+
+**Parameters**:
+- `prefix` (str): The prefix for the directory name
+
+**Returns**:
+- `Path`: The temporary directory path
+
+**Raises**:
+- `FilesystemError`: If the temporary directory cannot be created
+
+**Example**:
+```python
+from cursor_utils.utils.fs import get_temp_dir
+
+# Create a temporary directory
+temp_dir = get_temp_dir("my_app_")
+try:
+    # Use the temporary directory
+    print(f"Using temporary directory: {temp_dir}")
+finally:
+    # Clean up (optional, depends on your needs)
+    import shutil
+    shutil.rmtree(temp_dir)
 ```
 
-The `__init__.py` file exports the key utility functions and classes:
+#### `read_file(path, binary=False)`
+
+Read a file, optionally in binary mode.
+
+**Parameters**:
+- `path` (Union[str, Path]): The file path
+- `binary` (bool): Whether to read the file in binary mode
+
+**Returns**:
+- `Union[str, bytes]`: The file contents
+
+**Raises**:
+- `FilesystemError`: If the file cannot be read
+
+**Example**:
+```python
+from cursor_utils.utils.fs import read_file
+
+# Read a text file
+content = read_file("config.json")
+
+# Read a binary file
+binary_content = read_file("image.png", binary=True)
+```
+
+#### `write_file(path, content, binary=False)`
+
+Write content to a file, optionally in binary mode.
+
+**Parameters**:
+- `path` (Union[str, Path]): The file path
+- `content` (Union[str, bytes]): The file contents
+- `binary` (bool): Whether to write the file in binary mode
+
+**Raises**:
+- `FilesystemError`: If the file cannot be written
+
+**Example**:
+```python
+from cursor_utils.utils.fs import write_file
+
+# Write a text file
+write_file("output.txt", "Hello, world!")
+
+# Write a binary file
+write_file("output.bin", b"\x00\x01\x02\x03", binary=True)
+```
+
+#### `list_files(directory, pattern="*", recursive=False)`
+
+List files in a directory matching a glob pattern.
+
+**Parameters**:
+- `directory` (Union[str, Path]): The directory path
+- `pattern` (str): The glob pattern to match
+- `recursive` (bool): Whether to search recursively
+
+**Returns**:
+- `list[Path]`: The list of file paths
+
+**Raises**:
+- `FilesystemError`: If the directory cannot be read
+
+**Example**:
+```python
+from cursor_utils.utils.fs import list_files
+
+# List all Python files in the current directory
+py_files = list_files(".", "*.py")
+
+# List all JSON files recursively
+json_files = list_files(".", "*.json", recursive=True)
+```
+
+#### `is_binary_file(path)`
+
+Check if a file is binary.
+
+**Parameters**:
+- `path` (Union[str, Path]): The file path
+
+**Returns**:
+- `bool`: True if the file is binary, False otherwise
+
+**Raises**:
+- `FilesystemError`: If the file cannot be read
+
+**Example**:
+```python
+from cursor_utils.utils.fs import is_binary_file
+
+# Check if a file is binary
+if is_binary_file("unknown_file"):
+    print("This is a binary file")
+else:
+    print("This is a text file")
+```
+
+### Error Handling
+
+The `fs` module defines a `FilesystemError` class that provides context-specific error messages for filesystem operations.
 
 ```python
-from cursor_utils.utils.api_helpers import get_api_key, validate_api_key
-from cursor_utils.utils.command_helpers import safe_execute, safe_execute_sync
-from cursor_utils.utils.config_helpers import ensure_config, load_config, save_config
-from cursor_utils.utils.file_rank_algo import FileRanker
-
-__all__ = [
-    "get_api_key",
-    "validate_api_key",
-    "safe_execute",
-    "safe_execute_sync",
-    "ensure_config",
-    "load_config",
-    "save_config",
-    "FileRanker",
-]
+try:
+    content = read_file("non_existent_file.txt")
+except FilesystemError as e:
+    print(f"Filesystem error: {e.message}")
+    print(f"Path: {e.path}")
+    if e.help_text:
+        print(f"Help: {e.help_text}")
 ```
 
-## Command Helpers
+## Git Utilities
 
-The command helpers module (`cursor_utils/utils/command_helpers.py`) provides standardized error handling for commands.
+The `git` module provides functions for working with Git repositories.
 
-### Key Functions
+### Core Functions
 
-#### safe_execute
+#### `_run_git_command(args, cwd=None, capture_output=True)`
+
+Internal function to run a Git command.
+
+**Parameters**:
+- `args` (list[str]): The Git command arguments
+- `cwd` (Optional[Union[str, Path]]): The working directory
+- `capture_output` (bool): Whether to capture the command output
+
+**Returns**:
+- `str`: The command output
+
+**Raises**:
+- `GitError`: If the command fails
+
+#### `is_git_repository(path)`
+
+Check if a directory is a Git repository.
+
+**Parameters**:
+- `path` (Union[str, Path]): The directory path
+
+**Returns**:
+- `bool`: True if the directory is a Git repository, False otherwise
+
+**Example**:
+```python
+from cursor_utils.utils.git import is_git_repository
+
+# Check if the current directory is a Git repository
+if is_git_repository("."):
+    print("This is a Git repository")
+else:
+    print("This is not a Git repository")
+```
+
+#### `get_repository_root(path)`
+
+Get the root directory of a Git repository.
+
+**Parameters**:
+- `path` (Union[str, Path]): A path within the repository
+
+**Returns**:
+- `Path`: The repository root path
+
+**Raises**:
+- `GitError`: If the path is not within a Git repository
+
+**Example**:
+```python
+from cursor_utils.utils.git import get_repository_root
+
+# Get the root directory of the Git repository
+repo_root = get_repository_root(".")
+print(f"Repository root: {repo_root}")
+```
+
+#### `get_default_branch(path)`
+
+Get the default branch of a repository.
+
+**Parameters**:
+- `path` (Union[str, Path]): A path within the repository
+
+**Returns**:
+- `str`: The default branch name
+
+**Raises**:
+- `GitError`: If the default branch cannot be determined
+
+**Example**:
+```python
+from cursor_utils.utils.git import get_default_branch
+
+# Get the default branch of a repository
+branch = get_default_branch("my-repo")
+print(f"Default branch: {branch}")
+```
+
+#### `clone_repository(url, target_dir, branch=None, depth=None)`
+
+Clone a Git repository.
+
+**Parameters**:
+- `url` (str): The repository URL
+- `target_dir` (Union[str, Path]): The target directory
+- `branch` (Optional[str]): The branch to checkout
+- `depth` (Optional[int]): The clone depth (for shallow clones)
+
+**Returns**:
+- `Path`: The repository directory path
+
+**Raises**:
+- `GitError`: If the repository cannot be cloned
+
+**Example**:
+```python
+from cursor_utils.utils.git import clone_repository
+
+# Clone a repository
+repo_dir = clone_repository(
+    "https://github.com/gweidart/cursor-utils.git",
+    "cursor-utils-clone",
+    branch="main",
+    depth=1
+)
+```
+
+### Error Handling
+
+The `git` module defines a `GitError` class for Git-related errors:
 
 ```python
-def safe_execute(
-    error_class: Type[CursorUtilsError],
-    error_code: ErrorCodes,
-    message: Optional[str] = None,
-) -> Callable[[Callable[P, Awaitable[T]]], Callable[P, Awaitable[T]]]:
-    """
-    Decorator for async functions that provides standardized error handling.
-    
-    Args:
-        error_class: The error class to use for exceptions
-        error_code: The error code to use for exceptions
-        message: Optional custom error message
-        
-    Returns:
-        Decorated function with standardized error handling
-    """
+try:
+    repo_root = get_repository_root("not-a-git-repo")
+except GitError as e:
+    print(f"Git error: {e.message}")
+    if e.help_text:
+        print(f"Help: {e.help_text}")
 ```
 
-This decorator:
-1. Wraps an async function with standardized error handling
-2. Catches exceptions and converts them to appropriate error types
-3. Provides consistent error messages and diagnostic information
+## Text Utilities
 
-#### safe_execute_sync
+The `text` module provides functions for text processing and formatting.
 
+### Core Functions
+
+#### `truncate_text(text, max_length, suffix="...")`
+
+Truncate text to a maximum length.
+
+**Parameters**:
+- `text` (str): The text to truncate
+- `max_length` (int): The maximum length
+- `suffix` (str): The suffix to append if truncated
+
+**Returns**:
+- `str`: The truncated text
+
+**Example**:
 ```python
-def safe_execute_sync(
-    error_class: Type[CursorUtilsError],
-    error_code: ErrorCodes,
-    message: Optional[str] = None,
-) -> Callable[[Callable[P, R]], Callable[P, R]]:
-    """
-    Decorator for synchronous functions that provides standardized error handling.
-    
-    Args:
-        error_class: The error class to use for exceptions
-        error_code: The error code to use for exceptions
-        message: Optional custom error message
-        
-    Returns:
-        Decorated function with standardized error handling
-    """
+from cursor_utils.utils.text import truncate_text
+
+# Truncate a long string
+long_text = "This is a very long text that needs to be truncated"
+short_text = truncate_text(long_text, 20)
+print(short_text)  # "This is a very long..."
 ```
 
-This decorator:
-1. Wraps a synchronous function with standardized error handling
-2. Catches exceptions and converts them to appropriate error types
-3. Provides consistent error messages and diagnostic information
+#### `wrap_text(text, width=80)`
 
-#### handle_command_error
+Wrap text to a maximum width.
 
+**Parameters**:
+- `text` (str): The text to wrap
+- `width` (int): The maximum width
+
+**Returns**:
+- `str`: The wrapped text
+
+**Example**:
 ```python
-def handle_command_error(
-    error: Exception,
-    error_class: Type[CursorUtilsError],
-    error_code: ErrorCodes,
-    message: Optional[str] = None,
-) -> NoReturn:
-    """
-    Handle command errors with standardized error reporting.
-    
-    Args:
-        error: The original exception
-        error_class: The error class to use
-        error_code: The error code to use
-        message: Optional custom error message
-        
-    Raises:
-        CursorUtilsError: Standardized error with diagnostic information
-    """
+from cursor_utils.utils.text import wrap_text
+
+# Wrap text to a specific width
+long_text = "This is a long text that will be wrapped to fit within the specified width"
+wrapped_text = wrap_text(long_text, width=40)
+print(wrapped_text)
 ```
 
-This function:
-1. Converts exceptions to standardized error types
-2. Adds diagnostic information and hints
-3. Provides consistent error reporting
+#### `strip_ansi(text)`
 
-### Usage Example
+Strip ANSI escape sequences from text.
 
+**Parameters**:
+- `text` (str): The text to strip
+
+**Returns**:
+- `str`: The stripped text
+
+**Example**:
 ```python
-from cursor_utils.errors import ErrorCodes, WebError
-from cursor_utils.utils.command_helpers import safe_execute
+from cursor_utils.utils.text import strip_ansi
 
-@safe_execute(WebError, ErrorCodes.WEB_QUERY_ERROR)
-async def web_command(query: str) -> None:
-    # Command implementation that might raise exceptions
-    response = await api_client.query(query)
-    if not response:
-        raise ValueError("Empty response from API")
-    await process_response(response)
+# Strip ANSI escape sequences from text
+ansi_text = "\033[31mRed text\033[0m"
+plain_text = strip_ansi(ansi_text)
+print(plain_text)  # "Red text"
 ```
 
-## API Helpers
+#### `highlight_code(code, rich_theme, language=None, line_numbers=False, use_rich=False)`
 
-The API helpers module (`cursor_utils/utils/api_helpers.py`) provides centralized API key management.
+Highlight code syntax.
 
-### Key Functions
+**Parameters**:
+- `code` (str): The code to highlight
+- `rich_theme` (str | SyntaxTheme): The Rich theme to use
+- `language` (Optional[str]): The language for syntax highlighting
+- `line_numbers` (bool): Whether to include line numbers
+- `use_rich` (bool): Whether to use Rich for highlighting
 
-#### get_api_key
+**Returns**:
+- `str`: The highlighted code
 
+**Example**:
 ```python
-def get_api_key(key_type: APIKeyType, env_var: str) -> str:
-    """
-    Get API key with standardized error handling.
-    
-    Args:
-        key_type: The type of API key to get
-        env_var: The environment variable name for the API key
-        
-    Returns:
-        The API key string
-        
-    Raises:
-        WebError: If the API key is not found or invalid
-    """
+from cursor_utils.utils.text import highlight_code
+
+# Highlight Python code
+code = "def hello():\n    print('Hello, world!')"
+highlighted = highlight_code(code, "monokai", language="python", line_numbers=True)
+print(highlighted)
 ```
 
-This function:
-1. Checks environment variables for API keys
-2. Falls back to configuration file if not found in environment
-3. Validates the API key format
-4. Provides helpful error messages if the key is missing or invalid
+## File Ranking Utilities
 
-#### validate_api_key
+The `file_rank_algo` module provides algorithms for ranking files by relevance and importance.
 
-```python
-def validate_api_key(api_key: str, key_type: APIKeyType, env_var: str) -> None:
-    """
-    Validate API key with standardized error handling.
-    
-    Args:
-        api_key: The API key to validate
-        key_type: The type of API key
-        env_var: The environment variable name for the API key
-        
-    Raises:
-        WebError: If the API key is invalid
-    """
-```
+### Core Types
 
-This function:
-1. Validates the API key format
-2. Checks for common issues like empty keys or placeholder values
-3. Provides helpful error messages for invalid keys
+#### `BaseFileInfo`
 
-### Usage Example
-
-```python
-from cursor_utils.config import APIKeyType
-from cursor_utils.utils.api_helpers import get_api_key
-
-# Get Perplexity API key
-api_key = get_api_key(APIKeyType.PERPLEXITY, "PERPLEXITY_API_KEY")
-
-# Use the API key
-client = PerplexityClient(api_key=api_key)
-```
-
-## Config Helpers
-
-The config helpers module (`cursor_utils/utils/config_helpers.py`) provides simplified configuration handling.
-
-### Key Functions
-
-#### ensure_config
-
-```python
-def ensure_config(
-    manager: ConfigManager,
-    required_keys: list[str],
-    defaults: dict[str, Any],
-) -> dict[str, Any]:
-    """
-    Ensure configuration exists with standardized error handling.
-    
-    Args:
-        manager: The configuration manager
-        required_keys: List of required configuration keys
-        defaults: Default values for configuration keys
-        
-    Returns:
-        Configuration dictionary with all required keys
-        
-    Raises:
-        ConfigError: If configuration cannot be loaded or validated
-    """
-```
-
-This function:
-1. Loads configuration from the manager
-2. Validates that all required keys are present
-3. Applies default values for missing keys
-4. Provides helpful error messages for configuration issues
-
-#### load_config
-
-```python
-def load_config(
-    manager: ConfigManager,
-    section: str,
-) -> dict[str, Any]:
-    """
-    Load configuration with standardized error handling.
-    
-    Args:
-        manager: The configuration manager
-        section: The configuration section to load
-        
-    Returns:
-        Configuration dictionary for the specified section
-        
-    Raises:
-        ConfigError: If configuration cannot be loaded
-    """
-```
-
-This function:
-1. Loads configuration for a specific section
-2. Handles missing sections gracefully
-3. Provides helpful error messages for configuration issues
-
-#### save_config
-
-```python
-def save_config(
-    manager: ConfigManager,
-    section: str,
-    config: dict[str, Any],
-) -> None:
-    """
-    Save configuration with standardized error handling.
-    
-    Args:
-        manager: The configuration manager
-        section: The configuration section to save
-        config: The configuration dictionary to save
-        
-    Raises:
-        ConfigError: If configuration cannot be saved
-    """
-```
-
-This function:
-1. Saves configuration for a specific section
-2. Validates the configuration before saving
-3. Provides helpful error messages for configuration issues
-
-### Usage Example
-
-```python
-from cursor_utils.config import ConfigManager
-from cursor_utils.utils.config_helpers import ensure_config, load_config, save_config
-
-# Define required keys and defaults
-required_keys = ["model", "mode", "search_focus"]
-defaults = {
-    "model": "sonar",
-    "mode": "copilot",
-    "search_focus": "internet",
-}
-
-# Ensure configuration exists
-config = ensure_config(manager, required_keys, defaults)
-
-# Load configuration
-web_config = load_config(manager, "web")
-
-# Save configuration
-save_config(manager, "web", web_config)
-```
-
-## File Ranking Algorithm
-
-The file ranking algorithm (`cursor_utils/utils/file_rank_algo.py`) provides functionality to rank files based on their type, size, and creation time, while respecting `.gitignore` patterns.
-
-### Core Data Types
-
-The module defines several typed dictionaries for file information:
+Base TypedDict with the required path key.
 
 ```python
 class BaseFileInfo(TypedDict):
-    """Base file information with just the path."""
-    
     path: str
+```
 
+#### `ProcessedFileInfo`
 
+TypedDict for files that have been processed with all required fields.
+
+```python
 class ProcessedFileInfo(BaseFileInfo):
-    """Processed file information with additional metadata."""
-    
     type: str
     size: int
     creation_time: float
     importance_score: float
+```
 
+#### `FileInfo`
 
-class FileInfo(TypedDict, total=False):
-    """File information with optional fields."""
-    
-    path: str
-    type: NotRequired[str]
-    size: NotRequired[int]
-    creation_time: NotRequired[float]
+TypedDict for file info with optional fields.
+
+```python
+class FileInfo(BaseFileInfo, total=False):
+    type: str
+    size: int
+    time: float
+    creation_time: float
+    importance_score: float
+```
+
+### Core Functions
+
+#### `build_file_list(base_path)`
+
+Build a list of FileInfo dictionaries for a given base path.
+
+**Parameters**:
+- `base_path` (str): The base path to scan for files
+
+**Returns**:
+- `list[FileInfo]`: A list of FileInfo dictionaries with path keys
+
+**Example**:
+```python
+from cursor_utils.utils.file_rank_algo import build_file_list
+
+# Get a list of files in a directory
+files = build_file_list("./my-project")
+print(f"Found {len(files)} files")
 ```
 
 ### FileRanker Class
 
-The `FileRanker` class is the primary utility exported from the utils module:
+The `FileRanker` class provides file ranking functionality based on multiple factors.
 
+#### `FileRanker(type_weight=1.0, size_weight=1.0, time_weight=1.0, gitignore_path=None, gitinclude_path=None)`
+
+Create a new FileRanker instance.
+
+**Parameters**:
+- `type_weight` (float): Influence of file-type frequency in the final score
+- `size_weight` (float): Influence of file size in the final score
+- `time_weight` (float): Influence of file creation time in the final score
+- `gitignore_path` (Optional[str]): Path to a .gitignore-like file with exclusion patterns
+- `gitinclude_path` (Optional[str]): Path to a .gitinclude-like file with inclusion patterns
+
+**Example**:
 ```python
-class FileRanker:
-    """
-    Ranks files based on a weighted score calculated from type frequency,
-    file size, and creation time.
-    
-    Files matching .gitignore patterns are excluded by default.
-    """
-    
-    def __init__(
-        self,
-        type_weight: float = 0.4,
-        size_weight: float = 0.3,
-        time_weight: float = 0.3,
-        gitignore_path: Optional[str] = None,
-        gitinclude_path: Optional[str] = None,
-    ) -> None:
-        """
-        Initialize the file ranker with specified weights.
-        
-        Args:
-            type_weight: Weight for file type in importance calculation
-            size_weight: Weight for file size in importance calculation
-            time_weight: Weight for creation time in importance calculation
-            gitignore_path: Path to .gitignore file (optional)
-            gitinclude_path: Path to .gitinclude file (optional)
-        """
-```
+from cursor_utils.utils.file_rank_algo import FileRanker, build_file_list
 
-### Key Methods
-
-The `FileRanker` class provides the following key methods:
-
-#### rank_files
-
-```python
-def rank_files(self, files: list[FileInfo]) -> list[ProcessedFileInfo]:
-    """
-    Rank files based on their importance.
-    
-    Args:
-        files: List of file information dictionaries
-        
-    Returns:
-        List of processed file information dictionaries with importance scores,
-        sorted in descending order of importance
-    """
-```
-
-This method:
-1. Filters files based on gitignore/gitinclude patterns
-2. Computes type frequency across all files
-3. Calculates normalized scores for type, size, and creation time
-4. Computes a weighted importance score for each file
-5. Returns files sorted by importance score
-
-### Usage Example
-
-```python
-from cursor_utils.utils.file_rank_algo import FileRanker
-
-# Initialize with sample files
-files = [
-    {"path": "file1.py", "size": 1000, "creation_time": 1600000000},
-    {"path": "file2.js", "size": 2000, "creation_time": 1600001000},
-    {"path": "file3.md", "size": 500, "creation_time": 1600002000},
-    {"path": "file4.py", "size": 1500, "creation_time": 1600003000},
-]
-
-# Create ranker with custom weights
+# Create a ranker with custom weights
 ranker = FileRanker(
-    type_weight=0.5,
-    size_weight=0.3,
-    time_weight=0.2,
+    type_weight=1.5,  # Prefer common file types
+    size_weight=0.8,  # Slightly prefer smaller files
+    time_weight=1.2,  # Prefer newer files
+    gitignore_path=".gitignore"  # Use .gitignore patterns
 )
 
 # Rank files
+files = build_file_list("./my-project")
 ranked_files = ranker.rank_files(files)
 
-# Print results
-for file in ranked_files:
-    print(f"{file['path']}: {file['importance_score']:.4f}")
+# Print top 5 most important files
+for file_info in ranked_files[:5]:
+    print(f"{file_info['path']} (score: {file_info['importance_score']:.2f})")
 ```
 
-## Best Practices for Using Utilities
+#### `rank_files(files)`
 
-1. **Use standardized error handling**:
-   - Use `safe_execute` for async functions
-   - Use `safe_execute_sync` for synchronous functions
-   - Provide appropriate error classes and codes
+Rank files by importance score.
 
-2. **Centralize API key management**:
-   - Use `get_api_key` to retrieve API keys
-   - Use `validate_api_key` to validate API keys
-   - Handle missing or invalid keys gracefully
+**Parameters**:
+- `files` (list[FileInfo]): List of FileInfo dictionaries
 
-3. **Simplify configuration handling**:
-   - Use `ensure_config` to validate and apply defaults
-   - Use `load_config` to load configuration sections
-   - Use `save_config` to save configuration changes
+**Returns**:
+- `list[ProcessedFileInfo]`: List of ranked files with all fields set
 
-4. **Optimize file ranking**:
-   - Customize weights based on your specific use case
-   - Provide complete file information when possible
-   - Use gitignore/gitinclude paths to filter files appropriately
-   - Process the results as needed for your specific use case
+**Example**:
+```python
+from cursor_utils.utils.file_rank_algo import FileRanker, build_file_list
+
+# Create a ranker and rank files
+ranker = FileRanker()
+files = build_file_list("./my-project")
+ranked_files = ranker.rank_files(files)
+```
+
+## Best Practices
+
+1. **Handle Errors Properly**: All utility functions raise specific exceptions with helpful error messages
+   ```python
+   try:
+       clone_repository("https://github.com/invalid/repo.git", "target")
+   except GitError as e:
+       print(f"Git error: {e.message}")
+       if e.help_text:
+           print(f"Help: {e.help_text}")
+   ```
+
+2. **Clean Up Temporary Resources**: When using functions that create temporary resources, ensure proper cleanup
+   ```python
+   temp_dir = get_temp_dir()
+   try:
+       # Use temporary directory
+   finally:
+       import shutil
+       shutil.rmtree(temp_dir)
+   ```
+
+3. **Prefer Path Objects**: Most functions accept both strings and Path objects, but using Path objects provides more flexibility
+   ```python
+   from pathlib import Path
+   config_dir = ensure_directory(Path.home() / ".config" / "my-app")
+   ```
+
+4. **Use Safe Operations**: Utility functions handle common edge cases and provide safe defaults
+   ```python
+   # Safely read a file that might not exist
+   try:
+       content = read_file("config.json")
+   except FilesystemError:
+       content = "{}"  # Default content
+   ``` 

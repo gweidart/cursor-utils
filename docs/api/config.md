@@ -1,405 +1,253 @@
-# Configuration System Reference
+# Configuration API
 
-This reference provides detailed information about the Cursor Utils configuration system, including the implementation architecture, configuration storage, and API key management.
+The Configuration API provides a flexible and consistent way to manage configuration settings for Cursor-Utils. It handles loading, saving, and accessing configuration values with support for environment variable overrides.
 
-## Configuration Architecture
+## Overview
 
-Cursor Utils uses a hierarchical configuration system with multiple sources of configuration values:
+Configuration in Cursor-Utils follows these principles:
 
-1. **Default values** - Built-in defaults for all settings
-2. **Configuration file** - User-defined settings in YAML format
-3. **Environment variables** - System-level configuration
-4. **Command-line arguments** - Run-time overrides
+1. **Simple Storage**: Configuration is stored in a JSON file
+2. **Environment Overrides**: Environment variables take precedence over stored configuration
+3. **Standard Locations**: Configuration uses platform-specific standard locations
+4. **Error Handling**: Clear error messages when configuration operations fail
 
-The configuration system follows a cascading priority model where command-line arguments override environment variables, which override the configuration file, which override defaults.
+## Configuration Storage
 
-## Implementation Details
+By default, configuration is stored in a JSON file at:
 
-The configuration system is implemented in `cursor_utils/config.py` with the `Config` class as the primary interface:
+- **Linux/macOS**: `~/.config/cursor-utils/config.json`
+- **Windows**: `%APPDATA%\cursor-utils\config.json`
 
-```python
-class Config:
-    """Manages configuration and API keys."""
+You can customize this location by specifying a different path when loading configuration.
 
-    def __init__(self) -> None:
-        """Initialize configuration manager."""
-        self.console = Console()
-        self.env_file = Path.cwd() / ".env"
-        self.config_dir = Path.cwd() / "config"
-        self.yaml_config = Path.cwd() / "cursor-utils.yaml"
-        self.config_path = self.yaml_config
+## Key Components
 
-        # Ensure required files and directories exist
-        self._ensure_env_file()
-        self._ensure_config_dir()
-        self._load_env()
+### Configuration Class
 
-        # Load configuration
-        self.config = self.load_config()
-```
-
-The `APIKeyConfig` class handles API key validation and storage:
+The `Configuration` class is the primary interface for working with configuration settings.
 
 ```python
-@dataclass
-class APIKeyConfig:
-    """Configuration for an API key."""
+from cursor_utils.core.config import load_configuration
 
-    key_type: APIKeyType
-    value: Optional[str] = None
-    is_set: bool = False
-```
+# Load configuration from default location
+config = load_configuration()
 
-### Configuration Loading Process
-
-The configuration loading process follows these steps:
-
-1. Check for default configuration template
-2. Look for user configuration file
-3. Load and parse the configuration
-4. Validate configuration structure
-5. Apply type coercion to ensure correct types
-6. Set default values for missing fields
-
-## Configuration File
-
-Cursor Utils stores its configuration in `cursor-utils.yaml` in the current working directory. Here's a complete example configuration file with all available options:
-
-```yaml
-# Cursor Utils configuration
-version: "0.1.0"
-
-# General settings
-settings:
-  # Enable debug mode for verbose logging
-  debug: false
-  
-  # Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-  log_level: "INFO"
-
-# Web/Perplexity settings
-web:
-  # Model to use for Perplexity queries (sonar, sonar-pro, sonar-reasoning, sonar-pro-reasoning)
-  model: "sonar"
-  
-  # Response mode (copilot, concise)
-  mode: "copilot"
-  
-  # Search focus (internet, scholar, writing, wolfram, youtube, reddit)
-  search_focus: "internet"
-  
-  # Enable streaming responses
-  stream: true
-
-# Gemini settings
-gemini:
-  # Gemini model to use
-  model: "gemini-pro"
-  
-  # Maximum tokens to generate
-  max_output_tokens: 8000
-  
-  # Temperature for generation (0.0-1.0)
-  temperature: 0.7
-  
-  # Top-p sampling parameter (0.0-1.0)
-  top_p: 0.95
-  
-  # Top-k sampling parameter
-  top_k: 40
-
-# GitHub settings
-github:
-  # Source for GitHub token (env or config)
-  token_source: "env"
-  
-  # Default GitHub owner/organization
-  default_owner: ""
-  
-  # Default GitHub repository
-  default_repo: ""
-  
-  # Directory for GitHub templates
-  template_dir: "~/.cursor-utils/github-templates"
-
-```
-
-## API Key Management
-
-Cursor Utils manages API keys securely using the following methods:
-
-### API Key Types
-
-```python
-class APIKeyType(str, Enum):
-    """Supported API key types."""
-
-    GEMINI = "GEMINI_API_KEY"
-    PERPLEXITY = "PERPLEXITY_API_KEY"
-    GITHUB = "GITHUB_TOKEN"
-```
-
-### API Key Storage
-
-API keys are stored primarily in environment variables, with support for:
-
-1. **Environment variables** - Direct access to system environment variables
-2. **`.env` file** - Local environment variable storage
-3. **Secure keyring** - System keyring integration (if available)
-
-API keys are never stored in plain text in the configuration file for security reasons.
-
-### API Key Validation
-
-API keys are validated before use to ensure they are:
-
-1. Properly formatted
-2. Not expired
-3. Have correct permissions
-
-The validation process varies by API provider:
-
-```python
-def validate_api_key(key_type: APIKeyType, value: str) -> bool:
-    """
-    Validate an API key.
-    
-    Args:
-        key_type: Type of API key
-        value: API key value
-        
-    Returns:
-        True if valid, False otherwise
-    """
-    if not value:
-        return False
-        
-    if key_type == APIKeyType.PERPLEXITY:
-        # Perplexity keys are 32 character alphanumeric strings
-        return bool(re.match(r'^[A-Za-z0-9]{32}$', value))
-    elif key_type == APIKeyType.GEMINI:
-        # Gemini keys typically start with 'AI' and are 39 characters
-        return bool(re.match(r'^AI[A-Za-z0-9_-]{37}$', value))
-    elif key_type == APIKeyType.GITHUB:
-        # GitHub tokens are 40 character hexadecimal strings
-        # or new fine-grained tokens with 'github_pat_' prefix
-        return bool(re.match(r'^(ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{82})$', value))
-    
-    return False
-```
-
-## Environment Variables
-
-Cursor Utils recognizes the following environment variables:
-
-| Environment Variable | Description | Default |
-|----------------------|-------------|---------|
-| `PERPLEXITY_API_KEY` | API key for Perplexity AI | None |
-| `GEMINI_API_KEY` | API key for Google Gemini | None |
-| `GITHUB_TOKEN` | GitHub personal access token | None |
-| `CURSOR_UTILS_DEBUG` | Enable debug mode | `False` |
-| `CURSOR_UTILS_LOG_LEVEL` | Set logging level | `INFO` |
-| `CURSOR_UTILS_CONFIG_PATH` | Custom config file path | `./cursor-utils.yaml` |
-
-## Configuration API
-
-### Basic Usage
-
-```python
-from cursor_utils.config import Config
-
-# Initialize configuration
-config = Config()
-
-# Get a configuration value with a default fallback
-debug_mode = config.get("settings.debug", default=False)
+# Get a configuration value
+api_key = config.get("gemini_api_key")
 
 # Set a configuration value
-config.set("web.model", "sonar-pro")
+config.set("default_format", "markdown")
 
-# Save changes to the configuration file
-config.save()
-```
-
-### API Key Management
-
-```python
-from cursor_utils.config import Config, APIKeyType
-
-# Initialize configuration
-config = Config()
-
-# Get an API key
-perplexity_key = config.get_api_key(APIKeyType.PERPLEXITY)
-
-# Set an API key (stores in environment or .env file)
-config.set_api_key(APIKeyType.GEMINI, "YOUR_API_KEY")
-
-# Check if API key is valid
-is_valid = config.validate_api_key(APIKeyType.GITHUB, "github_pat_...")
-```
-
-### Advanced Configuration
-
-```python
-from cursor_utils.config import Config
-
-# Initialize configuration
-config = Config()
-
-# Get all Gemini settings
-gemini_config = config.get_section("gemini")
-
-# Update multiple settings
-config.update({
-    "gemini.temperature": 0.5,
-    "gemini.max_output_tokens": 4000
-})
-
-# Reset a section to defaults
-config.reset_section("web")
-```
-
-## Command Line Interface
-
-The configuration system is accessible through the `config` command:
-
-```bash
-# Show current configuration
-cursor-utils config show
-
-# Configure API keys
-cursor-utils config api_keys
-
-# Set a configuration value
-cursor-utils config set web.model sonar-pro
-
-# Reset to defaults
-cursor-utils config reset gemini
-```
-
-## Configuration Migration
-
-When the configuration version changes, Cursor Utils automatically migrates the configuration:
-
-```python
-def migrate_config(config: dict, current_version: str, target_version: str) -> dict:
-    """
-    Migrate configuration from current version to target version.
-    
-    Args:
-        config: Current configuration
-        current_version: Current version
-        target_version: Target version
-        
-    Returns:
-        Migrated configuration
-    """
-    # Migration logic here
-    return config
-```
-
-## Custom Configuration Options
-
-Users can add custom configuration options that aren't predefined:
-
-```python
-# Add a custom option
-config.set("custom_options.my_setting", "my_value")
-
-# Get a custom option
-value = config.get("custom_options.my_setting", default="default_value")
-```
-
-## Configuration Validation
-
-Configuration is validated to ensure it's properly structured:
-
-```python
-def validate_config(config: dict) -> tuple[bool, list[str]]:
-    """
-    Validate configuration structure.
-    
-    Args:
-        config: Configuration to validate
-        
-    Returns:
-        Tuple of (is_valid, error_messages)
-    """
-    errors = []
-    
-    # Required sections
-    if "settings" not in config:
-        errors.append("Missing 'settings' section")
-    
-    # Type checking
-    if "settings" in config and not isinstance(config["settings"], dict):
-        errors.append("'settings' must be a dictionary")
-    
-    # Value validation
-    if "web" in config and "model" in config["web"]:
-        if config["web"]["model"] not in ["sonar", "sonar-pro", "sonar-reasoning", "sonar-pro-reasoning"]:
-            errors.append(f"Invalid web model: {config['web']['model']}")
-    
-    return len(errors) == 0, errors
-```
-
-## Best Practices
-
-1. **Use the API**: Always use the Config class instead of direct dictionary access
-2. **Default Values**: Always provide default values when getting configuration
-3. **Type Checking**: Validate types when processing configuration values
-4. **Validate Early**: Check configuration at startup to catch errors early
-5. **Handle Errors**: Gracefully handle missing or invalid configuration
-6. **Security**: Never store sensitive API keys in the configuration file
-7. **Migration**: Provide migration paths for configuration changes
-
-## Configuration Options
-
-### Web/Perplexity Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `perplexity_api_key` | API key for Perplexity | - |
-| `perplexity_model` | Perplexity model to use | `sonar` |
-| `perplexity_mode` | Mode for responses | `copilot` |
-| `perplexity_focus` | Search focus | `internet` |
-
-### Gemini Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `gemini_api_key` | API key for Google Gemini | - |
-| `gemini_model` | Gemini model to use | `gemini-2.0-pro-exp-02-05` |
-| `gemini_max_tokens` | Maximum tokens for responses | 8000 |
-
-### GitHub Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `github_token` | GitHub personal access token | - |
-| `github_default_owner` | Default GitHub owner/organization | - |
-| `github_default_repo` | Default GitHub repository | - |
-
-## Managing Configuration
-
-### Using the CLI
-
-```bash
-# Show current configuration
-cursor-utils config show
-
-# Set a configuration value
-cursor-utils config set perplexity_api_key YOUR_API_KEY
-
-# Reset a configuration value
-cursor-utils config reset perplexity_model
+# Delete a configuration value
+config.delete("test_key")
 ```
 
 ### Environment Variables
 
-Configuration can also be provided via environment variables:
+Environment variables take precedence over stored configuration. The format is `CURSOR_UTILS_` followed by the uppercase configuration key:
 
-- `PERPLEXITY_API_KEY`
-- `GEMINI_API_KEY`
-- `GITHUB_TOKEN` 
+```bash
+# Set Gemini API key via environment variable
+export CURSOR_UTILS_GEMINI_API_KEY=your-api-key
+
+# Set default output format
+export CURSOR_UTILS_DEFAULT_FORMAT=markdown
+```
+
+## API Reference
+
+### `get_default_config_path()`
+
+Get the default configuration path based on the platform.
+
+**Returns**:
+- `Path`: Path to the default configuration file
+
+**Example**:
+```python
+from cursor_utils.core.config import get_default_config_path
+
+# Get the default configuration path
+config_path = get_default_config_path()
+print(f"Configuration will be stored at: {config_path}")
+```
+
+### `class Configuration`
+
+Configuration manager for cursor-utils.
+
+#### `__init__(config_path=None)`
+
+Initialize the configuration manager.
+
+**Parameters**:
+- `config_path` (Optional[Union[str, Path]]): Path to the configuration file, or None to use the default
+
+**Example**:
+```python
+from cursor_utils.core.config import Configuration
+from pathlib import Path
+
+# Use default configuration path
+config = Configuration()
+
+# Use custom configuration path
+custom_config = Configuration(Path.home() / "my-config.json")
+```
+
+#### `get(key, default=None)`
+
+Get a configuration value with environment override.
+
+**Parameters**:
+- `key` (str): The configuration key
+- `default` (Any): The default value if the key is not found
+
+**Returns**:
+- The configuration value
+
+**Example**:
+```python
+from cursor_utils.core.config import load_configuration
+
+config = load_configuration()
+
+# Get API key with default
+api_key = config.get("gemini_api_key", "default-key")
+
+# Get output format with default
+format = config.get("default_format", "rich")
+```
+
+#### `set(key, value)`
+
+Set a configuration value and save to the config file.
+
+**Parameters**:
+- `key` (str): The configuration key
+- `value` (Any): The configuration value
+
+**Raises**:
+- `ConfigError`: If the configuration cannot be saved
+
+**Example**:
+```python
+from cursor_utils.core.config import load_configuration
+
+config = load_configuration()
+
+# Set API key
+config.set("gemini_api_key", "your-api-key")
+
+# Set default output format
+config.set("default_format", "markdown")
+```
+
+#### `delete(key)`
+
+Delete a configuration value and save to the config file.
+
+**Parameters**:
+- `key` (str): The configuration key
+
+**Raises**:
+- `ConfigError`: If the configuration cannot be saved
+
+**Example**:
+```python
+from cursor_utils.core.config import load_configuration
+
+config = load_configuration()
+
+# Delete a configuration key
+config.delete("test_key")
+```
+
+### `load_configuration(config_path=None)`
+
+Load configuration from a file or default location.
+
+**Parameters**:
+- `config_path` (Optional[Union[str, Path]]): Path to the configuration file, or None to use the default
+
+**Returns**:
+- `Configuration`: Configuration object
+
+**Raises**:
+- `ConfigError`: If the configuration cannot be loaded
+
+**Example**:
+```python
+from cursor_utils.core.config import load_configuration
+from pathlib import Path
+
+# Load from default location
+config = load_configuration()
+
+# Load from custom location
+custom_config = load_configuration(Path.home() / "my-config.json")
+```
+
+## Common Configuration Keys
+
+Cursor-Utils uses the following common configuration keys:
+
+| Key | Description | Default | Used By |
+|-----|-------------|---------|---------|
+| `gemini_api_key` | Google Gemini API key | None | `gemini`, `project`, `repo` commands |
+| `perplexity_api_key` | Perplexity API key | None | `web` command |
+| `github_token` | GitHub personal access token | None | `github` command |
+| `default_format` | Default output format | `rich` | All commands |
+| `default_gemini_model` | Default Gemini model | `gemini-1.5-pro` | `gemini`, `project`, `repo` commands |
+| `default_perplexity_model` | Default Perplexity model | `sonar` | `web` command |
+
+## Error Handling
+
+Configuration operations can raise `ConfigError` exceptions:
+
+```python
+from cursor_utils.core.config import load_configuration
+from cursor_utils.core.errors import ConfigError
+
+try:
+    config = load_configuration()
+    api_key = config.get("gemini_api_key")
+    if not api_key:
+        raise ConfigError(
+            "API key for Gemini not found in configuration",
+            help_text="Set your API key using: cursor-utils config set gemini_api_key YOUR_API_KEY"
+        )
+except ConfigError as e:
+    print(f"Configuration error: {e.message}")
+    if e.help_text:
+        print(f"Help: {e.help_text}")
+```
+
+## Best Practices
+
+1. **Use Environment Variables for Sensitive Data**: For CI/CD and shared environments
+   ```bash
+   export CURSOR_UTILS_GEMINI_API_KEY=your-api-key
+   ```
+
+2. **Set Default Values**: Configure commonly used options as defaults
+   ```python
+   config.set("default_format", "markdown")
+   config.set("default_gemini_model", "gemini-1.5-pro")
+   ```
+
+3. **Handle Missing Configuration**: Always check for required configuration
+   ```python
+   api_key = config.get("gemini_api_key")
+   if not api_key:
+       # Handle missing API key
+   ```
+
+4. **Provide Helpful Error Messages**: Include instructions for resolving issues
+   ```python
+   if not api_key:
+       raise ConfigError(
+           "API key not found",
+           help_text="Set your API key using: cursor-utils config set gemini_api_key YOUR_API_KEY"
+       )
+   ``` 

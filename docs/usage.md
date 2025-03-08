@@ -1,463 +1,273 @@
-# Comprehensive Usage Guide
+# Usage Guide
 
-This guide covers all features of Cursor Utils in detail, with examples, advanced usage patterns, and tips for getting the most out of each command.
+This guide provides detailed information on how to use Cursor-Utils effectively for various development tasks.
 
-Cursor Utils is designed to be used by your Cursor Agent via terminal commands. However, you can also run all cursor-utils commands manually yourself if you wish.
+However, **cursor-utils and its commands were designed to be used by your Cursor Agent's via terminal commands**. Nonetheless, i have included a fully featured, user friendly CLI interface. Therefore, you can run all cursor-utils commands manually yourself if you wish.
 
-## Core Concepts
 
-Cursor Utils is designed around several key concepts:
+## Command-Line Interface
 
-1. **Agent Empowerment** - Most commands can be invoked directly by your Cursor IDE Agent
-2. **Contextual Intelligence** - Commands identify, gather and prioritize contextual information automatically 
-3. **API Integration** - External services are seamlessly integrated for enhanced functionality
-4. **CLI Ergonomics** - All commands follow consistent patterns with rich output formatting
-5. **Error Handling** - Standardized error handling with detailed diagnostics
+Cursor-Utils provides a consistent command-line interface with a focus on ease of use. You really only need to know a few phrases. Let your Cursor Agent worry about executing the commands and their arguments / options / parameters. while in an Agent Chat use the following phrases:
 
-## Command Overview
+- `Ask Gemini`
+- `Ask Perplexity`
+- `Use cursor-utils <command>`
 
-| Command | Description | API Dependency |
-|---------|-------------|----------------|
-| `web` | Web search via Perplexity AI | Perplexity API Key |
-| `gemini` | Code generation and analysis | Google Gemini API Key |
-| `repo` | Repository analysis (remote) | None (Gemini for advanced features) |
-| `project` | Local project analysis | None (Gemini for advanced features) |
-| `github` | GitHub repository management | GitHub Token |
-| `config` | Configuration management | None |
-| `update` | Self update system | None |
-| `install` | Initialization and setup | None |
+**Note:** core commands are:
 
-## Getting Help
+- `repo`
+- `gemini` (Ask Gemini)
+- `project`
+- `web` (Ask Perplexity)
+- `github`
+- `config`
+- `update`
 
-Every command and subcommand includes comprehensive help:
+You will need to configure API keys for the commands that rely on external services before you can use them. We suggest you do this via the `config` command manually so that you dont expose your API key in your chat history.
+## API Key Setup
 
-```bash
-# Main help
-cursor-utils --help
-```
+To manually configure your API keys you can use the following workflow:
+
+### Gemini API Key
 
 ```bash
-# Command-specific help
-cursor-utils web --help
+cursor-utils config set gemini_api_key YOUR_GEMINI_API_KEY
 ```
+
+### Perplexity API Key
 
 ```bash
-cursor-utils gemini --help
+cursor-utils config set perplexity_api_key YOUR_PERPLEXITY_API_KEY
 ```
+
+### GitHub Token (Optional)
 
 ```bash
-cursor-utils github --help
+cursor-utils config set github_token YOUR_GITHUB_TOKEN
 ```
 
-## Ask Perplexity (Web Command)
+## Common Workflows
 
-The `web` command queries Perplexity AI for real-time information from the internet.
 
-### Basic Usage
+### Simply ask your Cursor Agent to:
 
-Simply ask your Cursor Agent to:
 
 ```bash
-# Use web search
-Ask Perplexity what the latest Python 3.14 feature set is?
+Use cursor-utils repo https://github.com/user/repo to give me an overview of the repo then
+Ask Gemini "Based on that repo analysis, how would I implement feature X?"
 ```
 
-Or run manually:
+### Code Understanding
+
+Quickly understand unfamiliar codebases:
 
 ```bash
-cursor-utils web "What is the latest Python 3.14 feature set?"
+# Analyze a local project
+Use cursor-utils project /path/to/project "Explain the main components"
+
+# Analyze a remote repository
+Use cursor-utils repo https://github.com/organization/repo "How does the authentication system work?"
 ```
 
-### Advanced Parameters
+### Content Generation
+
+Generate code, documentation, or explanations:
 
 ```bash
-# Academic focus using alternative model
-Ask Perplexity what is the latest research on quantum computing 
+# Generate a Python function
+Ask Gemini to "Write a Python function to calculate Fibonacci numbers"
+
+# Create project documentation
+Ask Gemini to "Generate API documentation for this endpoint: GET /api/users/:id"
+
+# Explain complex concepts
+Ask Gemini to "Explain OAuth 2.0 authorization flow"
 ```
+
+### Technical Research
+
+Find solutions and documentation:
 
 ```bash
-# Writing assistance
-Ask Perplexity to assist you in writing a SQL query to find duplicate records 
+# Research best practices
+Ask Perplexity about "Best practices for React state management"
+
+# Find documentation examples
+Ask Perplexity about "How to implement pagination in GraphQL"
+
+# Solve technical problems
+Ask Perplexity about "Fix Docker container networking issues"
 ```
+
+### GitHub Workflows
+
+Manage GitHub repositories from the terminal:
 
 ```bash
-# Mathematical calculations
-Ask Perplexity to solve the equation x^2 - 4x + 4 = 0
+# Get repository information
+Use cursor-utils github repo --owner microsoft --repo vscode
+
+# List open issues
+Use cursor-utils github issues --owner microsoft --repo vscode
+
+# Create an issue
+Use cursor-utils github create-issue --owner your-username --repo your-repo --title "Bug: Application crashes"
 ```
-
-### Available Config Options
-
-Configuration options can be set in the `cursor-utils.yaml` file.
-
-#### Focus Options
-
-- `internet` (default) - General web search
-- `scholar` - Academic and research papers
-- `writing` - Writing assistance and documentation
-- `wolfram` - Mathematical calculations and formulas
-- `youtube` - Video content and tutorials
-- `reddit` - Community discussions and solutions
-
-#### Available Models
-
-- `sonar` (default) - Fast, efficient model for general queries
-- `sonar-pro` - Enhanced model with better reasoning
-- `sonar-reasoning` - Specialized for complex reasoning tasks
-- `sonar-pro-reasoning` - Premium model with advanced reasoning capabilities
-
-#### Response Modes
-
-- `copilot` (default) - Conversational, detailed responses
-- `concise` - Brief, to-the-point answers
-
-### Agent Usage Examples
-
-```bash
-# Basic query
-Ask Perplexity what are the latest developments in React 18?
-```
-
-```bash
-Ask Perplexity about recent academic papers on machine learning 
-```
-
-```bash
-# Custom model
-Ask Perplexity to explain Docker networking using the sonar-pro model
-```
-
-## Ask Gemini (Gemini Integration)
-
-The `gemini` command leverages Google's Gemini AI models for code generation, analysis, and contextual understanding with support for very large context windows.
-
-### Basic Usage
-
-Simply ask your Cursor Agent to:
-
-```bash
-Ask Gemini to explain the actor model in concurrent programming
-```
-
-Or run manually:
-
-```bash
-cursor-utils gemini "Explain the actor model in concurrent programming"
-```
-
-The Gemini command allows your Cursor Agents to take full advantage of Gemini's large token context window to query and collaborate back and forth to iterate and refine before bringing you a polished result.
-
-### Advanced Usage
-
-```bash
-# Query with file context
-Ask Gemini to help you refactor this: --append src/module.py code to use async/await.
-```
-
-```bash
-# Single file context
-Ask Gemini to analyze -a src/auth.py and collab with you to find security issues in these files
-```
-
-### Agent Usage Examples
-
-```bash
-# Basic query
-Ask Gemini to explain the principles of clean code architecture
-```
-
-```bash
-# With file context
-Ask Gemini to --append ./src/slow_function.py optimize this function for performance
-```
-
-```bash
-# Context-aware request
-Ask Gemini to analyze this module: --append ./src/utils.py and suggest improvements
-```
-
-## Repository Analysis
-
-The `repo` command analyzes GitHub repositories to provide intelligent insights.
-
-**This command respects both .gitignore files present in the remote repo at the time of analysis, AND .gitignore files in the CWD the cmd is executed in.** *if present*.
-
-### Basic Usage
-
-Simply ask your Cursor Agent to:
-
-```bash
-Use cursor-utils repo https://github.com/user/repo "Explain the architecture of this codebase"
-```
-
-Or run manually:
-
-```bash
-cursor-utils repo https://github.com/user/repo "Explain the architecture of this codebase"
-```
-
-The repo command clones the target repo to a temp dir, and uses a proprietary algorithm to sort, analyze, and rank the files in your remote repo to isolate the most important files. It then packs this ranking report along with the files it's identified and sends it along with your query for Google's Gemini to analyze and provide context-aware answers.
-
-### Advanced Usage
-
-```bash
-# Analyze specific branch
-Use cursor-utils repo https://github.com/user/repo "Document the API" --branch develop
-```
-
-```bash
-# Focus on specific directories
-Use cursor-utils repo https://github.com/user/repo "Security review" --include src/auth --include src/api
-```
-
-```bash
-# Custom depth analysis
-Use cursor-utils repo https://github.com/user/repo "Code quality assessment" --depth comprehensive
-```
-
-### File Ranking Algorithm
-
-The repository analysis uses a sophisticated algorithm that:
-
-1. Ranks files by importance based on:
-   - File type frequency
-   - File size
-   - Creation/modification time
-   - Directory structure
-
-2. Respects `.gitignore` patterns
-
-3. Intelligently samples files to stay within size limits
-
-### Agent Usage Examples
-
-```bash
-# Basic analysis
-Use cursor-utils repo https://github.com/user/repo to explain the purpose of this codebase
-```
-
-```bash
-# Targeted analysis
-Use cursor-utils repo to analyze the authentication system in https://github.com/user/repo focusing on the auth directory
-```
-
-```bash
-# Language-specific analysis
-Use cursor-utils repo to examine the JavaScript testing framework in https://github.com/user/repo
-```
-
-## Local Project Analysis
-
-The `project` command analyzes your local directory structure similar to the repo command.
-
-*Please Note: this command will treat the directory it is executed in as the project's root directory.*
-
-**This command respects .gitignore files that are present in the same CWD as cmd execution**
-
-### Basic Usage
-
-Simply ask your Cursor Agent to:
-
-```bash
-Use cursor-utils project "Explain what this project does"
-```
-
-Or run manually:
-
-```bash
-cursor-utils project "Explain what this project does"
-```
-
-The project command uses a proprietary algorithm to sort, analyze, and rank the files in your local repo/cwd to isolate the most important files. It then packs this ranking report along with the files it's identified and sends it along with your query for Google's Gemini to analyze and provide context-aware answers.
-
-### Advanced Usage
-
-```bash
-# Specify project path
-Use cursor-utils project "Generate documentation"
-```
-
-```bash
-# Adjust file ranking weights
-Use cursor-utils project "Code review"
-```
-
-```bash
-# Control maximum analysis size
-Use cursor-utils project "Quick overview"
-```
-
-### Agent Usage Examples
-
-```bash
-# Basic project analysis
-Use cursor-utils project to explain the architecture of this codebase
-```
-
-```bash
-# Specific task
-Use cursor-utils project to generate comprehensive API documentation
-```
-
-```bash
-# Targeted analysis
-Analyze the database models in this project and suggest optimizations
-```
-
-## GitHub Integration
-
-The `github` command provides advanced GitHub repository management capabilities.
-
-Collaborate with your Cursor Agents and let them take care of tasks you don't want to. Simply tell your Cursor Agent to use cursor-utils github to help you with pretty much anything & everything regarding GitHub repo management.
-
-### Basic Usage
-
-Simply ask your Cursor Agent to:
-
-```bash
-Use cursor-utils github to analyze owner/repo
-```
-
-Or run manually:
-
-```bash
-cursor-utils github analyze owner/repo
-```
-
-### Repository Management
-
-```bash
-# Create a new repository with best practices
-Use cursor-utils github to setup new-repo-name
-```
-
-```bash
-# Clone and analyze
-Use cursor-utils github to clone owner/repo
-```
-
-### Pull Request Management
-
-```bash
-# Generate PR description from commits
-Use cursor-utils github to fetch pr owner/repo
-```
-
-```bash
-# Analyze a specific PR
-Use cursor-utils github to fetch pr number 123 owner/repo
-```
-
-### Issue Management
-
-```bash
-# Summarize issues
-cursor-utils github issues owner/repo
-```
-
-```bash
-# Create a new issue
-cursor-utils github issue create owner/repo "Bug: Login failure" "Description of the issue"
-```
-
-### Agent Usage Examples
-
-```bash
-# Repository analysis
-Use cursor-utils github analyze fastapi/fastapi
-```
-
-```bash
-# PR generation
-Use cursor-utils github to create a pull request for my current branch with a comprehensive description
-```
-
-```bash
-# Issue summary
-Use cursor-utils github to summarize open issues in the tensorflow/tensorflow repository
-```
-
-## Configuration Management
-
-The `config` command manages settings and API keys. It is intended to be run manually by users to configure sensitive key values and configure the API services used by the Cursor Agents.
-
-### API Key Management
-
-```bash
-# Interactive API key setup
-cursor-utils config
-```
-
-```bash
-# Config OR change API keys
-cursor-utils config api_keys
-```
-
-### Custom Configuration
-
-```bash
-# Show current configuration
-cursor-utils config --show
-```
-
-### Configuration File
-
-The main configuration file is stored at `~/.cursor-utils.yaml` and can be manually edited if needed.
-
-## Advanced Features
-
-### Combination Usage
+## Combination workflows
 
 Commands can be combined for powerful workflows:
 
-Simply ask your Cursor Agent to:
+simply ask your Cursor Agent to:
 
 ```bash
 # Analyze a repository, then ask specific questions
 Use cursor-utils repo https://github.com/user/repo to give me an overview of the repo then
-ask Gemini "Based on that repo analysis, how would I implement feature X?"
+Ask Gemini "Based on that repo analysis, how would I implement feature X?"
 ```
 
 ```bash
 # Search for information, then apply to your project
 Ask Perplexity to research best practices for API security then
-use cursor-utils project audit my API endpoints for security issues
+use cursor-utils project to "audit my API endpoints for security issues"
 ```
+### Command Specific Examples:
 
-### Debug Mode
+### Ask Gemini Command:
 
-For troubleshooting, use debug mode:
+The `Ask Gemini` command allows your Cursor Agents to take full advantage of Gemini's industry leading *2 Million* token context window to query and collaborate back and forth allowing agents to iterate and refine thier answers before bringing you an even more polished result.
+
+- Use the `--system` option to guide the model's behavior:
+  ```bash
+  Ask Gemini --system "You are a security expert" "Review this code for vulnerabilities"
+  ```
+
+- Adjust temperature for more or less creative outputs:
+  ```bash
+  Ask Gemini to --temperature 0.8 "Generate test cases for this function"
+  ```
+
+### Ask Perplexity Command:
+
+- Use specific models for different types of queries:
+  ```bash
+  Ask Perplexity about --model sonar-reasoning "Compare serverless architectures"
+  ```
+
+### Project Command
+
+- Limit the number of files for faster analysis:
+  ```bash
+  Use cursor-utils project . --max-files 20 "Find performance bottlenecks"
+  ```
+
+- Focus on specific directories:
+  ```bash
+  Use cursor-utils project ./src "Explain the data flow"
+  ```
+
+### Repo Command
+
+- Limit the number of files for faster analysis:
+  ```bash
+  Use cursor-utils repo https://github.com/user/repo --max-files 20 "Find performance bottlenecks"
+  ```
+
+- Focus on specific directories:
+  ```bash
+  Use cursor-utils repo https://github.com/user/repo ./src "Explain the data flow"
+  ```
+
+- Use specific models for different types of queries:
+  ```bash
+  Use cursor-utils repo https://github.com/user/repo --model gemini-2.0-pro-exp "Find performance bottlenecks"
+  ```
+
+### GitHub Command
+
+Collab with your Cursor Agents and let them take care of tasks you dont want to. Simply tell your Cursor Agent to use cursor-utils github to help you wwith pretty much anything & everything regarding GitHub repo mgmt:
 
 ```bash
-cursor-utils --debug web "Why is this failing?"
+Use cursor-utils github to help me create a new repo named "my-new-repo"
 ```
 
-## Error Handling
+```bash
+Use cursor-utils github to help me create a new issue in repo "my-repo"
+```
 
-Cursor Utils provides standardized error handling with detailed diagnostics. If you encounter an error, you'll see:
+```bash
+Use cursor-utils github to help me create a new branch named "my-new-branch"
+```
 
-- Error code (e.g., `web-001`)
-- Error message
-- Possible causes
-- Suggested solutions
+```bash
+Use cursor-utils github to help me create a new pull request in repo "my-repo"
+```
 
-For more information about specific error codes, visit the [Error Documentation](errors/index.md).
+## Environment Variables
+
+Cursor-Utils supports configuration via environment variables:
+
+- `CURSOR_UTILS_GEMINI_API_KEY`: Google Gemini API key
+- `CURSOR_UTILS_PERPLEXITY_API_KEY`: Perplexity API key
+- `CURSOR_UTILS_GITHUB_TOKEN`: GitHub access token
+- `CURSOR_UTILS_DEFAULT_FORMAT`: Default output format
+- `CURSOR_UTILS_DEBUG`: Enable debug mode (set to 1)
+
+Example:
+
+```bash
+export CURSOR_UTILS_DEFAULT_FORMAT=markdown
+Ask Gemini to "Write a Python class for handling HTTP requests"
+```
 
 ## Best Practices
 
-1. **Be Specific**: The more specific your queries, the better the results
-2. **Use File Context**: When applicable, include relevant files for more accurate analysis
-3. **Combine Commands**: Use the output from one command to inform queries to another
-4. **Customize Parameters**: Adjust model parameters for your specific use case
-5. **Respect Rate Limits**: Be mindful of API rate limits, especially for Perplexity and Gemini
-6. **Keep API Keys Secure**: Never share or commit your API keys
+1. **Be Specific with Queries**: More specific queries yield better results
+   ```bash
+   # Less effective
+   Ask Perplexity "Docker"
+   
+   # More effective
+   Ask Perplexity about "Docker multi-stage build optimization techniques"
+   ```
+
+2. **Choose the Right Model**: Different models have different strengths
+   ```bash
+   # For creative content
+   Ask Gemini to --model gemini-2.0-pro-exp "Generate test scenarios"
+   
+   # For factual research
+   Ask Perplexity about --model sonar-reasoning "Explain ACID properties"
+   ```
+
+3. **Use Output Redirection**: Save results to files when needed
+   ```bash
+   Ask Gemini to --format markdown "Write documentation for API endpoints" > api-docs.md
+   ```
 
 ## Troubleshooting
 
-If you encounter issues:
+### Rate Limiting
 
-1. Check your API keys with `cursor-utils config api_keys --status`
-2. Verify your network connection
-3. Run commands with `--debug` flag for verbose output
-4. Check the error message for specific API errors
-5. Consult the [GitHub issues](https://github.com/gweidart/cursor-utils/issues)
-6. Ask your Cursor Agent to Ask Gemini to help fix whatever it is thats going on. No, seriously... give it a try.
+If you encounter rate limiting issues:
+
+1. Check your API usage and limits
+2. Implement delays between requests in scripts
+3. Consider upgrading your API tier if available
+
+### Slow Responses
+
+For large repositories or complex queries:
+
+1. Limit analysis scope with `--max-files`
+2. Use more specific queries
+3. Split complex queries into smaller, focused questions
+
+### Authentication Issues
+
+If experiencing authentication problems:
+
+1. Verify API keys are correctly configured
+2. Ensure keys haven't expired
+3. Check your network connection and proxy settings
+
+For persistent issues, refer to the [advanced documentation](https://gweidart.github.io/cursor-utils/) or check the GitHub repository for known issues and solutions. 

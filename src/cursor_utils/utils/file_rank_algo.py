@@ -39,6 +39,57 @@ class FileInfo(BaseFileInfo, total=False):
     importance_score: float
 
 
+# Common ignore patterns used across commands
+COMMON_IGNORE_PATTERNS = [
+    ".git",
+    "__pycache__",
+    ".pytest_cache",
+    ".venv",
+    "venv",
+    "node_modules",
+    "build",
+    "dist",
+    ".idea",
+    ".vscode",
+]
+
+
+def build_file_list(base_path: str) -> list[FileInfo]:
+    """
+    Build a list of FileInfo dictionaries for a given base path.
+
+    Args:
+        base_path: The base path to scan for files
+
+    Returns:
+        A list of FileInfo dictionaries with path keys
+
+    """
+    files: list[FileInfo] = []
+
+    for root, dirs, filenames in os.walk(base_path):
+        # Skip common ignored directories
+        dirs[:] = [d for d in dirs if d not in COMMON_IGNORE_PATTERNS]
+
+        for filename in filenames:
+            file_path = os.path.join(root, filename)
+            rel_path = os.path.relpath(file_path, base_path)
+
+            # Skip files that are too large (>2GB)
+            try:
+                size = os.path.getsize(file_path)
+                if size > 2 * (1024**3):
+                    continue
+            except OSError:
+                continue
+
+            # Create file info dictionary with just the path
+            file_info: FileInfo = {"path": rel_path}
+            files.append(file_info)
+
+    return files
+
+
 class FileRanker:
     """
     Ranks files by a weighted score.

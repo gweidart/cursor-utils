@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cursor-utils"
-version = "0.1.1"
+version = "0.1.2"
 description = "Give your Cursor IDE Agents superpowers."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -12,6 +12,7 @@ license = {text = "MIT"}
 authors = [
     { name = "gweidart", email = "gweidart@gmail.com" }
 ]
+
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -59,53 +60,42 @@ keywords = [
     "agentic programming with python 3.12",
 ]
 dependencies = [
-    "pyplexityai",
-    "click",
-    "rich",
-    "diagnostic",
-    "typing-extensions",
     "httpx",
-    "packaging",
-    "python-dotenv",
-    "PyYAML",
     "rich",
-    "typing-extensions",
-    "google-genai",
-    "types-PyYAML",
-    "psutil",
+    "requests",
     "pathspec",
     "rich-click",
     "packaging",
-    "importlib",
-    "pygithub",
+    "bump-my-version",
 ]
 
 [project.optional-dependencies]
 dev = [
+    "pytest",
     "black",
     "isort",
+    "mypy",
     "pyright",
     "ruff",
-    "hatchling",
-    "pre-commit",
-    "monkeytype",
-    "build",
-    "twine",
     "mkdocs",
+    "mkdocs-material",
+    "mkdocs-material-extensions",
+    "mkdocs-material-plugins",
+    "mkdocs-material-plugins-tabs",
+    "mkdocs-material-plugins-search",
+    "mkdocs-material-plugins-search",
 ]
 test = [
-    "pytest",
-    "pytest-cov",
-    "pytest-mock",
-    "pytest-asyncio",
-    "pytest-timeout",
+
 ]
 
 [project.urls]
 Homepage = "https://github.com/gweidart/cursor-utils"
+Documentation = "https://gweidart.github.io/cursor-utils/"
 Repository = "https://github.com/gweidart/cursor-utils"
-Documentation = "https://github.com/gweidart/cursor-utils#readme"
-"Bug Tracker" = "https://github.com/gweidart/cursor-utils/issues"
+Issues = "https://github.com/gweidart/cursor-utils/issues"
+Changelog = "https://github.com/gweidart/cursor-utils/blob/main/CHANGELOG.md"
+
 
 [project.scripts]
 cursor-utils = "cursor_utils.cli:main"
@@ -114,7 +104,7 @@ cursor-utils = "cursor_utils.cli:main"
 include = [
     "src/cursor_utils/**/*.py",
     "src/cursor_utils/py.typed",
-    "src/cursor_utils/templates/**/*",
+    "src/cursor_utils/models/**/*",
     "src/py.typed",
 ]
 exclude = [
@@ -147,6 +137,13 @@ target-version = ["py310"]
 profile = "black"
 multi_line_output = 3
 line_length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
 
 [tool.pyright]
 include = ["src/cursor_utils"]
