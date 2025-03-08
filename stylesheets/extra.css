@@ -1,11 +1,11 @@
-/* Candy Pine Theme - Rich dark mode inspired by rose pine moon */
+/* rose Pine Theme - Rich dark mode inspired by rose pine moon */
 :root {
   /* Primary colors */
   --md-primary-fg-color: #232136;
-  --md-primary-fg-color--light: #393552;
-  --md-primary-fg-color--dark: #1a1825;
+  --md-primary-fg-color--light: #2a273f;
+  --md-primary-fg-color--dark: #393552;
   --md-primary-bg-color: #e0def4;
-  --md-primary-bg-color--light: #ffffff;
+  --md-primary-bg-color--light: #e0def4;
   
   /* Accent colors */
   --md-accent-fg-color: #ea9a97;
@@ -13,34 +13,34 @@
   --md-accent-bg-color: #232136;
   --md-accent-bg-color--light: #2a273f;
 
-  /* Candy Pine Theme colors - Rose Pine Moon inspired */
-  --candy-pine-dark: #191724;
-  --candy-pine-deep: #1f1d2e;
-  --candy-pine-mid: #232136;
-  --candy-pine-light: #2a273f;
-  --candy-pine-accent: #ea9a97;
-  --candy-pine-accent-alt: #9ccfd8;
-  --candy-pine-green: #3e8fb0;
-  --candy-pine-yellow: #f6c177;
-  --candy-pine-orange: #eb6f92;
-  --candy-pine-red: #eb6f92;
-  --candy-pine-pink: #c4a7e7;
-  --candy-pine-purple: #b8a2f2;
-  --candy-pine-blue: #9ccfd8;
-  --candy-pine-teal: #3e8fb0;
+  /* rose Pine Theme colors - Rose Pine Moon inspired */
+  --rose-pine-dark: #191724;
+  --rose-pine-deep: #1f1d2e;
+  --rose-pine-mid: #232136;
+  --rose-pine-light: #2a273f;
+  --rose-pine-accent: #ea9a97;
+  --rose-pine-accent-alt: #9ccfd8;
+  --rose-pine-green: #3e8fb0;
+  --rose-pine-yellow: #f6c177;
+  --rose-pine-orange: #ea9a97;
+  --rose-pine-red: #eb6f92;
+  --rose-pine-pink: #c4a7e7;
+  --rose-pine-purple: #b8a2f2;
+  --rose-pine-blue: #9ccfd8;
+  --rose-pine-teal: #3e8fb0;
   
   /* Animation durations */
-  --candy-pine-animation-duration: 0.3s;
-  --candy-pine-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --rose-pine-animation-duration: 0.3s;
+  --rose-pine-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Dark mode specific styles */
 [data-md-color-scheme="slate"] {
   /* Background colors */
-  --md-default-bg-color: var(--candy-pine-dark);
-  --md-default-bg-color--light: var(--candy-pine-deep);
-  --md-default-bg-color--lighter: var(--candy-pine-mid);
-  --md-default-bg-color--lightest: var(--candy-pine-light);
+  --md-default-bg-color: var(--rose-pine-dark);
+  --md-default-bg-color--light: var(--rose-pine-deep);
+  --md-default-bg-color--lighter: var(--rose-pine-mid);
+  --md-default-bg-color--lightest: var(--rose-pine-light);
   
   /* Text colors */
   --md-default-fg-color: rgba(224, 222, 244, 0.92);
@@ -53,12 +53,12 @@
   --md-code-fg-color: #e0def4;
   
   /* Link colors */
-  --md-typeset-a-color: var(--candy-pine-accent);
-  --md-footer-bg-color: var(--candy-pine-deep);
-  --md-footer-bg-color--dark: var(--candy-pine-dark);
+  --md-typeset-a-color: var(--rose-pine-accent);
+  --md-footer-bg-color: var(--rose-pine-deep);
+  --md-footer-bg-color--dark: var(--rose-pine-dark);
   
   /* Admonition colors */
-  --md-admonition-bg-color: var(--candy-pine-deep);
+  --md-admonition-bg-color: var(--rose-pine-deep);
   --md-admonition-fg-color: var(--md-default-fg-color);
 }
 
@@ -69,11 +69,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--candy-pine-dark);
+  background: var(--rose-pine-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--candy-pine-light);
+  background: var(--rose-pine-light);
   border-radius: 4px;
 }
 
@@ -85,29 +85,29 @@
 .md-typeset pre > code {
   border-radius: 8px !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  transition: box-shadow var(--candy-pine-animation-duration) var(--candy-pine-animation-timing) !important;
+  transition: box-shadow var(--rose-pine-animation-duration) var(--rose-pine-animation-timing) !important;
 }
 
 .md-typeset pre > code:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Syntax highlighting - Candy Pine style */
+/* Syntax highlighting - rose Pine style */
 .hljs-keyword, .keyword {
-  color: var(--candy-pine-purple) !important;
+  color: var(--rose-pine-purple) !important;
   font-weight: bold;
 }
 
 .hljs-function, .function {
-  color: var(--candy-pine-blue) !important;
+  color: var(--rose-pine-blue) !important;
 }
 
 .hljs-string, .string {
-  color: var(--candy-pine-green) !important;
+  color: var(--rose-pine-green) !important;
 }
 
 .hljs-number, .number {
-  color: var(--candy-pine-orange) !important;
+  color: var(--rose-pine-orange) !important;
 }
 
 .hljs-comment, .comment {
@@ -116,18 +116,18 @@
 }
 
 .hljs-variable, .variable {
-  color: var(--candy-pine-accent) !important;
+  color: var(--rose-pine-accent) !important;
 }
 
 /* Card-like shadows for sections */
 .md-typeset h1, .md-typeset h2 {
-  color: var(--candy-pine-accent) !important;
-  border-bottom: 1px solid var(--candy-pine-light);
+  color: var(--rose-pine-accent) !important;
+  border-bottom: 1px solid var(--rose-pine-light);
   padding-bottom: 0.3em;
 }
 
 .md-typeset h3, .md-typeset h4, .md-typeset h5, .md-typeset h6 {
-  color: var(--candy-pine-accent-alt) !important;
+  color: var(--rose-pine-accent-alt) !important;
 }
 
 /* Main content area with subtle shadow */
@@ -147,7 +147,7 @@
 .md-typeset a {
   position: relative;
   text-decoration: none;
-  transition: color var(--candy-pine-animation-duration) var(--candy-pine-animation-timing);
+  transition: color var(--rose-pine-animation-duration) var(--rose-pine-animation-timing);
 }
 
 .md-typeset a:not(.md-button):after {
@@ -157,8 +157,8 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: var(--candy-pine-accent);
-  transition: width var(--candy-pine-animation-duration) var(--candy-pine-animation-timing);
+  background-color: var(--rose-pine-accent);
+  transition: width var(--rose-pine-animation-duration) var(--rose-pine-animation-timing);
 }
 
 .md-typeset a:not(.md-button):hover:after {
@@ -167,17 +167,17 @@
 
 /* Custom button styles */
 .md-button {
-  background-color: var(--candy-pine-light) !important;
+  background-color: var(--rose-pine-light) !important;
   color: white !important;
   border-radius: 20px !important;
   padding: 0.5em 1.2em !important;
   border: none !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) !important;
-  transition: all var(--candy-pine-animation-duration) var(--candy-pine-animation-timing) !important;
+  transition: all var(--rose-pine-animation-duration) var(--rose-pine-animation-timing) !important;
 }
 
 .md-button:hover {
-  background-color: var(--candy-pine-accent) !important;
+  background-color: var(--rose-pine-accent) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
 }
@@ -190,18 +190,18 @@
 }
 
 .md-typeset table:not([class]) th {
-  background-color: var(--candy-pine-light);
+  background-color: var(--rose-pine-light);
   color: white;
   font-weight: bold;
   border: none;
 }
 
 .md-typeset table:not([class]) tr:nth-child(odd) {
-  background-color: var(--candy-pine-deep);
+  background-color: var(--rose-pine-deep);
 }
 
 .md-typeset table:not([class]) tr:nth-child(even) {
-  background-color: var(--candy-pine-mid);
+  background-color: var(--rose-pine-mid);
 }
 
 .md-typeset table:not([class]) td {
@@ -210,23 +210,23 @@
 
 /* Navigation improvements */
 .md-nav__item .md-nav__link--active {
-  color: var(--candy-pine-accent) !important;
+  color: var(--rose-pine-accent) !important;
   font-weight: bold;
 }
 
 .md-nav__title {
-  color: var(--candy-pine-accent-alt) !important;
+  color: var(--rose-pine-accent-alt) !important;
 }
 
-/* Header with Candy Pine style */
+/* Header with rose Pine style */
 .md-header {
-  background-color: var(--candy-pine-dark);
+  background-color: var(--rose-pine-dark);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Footer customization */
 .md-footer-meta {
-  background-color: var(--candy-pine-dark);
+  background-color: var(--rose-pine-dark);
 }
 
 .md-footer-custom {
@@ -234,11 +234,11 @@
   text-align: center;
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.7);
-  border-top: 1px solid var(--candy-pine-mid);
+  border-top: 1px solid var(--rose-pine-mid);
 }
 
 .md-footer-custom a {
-  color: var(--candy-pine-accent);
+  color: var(--rose-pine-accent);
   text-decoration: none;
 }
 
@@ -249,7 +249,7 @@
 /* Custom logo animation */
 .md-header__button.md-logo img, 
 .md-header__button.md-logo svg {
-  transform: scale(1.5); transition: transform 0.5s var(--candy-pine-animation-timing);
+  transform: scale(1.5); transition: transform 0.5s var(--rose-pine-animation-timing);
 }
 
 .md-header__button.md-logo:hover img, 
@@ -261,7 +261,7 @@
 .md-search__input {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  transition: background-color var(--candy-pine-animation-duration) var(--candy-pine-animation-timing);
+  transition: background-color var(--rose-pine-animation-duration) var(--rose-pine-animation-timing);
 }
 
 .md-search__input:hover,
@@ -275,7 +275,7 @@
 
 /* Admonition styling */
 .md-typeset .admonition {
-  border-left: 4px solid var(--candy-pine-accent);
+  border-left: 4px solid var(--rose-pine-accent);
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
@@ -285,23 +285,23 @@
 }
 
 .md-typeset .admonition.note {
-  border-left-color: var(--candy-pine-blue);
+  border-left-color: var(--rose-pine-blue);
 }
 
 .md-typeset .admonition.tip {
-  border-left-color: var(--candy-pine-green);
+  border-left-color: var(--rose-pine-green);
 }
 
 .md-typeset .admonition.warning {
-  border-left-color: var(--candy-pine-orange);
+  border-left-color: var(--rose-pine-orange);
 }
 
 .md-typeset .admonition.danger {
-  border-left-color: var(--candy-pine-red);
+  border-left-color: var(--rose-pine-red);
 }
 
-/* Candy Pine code style */
-.candy-pine-code {
+/* rose Pine code style */
+.rose-pine-code {
   font-family: "Fira Code", monospace !important;
   font-size: 0.9em !important;
   line-height: 1.5 !important;
@@ -309,11 +309,11 @@
 
 /* Smooth page transitions */
 .md-container {
-  transition: opacity 0.3s var(--candy-pine-animation-timing);
+  transition: opacity 0.3s var(--rose-pine-animation-timing);
 }
 
 .md-content__inner {
-  animation: fadeInUp 0.5s var(--candy-pine-animation-timing);
+  animation: fadeInUp 0.5s var(--rose-pine-animation-timing);
 }
 
 @keyframes fadeInUp {
@@ -330,18 +330,18 @@
 /* Responsive tweaks */
 @media screen and (max-width: 76.1875em) {
   .md-nav--primary .md-nav__title {
-    background-color: var(--candy-pine-dark);
+    background-color: var(--rose-pine-dark);
     color: white;
-    border-bottom: 1px solid var(--candy-pine-light);
+    border-bottom: 1px solid var(--rose-pine-light);
   }
 }
 
 /* Code copy button styling */
 .md-clipboard {
   color: rgba(255, 255, 255, 0.5) !important;
-  transition: color var(--candy-pine-animation-duration) var(--candy-pine-animation-timing);
+  transition: color var(--rose-pine-animation-duration) var(--rose-pine-animation-timing);
 }
 
 .md-clipboard:hover {
-  color: var(--candy-pine-accent) !important;
+  color: var(--rose-pine-accent) !important;
 } 

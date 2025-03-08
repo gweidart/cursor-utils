@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Give your Cursor IDE Agents superpowers.">
+        <meta name="description" content="Enhanced capabilities for Cursor IDE Agents">
       
       
+        <meta name="author" content="gweidart">
       
-        <link rel="canonical" href="https://gweidart.github.io/cursor-utils/installation/">
       
       
         <link rel="prev" href="..">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Installation - Cursor Utils</title>
+        <title>Installation - Cursor-Utils</title>
       
     
     
@@ -111,7 +111,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Cursor Utils" class="md-header__button md-logo" aria-label="Cursor Utils" data-md-component="logo">
+    <a href=".." title="Cursor-Utils" class="md-header__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
       
   <img src="../assets/images/cursor-utils-logo.svg" alt="logo">
  
@@ -124,7 +124,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Cursor Utils
+            Cursor-Utils
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -245,12 +245,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Cursor Utils" class="md-nav__button md-logo" aria-label="Cursor Utils" data-md-component="logo">
+    <a href=".." title="Cursor-Utils" class="md-nav__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
       
   <img src="../assets/images/cursor-utils-logo.svg" alt="logo">
  
     </a>
-    Cursor Utils
+    Cursor-Utils
   </label>
   
     <div class="md-nav__source">
@@ -362,27 +362,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#using-uv-recommended" class="md-nav__link">
+  <a href="#using-pip-recommended" class="md-nav__link">
     <span class="md-ellipsis">
-      Using UV (Recommended)
+      Using pip (Recommended)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-pip" class="md-nav__link">
+  <a href="#from-source" class="md-nav__link">
     <span class="md-ellipsis">
-      Using pip
+      From Source
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#global-installation" class="md-nav__link">
+  <a href="#using-pipx-isolated-environment" class="md-nav__link">
     <span class="md-ellipsis">
-      Global installation
+      Using pipx (Isolated Environment)
     </span>
   </a>
   
@@ -394,27 +394,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-installation-setup" class="md-nav__link">
+  <a href="#verifying-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Post-Installation Setup
+      Verifying Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-key-configuration" class="md-nav__link">
+  <a href="#api-key-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      API Key Configuration
+      API Key Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Key Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-gemini-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Gemini API
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#perplexity-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perplexity API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-api-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub API (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#verifying-your-installation" class="md-nav__link">
+  <a href="#updating-cursor-utils" class="md-nav__link">
     <span class="md-ellipsis">
-      Verifying Your Installation
+      Updating Cursor-Utils
     </span>
   </a>
   
@@ -437,6 +470,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Common Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Conflicts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -450,33 +516,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrading" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrading
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uninstallation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uninstallation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development Installation
-    </span>
-  </a>
   
 </li>
       
@@ -601,9 +640,37 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api/commands/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Commands
@@ -611,7 +678,173 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Commands
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/commands/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/commands/gemini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gemini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/commands/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/commands/web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/commands/project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/commands/repo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -650,7 +883,7 @@
         
   
   <span class="md-ellipsis">
-    Utils
+    Utilities
     
   </span>
   
@@ -703,24 +936,6 @@
           
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
     
@@ -746,11 +961,6 @@
 
             </a>
             
-              
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
           </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
@@ -760,1398 +970,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Installation Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_2">
-            <span class="md-nav__icon md-icon"></span>
-            Installation Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/install-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    INVALID_PATH
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/install-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    FILE_NOT_FOUND
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/install-003/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    TEMPLATE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/install-004/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DIRECTORY_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/install-005/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    FILE_WRITE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/install-006/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ALREADY_INSTALLED
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Update Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_3">
-            <span class="md-nav__icon md-icon"></span>
-            Update Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/update-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    UPDATE_FAILED
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/update-999/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    UNKNOWN_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Version Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_4">
-            <span class="md-nav__icon md-icon"></span>
-            Version Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/version-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    VERSION_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/version-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    INVALID_VERSION
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Configuration Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_5">
-            <span class="md-nav__icon md-icon"></span>
-            Configuration Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/config-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    INVALID_API_KEY
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/config-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    API_KEY_SAVE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/config-003/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    API_KEY_READ_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/config-004/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ENV_FILE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/config-005/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    CONFIG_FILE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Web Command Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_6">
-            <span class="md-nav__icon md-icon"></span>
-            Web Command Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/web-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WEB_API_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/web-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WEB_CONFIG_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/web-003/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WEB_CONNECTION_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/web-004/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WEB_TIMEOUT_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/web-005/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WEB_STREAM_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/web-006/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WEB_MODEL_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Gemini API Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_7">
-            <span class="md-nav__icon md-icon"></span>
-            Gemini API Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/gemini-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GEMINI_API_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/gemini-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GEMINI_MODEL_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/gemini-003/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GEMINI_API_KEY_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/gemini-004/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GEMINI_API_KEY_SAVE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/gemini-005/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GEMINI_FILE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Repository Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_8">
-            <span class="md-nav__icon md-icon"></span>
-            Repository Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/repo-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    REPO_CLONE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/repo-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    REPO_TOO_LARGE
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/repo-003/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    REPO_ANALYZE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/repo-004/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    REPO_INVALID_URL
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/repo-005/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    REPO_FILE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    GitHub Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
-            <span class="md-nav__icon md-icon"></span>
-            GitHub Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/github-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GITHUB_AUTH_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/github-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GITHUB_API_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/github-003/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GITHUB_REPO_NOT_FOUND
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/github-004/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GITHUB_PERMISSION_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/github-005/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GITHUB_RATE_LIMIT
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_10" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Project Errors
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_10">
-            <span class="md-nav__icon md-icon"></span>
-            Project Errors
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/project-001/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PROJECT_TOO_LARGE
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/project-002/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PROJECT_ANALYZE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/project-003/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PROJECT_INVALID_URL
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errors/project-004/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PROJECT_FILE_ERROR
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
               
             
           </ul>
@@ -2249,27 +1067,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#using-uv-recommended" class="md-nav__link">
+  <a href="#using-pip-recommended" class="md-nav__link">
     <span class="md-ellipsis">
-      Using UV (Recommended)
+      Using pip (Recommended)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-pip" class="md-nav__link">
+  <a href="#from-source" class="md-nav__link">
     <span class="md-ellipsis">
-      Using pip
+      From Source
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#global-installation" class="md-nav__link">
+  <a href="#using-pipx-isolated-environment" class="md-nav__link">
     <span class="md-ellipsis">
-      Global installation
+      Using pipx (Isolated Environment)
     </span>
   </a>
   
@@ -2281,27 +1099,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-installation-setup" class="md-nav__link">
+  <a href="#verifying-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Post-Installation Setup
+      Verifying Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-key-configuration" class="md-nav__link">
+  <a href="#api-key-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      API Key Configuration
+      API Key Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Key Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-gemini-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Gemini API
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#perplexity-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perplexity API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-api-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub API (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#verifying-your-installation" class="md-nav__link">
+  <a href="#updating-cursor-utils" class="md-nav__link">
     <span class="md-ellipsis">
-      Verifying Your Installation
+      Updating Cursor-Utils
     </span>
   </a>
   
@@ -2324,6 +1175,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Common Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Conflicts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2337,33 +1221,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrading" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrading
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uninstallation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uninstallation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Development Installation
-    </span>
-  </a>
   
 </li>
       
@@ -2387,129 +1244,103 @@
 
 
 <h1 id="installation-guide">Installation Guide<a class="headerlink" href="#installation-guide" title="Permanent link">&para;</a></h1>
-<p>This guide covers all aspects of installing, configuring, and updating Cursor Utils.</p>
+<p>This guide provides detailed instructions for installing and configuring Cursor-Utils on various platforms.</p>
 <h2 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
+<p>Before installing Cursor-Utils, ensure your system meets the following requirements:</p>
 <ul>
-<li>Python 3.10 or newer (Python 3.11+ recommended for optimal performance)</li>
-<li>Cursor IDE (latest version recommended)</li>
-<li>20MB of free disk space</li>
-<li>Internet connection for API-dependent features</li>
+<li><strong>Python</strong>: Python 3.10 or newer</li>
+<li><strong>Operating System</strong>: Linux, macOS, or Windows</li>
+<li><strong>Disk Space</strong>: At least 20MB of available disk space</li>
+<li><strong>Network</strong>: Internet connection required for API access</li>
+<li><strong>Optional Dependencies</strong>: Git (for repository analysis features)</li>
 </ul>
 <h2 id="installation-methods">Installation Methods<a class="headerlink" href="#installation-methods" title="Permanent link">&para;</a></h2>
-<h3 id="using-uv-recommended">Using UV (Recommended)<a class="headerlink" href="#using-uv-recommended" title="Permanent link">&para;</a></h3>
-<p><a href="https://github.com/astral-sh/uv">UV</a> is a blazing-fast Python package installer and resolver that significantly outperforms pip in speed and dependency resolution.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install UV if you don&#39;t have it</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<h3 id="using-pip-recommended">Using pip (Recommended)<a class="headerlink" href="#using-pip-recommended" title="Permanent link">&para;</a></h3>
+<p>The simplest way to install Cursor-Utils is using pip:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install cursor-utils</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
+using uv:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
 </span></code></pre></div>
-<p>UV will handle all dependencies correctly and ensure a clean installation.</p>
-<h3 id="using-pip">Using pip<a class="headerlink" href="#using-pip" title="Permanent link">&para;</a></h3>
-<p>If you prefer using the standard package manager:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
+using Poetry:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>cursor-utils
 </span></code></pre></div>
-<p>For isolated installation, consider using a virtual environment:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span>pypy
+<h3 id="from-source">From Source<a class="headerlink" href="#from-source" title="Permanent link">&para;</a></h3>
+<p>To install the latest development version:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gweidart/cursor-utils.git
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>cursor-utils
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># On Unix/macOS</span>
+<h3 id="using-pipx-isolated-environment">Using pipx (Isolated Environment)<a class="headerlink" href="#using-pipx-isolated-environment" title="Permanent link">&para;</a></h3>
+<p>For a clean, isolated installation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>cursor-utils
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># On Windows</span>
+<p>If you don't have pipx installed:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pipx
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>pipx<span class="w"> </span>ensurepath
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>pipx<span class="w"> </span>install<span class="w"> </span>cursor-utils
 </span></code></pre></div>
-<h3 id="global-installation">Global installation<a class="headerlink" href="#global-installation" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils
+<h2 id="verifying-installation">Verifying Installation<a class="headerlink" href="#verifying-installation" title="Permanent link">&para;</a></h2>
+<p>To verify that Cursor-Utils has been installed correctly:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cursor-utils<span class="w"> </span>--version
 </span></code></pre></div>
-<h2 id="post-installation-setup">Post-Installation Setup<a class="headerlink" href="#post-installation-setup" title="Permanent link">&para;</a></h2>
-<p>After installation, initialize Cursor Utils in your project directory:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/your/project
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cursor-utils<span class="w"> </span>install<span class="w"> </span>.
-</span></code></pre></div>
-<p>This will:
-1. Create necessary configuration files
-2. Set up default templates
-3. Guide you through API key configuration
-4. Initialize integration with Cursor IDE</p>
-<p>Follow the interactive prompts to complete the setup process.</p>
-<h2 id="api-key-configuration">API Key Configuration<a class="headerlink" href="#api-key-configuration" title="Permanent link">&para;</a></h2>
-<p>Cursor Utils works best with the following API keys:</p>
+<p>This should display the version number of the installed package.</p>
+<h2 id="api-key-setup">API Key Setup<a class="headerlink" href="#api-key-setup" title="Permanent link">&para;</a></h2>
+<p>Cursor-Utils requires API keys for certain commands. Set up these keys using the <code>config</code> command:</p>
+<h3 id="google-gemini-api">Google Gemini API<a class="headerlink" href="#google-gemini-api" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Perplexity AI API Key</strong> - For web search capabilities</li>
-<li><strong>Google Gemini API Key</strong> - For code generation and analysis</li>
-<li><strong>GitHub Token</strong> - For GitHub integration features</li>
+<li>Visit <a href="https://ai.google.dev/">Google AI Studio</a> to obtain a Gemini API key</li>
+<li>Configure the key in Cursor-Utils:</li>
 </ol>
-<p>You can configure these during initial setup or later using:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span>api_keys
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gemini_api_key<span class="w"> </span>YOUR_GEMINI_API_KEY
 </span></code></pre></div>
-<p>Keys are stored securely in your local environment and never transmitted to external services except the corresponding API providers.</p>
-<h2 id="verifying-your-installation">Verifying Your Installation<a class="headerlink" href="#verifying-your-installation" title="Permanent link">&para;</a></h2>
-<p>To verify that Cursor Utils is installed correctly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cursor-utils<span class="w"> </span>--version
+<h3 id="perplexity-api">Perplexity API<a class="headerlink" href="#perplexity-api" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Get a Perplexity API key from <a href="https://docs.perplexity.ai/">Perplexity API docs</a></li>
+<li>Configure the key:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>perplexity_api_key<span class="w"> </span>YOUR_PERPLEXITY_API_KEY
 </span></code></pre></div>
-<p>You should see output similar to:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Cursor Utils version: 0.1.x
-</span></code></pre></div></p>
-<p>For a more comprehensive check, run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cursor-utils<span class="w"> </span>--debug
+<h3 id="github-api-optional">GitHub API (Optional)<a class="headerlink" href="#github-api-optional" title="Permanent link">&para;</a></h3>
+<p>For GitHub integration, you need a GitHub Personal Access Token:</p>
+<ol>
+<li>Create a token at <a href="https://github.com/settings/tokens">GitHub Settings &gt; Developer settings &gt; Personal access tokens</a></li>
+<li>Configure the token:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>github_token<span class="w"> </span>YOUR_GITHUB_TOKEN
 </span></code></pre></div>
-<p>This will:
-- Enable debug mode for more verbose output
-- Show additional information about your configuration</p>
+<h2 id="updating-cursor-utils">Updating Cursor-Utils<a class="headerlink" href="#updating-cursor-utils" title="Permanent link">&para;</a></h2>
+<p>To update to the latest version:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>cursor-utils
+</span></code></pre></div>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="common-installation-issues">Common Installation Issues<a class="headerlink" href="#common-installation-issues" title="Permanent link">&para;</a></h3>
-<p><strong>Problem</strong>: <code>Command not found</code> error when running <code>cursor-utils</code>
-<strong>Solution</strong>: Ensure the Python installation directory is in your PATH. You may need to log out and log back in after installation.</p>
-<p><strong>Problem</strong>: Dependency conflicts
-<strong>Solution</strong>: Use UV or a virtual environment for installation to isolate dependencies.</p>
-<p><strong>Problem</strong>: Permission errors during installation
-<strong>Solution</strong>: On Unix-like systems, use <code>sudo</code> or install in user mode with <code>uv pip install --user cursor-utils</code></p>
-<h3 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h3>
-<p>If you encounter issues not covered here:</p>
+<h4 id="permission-errors">Permission Errors<a class="headerlink" href="#permission-errors" title="Permanent link">&para;</a></h4>
+<p>If you encounter permission errors during installation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>cursor-utils
+</span></code></pre></div>
+<h4 id="dependency-conflicts">Dependency Conflicts<a class="headerlink" href="#dependency-conflicts" title="Permanent link">&para;</a></h4>
+<p>If you experience dependency conflicts:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>pip<span class="w"> </span>install<span class="w"> </span>cursor-utils<span class="w"> </span>--ignore-installed
+</span></code></pre></div>
+<h4 id="path-issues">Path Issues<a class="headerlink" href="#path-issues" title="Permanent link">&para;</a></h4>
+<p>If the <code>cursor-utils</code> command is not found after installation:</p>
 <ol>
-<li>Check the <a href="https://github.com/gweidart/cursor-utils/issues">GitHub issues</a> for similar problems</li>
-<li>Run <code>cursor-utils --debug</code> for diagnostic information</li>
-<li>Open a new issue with detailed information about your environment and the error</li>
+<li>Ensure Python's bin directory is in your PATH</li>
+<li>For user installations, verify that <code>~/.local/bin</code> is in your PATH</li>
 </ol>
-<h2 id="upgrading">Upgrading<a class="headerlink" href="#upgrading" title="Permanent link">&para;</a></h2>
-<p>To update Cursor Utils to the latest version:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cursor-utils<span class="w"> </span>update
+<p>Add to your shell profile (~/.bashrc, ~/.zshrc, etc.):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </span></code></pre></div>
-<p>This command will:
-1. Check for new versions
-2. Back up your configuration
-3. Update the package
-4. Migrate configuration if needed
-5. Verify the updated installation</p>
-<p>You can also update manually using:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>cursor-utils
-</span></code></pre></div>
-<h2 id="uninstallation">Uninstallation<a class="headerlink" href="#uninstallation" title="Permanent link">&para;</a></h2>
-<p>If you need to remove Cursor Utils:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>cursor-utils
-</span></code></pre></div>
-<p>This will remove the package but preserve your configuration files.</p>
-<h2 id="development-installation">Development Installation<a class="headerlink" href="#development-installation" title="Permanent link">&para;</a></h2>
-<p>If you want to contribute to Cursor Utils or install the latest development version:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Clone the repository</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gweidart/cursor-utils.git
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span>cursor-utils
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Create and activate a virtual environment</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>uv<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span>--python<span class="w"> </span>pypy
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># On Unix/macOS</span>
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># or</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># On Windows</span>
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Install development dependencies</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>requirements/requirements-dev.txt<span class="w"> </span>requirements/requirements-test.txt
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Install the package in development mode</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</span></code></pre></div>
-<p>This installs Cursor Utils in development mode, allowing you to modify the code and immediately see the effects without reinstalling.</p>
+<h3 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h3>
+<p>If you continue to experience issues:</p>
+<ol>
+<li>Check the <a href="https://github.com/gweidart/cursor-utils">GitHub repository</a> for known issues</li>
+<li>Verify system requirements are met</li>
+<li>Try installation in a clean virtual environment</li>
+<li>Consult the advanced documentation at https://gweidart.github.io/cursor-utils/</li>
+</ol>
 
 
 
@@ -2616,8 +1447,7 @@
       
   <div class="md-footer-custom">
     <div class="md-footer-custom-item">
-      <span>Built with ❤️ using <a href="https://www.mkdocs.org">MkDocs</a> and 
-        <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>
+      <span>Built with 👾 by <a href="https://github.com/gweidart/">gweidart</a>
       </span>
     </div>
   </div>
@@ -2642,7 +1472,7 @@
       // For example, add custom class to code blocks
       const codeBlocks = document.querySelectorAll('pre code');
       codeBlocks.forEach(block => {
-        block.classList.add('candy-pine-code');
+        block.classList.add('rose-pine-code');
       });
     });
   </script>
