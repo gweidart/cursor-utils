@@ -49,3 +49,15 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
         tags: true 
+
+    - name: Build package
+      run: hatch build
+      
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*
+        generate_release_notes: true
+        
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1 
