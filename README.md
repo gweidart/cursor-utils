@@ -1,6 +1,8 @@
 # Cursor-Utils
 
-**Give your Cursor IDE Agents superpowers.**
+**Give your Cursor Agent superpowers.**
+
+[![PyPI Downloads](https://static.pepy.tech/badge/cursor-utils)](https://pepy.tech/projects/cursor-utils)
 
 <div align="center">
   <div>
