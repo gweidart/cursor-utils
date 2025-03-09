@@ -7,11 +7,11 @@
     <h3>Asking Perplexity to perform ai guided web research</h3>
   </div>
   <div style="display: flex;">
-    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/blob/main/assets/perplexity1.png" />
+    <img width="350" alt="image" src="https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/assets/perplexity1.jpg" />
   </div>
   <details>
     <summary>see what happens next...</summary>
-    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/blob/main/assets/perplexity2.png" />
+    <img width="350" alt="image" src="https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/assets/perplexity2.jpg" />
   </details>
   <br/>
   <br/>
@@ -23,14 +23,14 @@
     <h3>Asking Gemini for a plan</h3>
   </div>
   <div style="display: flex;">
-    <img width="350" src="https://github.com/gweidart/cursor-utils/blob/main/assets/gemini1.png" />
+    <img width="350" src="https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/assets/gemini1.jpg" />
   </div>
   <details>
     <summary>see what happens next...</summary>
-    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/blob/main/assets/gemini2.png" />
+    <img width="350" alt="image" src="https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/assets/gemini2.jpg" />
     <details>
       <summary>see what happens next...</summary>
-      <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/blob/main/assets/gemini3.png" />
+      <img width="350" alt="image" src="https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/assets/gemini3.jpg" />
     </details>
   <br/>
   <br/>
@@ -42,11 +42,11 @@
     <h3>Performing repository analysis</h3>
   </div>
   <div style="display: flex;">
-    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/blob/main/assets/repo1.png" />
+    <img width="350" alt="image" src="https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/assets/repo1.jpg" />
   </div>
   <details>
     <summary>see what happens next...</summary>
-    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/blob/main/assets/repo2.png" />
+    <img width="350" alt="image" src="https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/assets/repo2.jpg" />
   </details>
   <br/>
   <br/>
