@@ -2,6 +2,57 @@
 
 **Give your Cursor IDE Agents superpowers.**
 
+<div align="center">
+  <div>
+    <h3>Asking Perplexity to perform ai guided web research</h3>
+  </div>
+  <div style="display: flex;">
+    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/assets/perplexity1.png" />
+  </div>
+  <details>
+    <summary>see what happens next...</summary>
+    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/assets/perplexity2.png" />
+  </details>
+  <br/>
+  <br/>
+  </div>
+</div>
+
+<div align="center">
+  <div>
+    <h3>Asking Gemini for a plan</h3>
+  </div>
+  <div style="display: flex;">
+    <img width="350" src="https://github.com/gweidart/cursor-utils/assets/gemini1.png" />
+  </div>
+  <details>
+    <summary>see what happens next...</summary>
+    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/assets/gemini2.png" />
+    <details>
+      <summary>see what happens next...</summary>
+      <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/assets/gemini3.png" />
+    </details>
+  <br/>
+  <br/>
+  </div>
+</div>
+
+<div align="center">
+  <div>
+    <h3>Performing repository analysis</h3>
+  </div>
+  <div style="display: flex;">
+    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/assets/repo1.png" />
+  </div>
+  <details>
+    <summary>see what happens next...</summary>
+    <img width="350" alt="image" src="https://github.com/gweidart/cursor-utils/assets/repo2.png" />
+  </details>
+  <br/>
+  <br/>
+  </div>
+</div>
+
 ### Installation
 
 ```bash
