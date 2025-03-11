@@ -1,43 +1,99 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-  <!-- Force dark mode by default -->
-  <script>
-    window.onload = function() {
-      const prefs = document.body.dataset.mdColorScheme = "slate";
-      localStorage.setItem("__prefer-color-scheme__", JSON.stringify({"scheme": "slate"}));
-    };
-  </script>
 
-  <!-- Add custom meta tags -->
-  <meta property="og:image" content="assets/images/cursor-utils-logo.png" />
-  <meta name="twitter:image" content="assets/images/cursor-utils-logo.png" />
-  <meta property="og:description" content="Give your Cursor IDE Agents superpowers." />
-  <meta name="twitter:description" content="Give your Cursor IDE Agents superpowers." />
-  <meta name="theme-color" content="#232136" />
+<!-- Add custom meta tags -->
+<meta property="og:image" content="assets/images/cursor-utils-logo.png" />
+<meta name="twitter:image" content="assets/images/cursor-utils-logo.png" />
+<meta property="og:description" content="Give your Cursor IDE Agents superpowers." />
+<meta name="twitter:description" content="Give your Cursor IDE Agents superpowers." />
+<meta name="theme-color" content="#232136" />
 {% endblock %}
 
 {% block scripts %}
-  {{ super() }}
-  <!-- Additional custom scripts -->
-  <script>
-    // Add custom behavior here if needed
-    document.addEventListener('DOMContentLoaded', function() {
-      // For example, add custom class to code blocks
-      const codeBlocks = document.querySelectorAll('pre code');
-      codeBlocks.forEach(block => {
-        block.classList.add('rose-pine-code');
+{{ super() }}
+<!-- Additional custom scripts -->
+<script>
+  // Add custom behavior here if needed
+  document.addEventListener('DOMContentLoaded', function () {
+    // For example, add custom class to code blocks
+    const codeBlocks = document.querySelectorAll('pre code');
+    codeBlocks.forEach(block => {
+      block.classList.add('rose-pine-code');
+    });
+
+    // Copy to clipboard functionality
+    const copyButtons = document.querySelectorAll('.copy-js');
+    copyButtons.forEach(button => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        const textToCopy = this.getAttribute('data-clipboard-text');
+
+        // Create a temporary textarea element to copy from
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+
+        // Select and copy the text
+        textarea.select();
+        document.execCommand('copy');
+
+        // Remove the temporary element
+        document.body.removeChild(textarea);
+
+        // Visual feedback
+        const originalText = this.textContent;
+        this.textContent = 'Copied!';
+
+        // Add a temporary class for styling
+        this.classList.add('md-button--copied');
+
+        // Reset button after a delay
+        setTimeout(() => {
+          this.classList.remove('md-button--copied');
+          this.textContent = originalText;
+        }, 2000);
       });
     });
-  </script>
-{% endblock %}
+  });
+</script>
 
+<script src="https://unpkg.com/@mendable/search@0.0.205/dist/umd/mendable-bundle.min.js"></script>
+<script>
+  Mendable.initialize({
+    anon_key: 'cf486af1-769b-4ca0-9579-8cacfc14e8f3',
+    type: "floatingButton",
+    floatingButtonStyle: {
+      backgroundColor: "#7c4dff",
+    },
+    askAIText: "Ask our Docs",
+    icon: "https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/docs/assets/images/favicon.svg",
+    botIcon: "https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/docs/assets/images/favicon.svg",
+    dismissPopupAfter: 10000,
+    popupText: "Chat with our Docs",
+    welcomeMessage: "Ask me anything about the Cursor Utils docs.",
+    footer: {
+      bottomRightLink: {
+        label: "Cursor Utils",
+        url: "https://github.com/gweidart/cursor-utils",
+      },
+    },
+    messageSettings: {
+      openSourcesInNewTab: true,
+      prettySources: true,
+    },
+  });
+</script>
+{% endblock %}
 {% block footer %}
-  {{ super() }}
-  <div class="md-footer-custom">
-    <div class="md-footer-custom-item">
-      <span>Built with 👾 by <a href="https://github.com/gweidart/">gweidart</a>
-      </span>
-    </div>
+{{ super() }}
+<div class="md-footer-custom">
+  <div class="md-footer-custom-item">
+    <span>Built with 👾 by <a href="https://github.com/gweidart/">gweidart</a>
+    </span>
   </div>
-{% endblock %} 
+</div>
+{% endblock %}

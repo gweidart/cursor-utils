@@ -1,8 +1,8 @@
-# Command-Line Interface
+## Command-Line Interface
 
 Cursor-Utils provides a consistent and intuitive command-line interface designed to streamline development workflows. This page documents the CLI structure, conventions, and common patterns.
 
-## Command Structure
+### Command Structure
 
 The Cursor-Utils CLI follows a command-subcommand pattern:
 
@@ -26,12 +26,12 @@ Cursor-Utils provides the following main commands:
 
 | Command | Description | Documentation |
 |---------|-------------|---------------|
-| `config` | Manage configuration settings | [config command](commands/config.md) |
-| `gemini` | Generate content with Google's Gemini AI | [gemini command](commands/gemini.md) |
-| `github` | Interact with GitHub repositories | [github command](commands/github.md) |
-| `web` | Perform web research using Perplexity AI | [web command](commands/web.md) |
-| `project` | Analyze local project code | [project command](commands/project.md) |
-| `repo` | Analyze and query remote code repositories | [repo command](commands/repo.md) |
+| `config` | Manage configuration settings | [config command](../commands/config.md) |
+| `gemini` | Generate content with Google's Gemini AI | [gemini command](../commands/gemini.md) |
+| `github` | Interact with GitHub repositories | [github command](../commands/github.md) |
+| `web` | Perform web research using Perplexity AI | [web command](../commands/web.md) |
+| `project` | Analyze local project code | [project command](../commands/project.md) |
+| `repo` | Analyze and query remote code repositories | [repo command](../commands/repo.md) |
 
 ### Common Command Options
 
@@ -43,7 +43,7 @@ While each command has specific options, many share these common options:
 | `--help`, `-h` | Show command-specific help | - | All commands |
 | `--model` | AI model to use | Varies by command | gemini, web, project, repo |
 
-## Output Formats
+### Output Formats
 
 All commands support multiple output formats, controlled by the `--format` option:
 
@@ -60,7 +60,7 @@ Example:
 cursor-utils gemini --format markdown "Write a function to validate email addresses"
 ```
 
-## Error Handling
+### Error Handling
 
 Cursor-Utils provides consistent error handling across all commands:
 
@@ -72,18 +72,8 @@ Cursor-Utils provides consistent error handling across all commands:
    - `3`: Network/API error
    - `4`: Input validation error
 
-Example error handling in scripts:
 
-```bash
-#!/bin/bash
-
-if ! cursor-utils github repo --owner microsoft --repo vscode; then
-  echo "Failed to fetch repository information"
-  exit 1
-fi
-```
-
-## Environment Variables
+### Environment Variables
 
 Cursor-Utils supports configuration via environment variables, following the pattern `CURSOR_UTILS_` followed by the uppercase configuration key:
 
@@ -97,7 +87,7 @@ Cursor-Utils supports configuration via environment variables, following the pat
 
 Environment variables take precedence over configuration file values.
 
-## Command Completion
+### Command Completion
 
 Cursor-Utils supports command completion for Bash and Zsh shells. To enable it:
 
@@ -117,26 +107,6 @@ Add to your `~/.zshrc`:
 eval "$(cursor-utils --completion zsh)"
 ```
 
-## Using with Pipes and Redirects
-
-Cursor-Utils commands can be used in pipelines with other command-line tools:
-
-### Piping Input
-
-Some commands accept input from stdin:
-
-```bash
-cat error.log | cursor-utils gemini "Explain this error and how to fix it"
-```
-
-### Piping Output
-
-Output can be piped to other commands:
-
-```bash
-cursor-utils web --format plain "Python concurrency patterns" | grep -A 10 "asyncio"
-```
-
 ### Redirection
 
 Output can be redirected to files:
@@ -145,7 +115,7 @@ Output can be redirected to files:
 cursor-utils gemini --format markdown "Write documentation for REST API best practices" > rest-best-practices.md
 ```
 
-## Exit Codes
+### Exit Codes
 
 Cursor-Utils commands return meaningful exit codes:
 
@@ -157,18 +127,8 @@ Cursor-Utils commands return meaningful exit codes:
 | 3 | Network/API error | API rate limit exceeded |
 | 4 | Input validation error | Invalid command arguments |
 
-You can check the exit code in scripts:
 
-```bash
-cursor-utils gemini "Generate a function"
-if [ $? -eq 0 ]; then
-  echo "Success!"
-else
-  echo "Failed with exit code $?"
-fi
-```
-
-## Progress Indicators
+### Progress Indicators
 
 For operations that may take time, Cursor-Utils displays progress indicators:
 
@@ -180,7 +140,7 @@ These indicators are automatically disabled when:
 - Output is not to a terminal (piping or redirection)
 - The `--format` option is set to `plain` or `json`
 
-## Common Usage Patterns
+### Common Usage Patterns
 
 ### Chaining Commands
 
@@ -201,45 +161,7 @@ Use exit codes for conditional execution:
 cursor-utils project . "Find security vulnerabilities" && cursor-utils github create-issue --owner your-username --repo your-repo --title "Security vulnerabilities found"
 ```
 
-### Automation Scripts
-
-Cursor-Utils can be integrated into automation scripts:
-
-```bash
-#!/bin/bash
-# Script to analyze a repository and create documentation
-
-REPO_URL="https://github.com/organization/repo"
-TOPICS=("architecture" "api" "data-model" "security")
-
-for TOPIC in "${TOPICS[@]}"; do
-  echo "Analyzing $TOPIC..."
-  cursor-utils repo "$REPO_URL" "Explain the $TOPIC" --format markdown > "docs/$TOPIC.md"
-done
-
-echo "Documentation generated in docs/ directory"
-```
-
-## Interactive vs. Non-Interactive Mode
-
-Cursor-Utils detects whether it's running in an interactive terminal:
-
-- **Interactive Mode**: Rich formatting, progress indicators, and color
-- **Non-Interactive Mode**: Plain output suitable for scripts and pipelines
-
-You can force non-interactive mode with:
-
-```bash
-cursor-utils --no-interactive gemini "Generate a function"
-```
-
-Or by setting the environment variable:
-
-```bash
-export CURSOR_UTILS_NO_INTERACTIVE=1
-```
-
-## Debug Mode
+### Debug Mode
 
 For troubleshooting, enable debug mode with the `--debug` flag:
 
@@ -253,7 +175,7 @@ This provides additional information:
 - Performance metrics
 - Internal operation steps
 
-## Configuration Precedence
+### Configuration Precedence
 
 When determining configuration values, Cursor-Utils follows this precedence (highest to lowest):
 
@@ -262,4 +184,13 @@ When determining configuration values, Cursor-Utils follows this precedence (hig
 3. Configuration file values
 4. Default values
 
-This allows flexible configuration while maintaining clear override rules. 
+This allows flexible configuration while maintaining clear override rules.
+
+For detailed documentation on each command, refer to:
+
+- [`config` Command](../commands/config.md)
+- [`gemini` Command](../commands/gemini.md)
+- [`github` Command](../commands/github.md)
+- [`web` Command](../commands/web.md)
+- [`project` Command](../commands/project.md)
+- [`repo` Command](../commands/repo.md) 

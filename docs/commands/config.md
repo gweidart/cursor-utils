@@ -1,14 +1,14 @@
-# Config Command
+## Config Command
 
 The `config` command manages persistent configuration settings for Cursor-Utils, with a particular focus on storing and retrieving API keys securely.
 
-## Syntax
+### Syntax
 
 ```bash
 cursor-utils config {SUBCOMMAND} [KEY] [VALUE] [OPTIONS]
 ```
 
-## Subcommands
+### Subcommands
 
 | Subcommand | Description | Syntax |
 |------------|-------------|--------|
@@ -17,23 +17,23 @@ cursor-utils config {SUBCOMMAND} [KEY] [VALUE] [OPTIONS]
 | `set` | Set a configuration value | `cursor-utils config set KEY VALUE [OPTIONS]` |
 | `delete` | Delete a configuration value | `cursor-utils config delete KEY [OPTIONS]` |
 
-## Options
+### Options
 
 | Option | Description | Default | Example |
 |--------|-------------|---------|---------|
 | `--format` | Output format (plain, markdown, json, rich) | `rich` | `--format json` |
 | `--help` | Show command help | - | `--help` |
 
-## Configuration Storage
+### Configuration Storage
 
-By default, Cursor-Utils stores configuration in a YAML file located at:
+By default, Cursor-Utils stores configuration in a JSON file located at:
 
-- **Linux/macOS**: `~/.config/cursor-utils/config.yaml`
-- **Windows**: `%APPDATA%\cursor-utils\config.yaml`
+- **Linux/macOS**: `~/.config/cursor-utils/config.json`
+- **Windows**: `%APPDATA%\cursor-utils\config.json`
 
 The configuration file is automatically created when you first use the `config set` command.
 
-## Common Configuration Keys
+### Common Configuration Keys
 
 | Key | Description | Used By Commands |
 |-----|-------------|------------------|
@@ -44,7 +44,7 @@ The configuration file is automatically created when you first use the `config s
 | `default_gemini_model` | Default Gemini model | `gemini`, `project`, `repo` |
 | `default_perplexity_model` | Default Perplexity model | `web` |
 
-## Examples
+### Examples
 
 ### Listing All Configuration Values
 
@@ -100,16 +100,17 @@ To remove a configuration value:
 cursor-utils config delete test_key
 ```
 
-## Using Environment Variables
+### Using Environment Variables
 
-All configuration values can also be set using environment variables, which take precedence over values in the configuration file. The environment variable format is `CURSOR_UTILS_` followed by the uppercase key name:
+All configuration values can also be set using environment variables, which take precedence over values in the configuration file.
 
 ```bash
-export CURSOR_UTILS_GEMINI_API_KEY=your_api_key
-export CURSOR_UTILS_DEFAULT_FORMAT=markdown
+export GEMINI_API_KEY=your_api_key
+export DEFAULT_FORMAT=markdown
+export GITHUB_TOKEN=your_github_token
 ```
 
-## API Key Setup
+### API Key Setup
 
 ### Google Gemini API Key
 
@@ -144,7 +145,7 @@ To use the `github` command, you need a GitHub personal access token:
 cursor-utils config set github_token YOUR_GITHUB_TOKEN
 ```
 
-## Security Considerations
+### Security Considerations
 
 Configuration values, including API keys, are stored in plaintext in the configuration file. For enhanced security:
 
@@ -152,7 +153,7 @@ Configuration values, including API keys, are stored in plaintext in the configu
 2. Consider using environment variables for sensitive values in shared environments
 3. On shared systems, use user-specific installations of Cursor-Utils
 
-## Best Practices
+### Best Practices
 
 1. **Regularly Rotate API Keys**: Periodically update your API keys for security
 2. **Set Default Values**: Configure defaults for commonly used options:

@@ -1,20 +1,20 @@
-# Gemini Command
+## Gemini Command
 
 The `gemini` command generates content using Google's Gemini AI models, providing powerful AI-assisted capabilities for code generation, explanations, and more.
 
-## Syntax
+### Syntax
 
 ```bash
 cursor-utils gemini [OPTIONS] PROMPT
 ```
 
-## Arguments
+### Arguments
 
 | Argument | Description | Required | Example |
 |----------|-------------|----------|---------|
 | `PROMPT` | The text prompt for Gemini to respond to | Yes | "Explain how promises work in JavaScript" |
 
-## Options
+### Options
 
 | Option | Description | Default | Example |
 |--------|-------------|---------|---------|
@@ -25,7 +25,7 @@ cursor-utils gemini [OPTIONS] PROMPT
 | `--format` | Output format (plain, markdown, json, rich) | `rich` | `--format markdown` |
 | `--help` | Show command help | - | `--help` |
 
-## Available Models
+### Available Models
 
 | Model | Description | Best For |
 |-------|-------------|----------|
@@ -35,7 +35,7 @@ cursor-utils gemini [OPTIONS] PROMPT
 | `gemini-2.0-flash-exp` | Experimental flash model | Testing latest capabilities |
 | `gemini-2.0-flash-thinking-exp` | Enhanced thinking capabilities | Step-by-step reasoning |
 
-## Configuration
+### Configuration
 
 Before using the `gemini` command, you need to set up your Google Gemini API key:
 
@@ -45,7 +45,7 @@ cursor-utils config set gemini_api_key YOUR_GEMINI_API_KEY
 
 You can obtain an API key from [Google AI Studio](https://ai.google.dev/).
 
-## Examples
+### Examples
 
 ### Basic Usage
 
@@ -162,7 +162,7 @@ cursor-utils gemini --max-tokens 500 "Summarize the history of artificial intell
   cursor-utils gemini "Compare MongoDB and PostgreSQL for web applications"
   ```
 
-## Advanced Techniques
+### Advanced Techniques
 
 ### Chaining Prompts
 
@@ -192,7 +192,7 @@ Save output to files:
 cursor-utils gemini --format markdown "Write documentation for GraphQL mutations" > graphql-mutations.md
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Be Specific**: More specific prompts yield better results
    ```bash
@@ -221,7 +221,7 @@ cursor-utils gemini --format markdown "Write documentation for GraphQL mutations
    cursor-utils gemini --format markdown "Generate a tutorial on async/await in JavaScript"
    ```
 
-## Troubleshooting
+### Troubleshooting
 
 ### API Key Issues
 

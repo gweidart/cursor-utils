@@ -109,7 +109,8 @@ ENV/
 *.swp
 *.swo
 *~
-
+.dev
+.dev/*
 # Testing
 .coverage
 .coverage.*

@@ -1,8 +1,8 @@
-# Models API
+## Models API
 
 The Models API in Cursor-Utils provides structured information about the available commands, their options, and usage patterns. This documentation is primarily used by AI agents to understand how to interact with Cursor-Utils.
 
-## Overview
+### Overview
 
 The models module contains documentation files that define:
 
@@ -11,7 +11,7 @@ The models module contains documentation files that define:
 3. **Usage Examples**: Examples of how to use each command
 4. **Best Practices**: Recommendations for effective use of commands
 
-## Model Files
+### Model Files
 
 ### cursor-utils.md
 
@@ -27,11 +27,11 @@ alwaysApply: true
 # Cursor-Utils: Command-Line Utilities for Cursor AI Agents
 ```
 
-## Command Documentation
+### Command Documentation
 
 The model provides detailed documentation for each command:
 
-### Config Command
+# Config Command
 
 ```bash
 cursor-utils config {get|set|delete|list} [KEY] [VALUE]
@@ -79,7 +79,7 @@ cursor-utils repo [OPTIONS] REPO_URL QUERY
 
 Analyzes and queries remote code repositories to provide insights about the codebase.
 
-## Model Structure
+### Model Structure
 
 The model file follows a consistent structure:
 
@@ -89,7 +89,7 @@ The model file follows a consistent structure:
 4. **Subcommands**: For commands that have subcommands
 5. **Examples**: Practical examples of command usage
 
-## Usage in AI Agents
+### Usage in AI Agents
 
 AI agents use this model to:
 
@@ -98,7 +98,7 @@ AI agents use this model to:
 3. **Provide Guidance**: Offer help and suggestions for command usage
 4. **Handle Errors**: Interpret and respond to command errors
 
-## Extending Models
+### Extending Models
 
 When adding new commands to Cursor-Utils, the model file should be updated to include:
 
@@ -107,7 +107,7 @@ When adding new commands to Cursor-Utils, the model file should be updated to in
 3. **Options Documentation**: All available options with descriptions
 4. **Usage Examples**: At least 2-3 examples of common use cases
 
-## Best Practices
+### Best Practices
 
 1. **Keep Models Updated**: Ensure model documentation matches the actual implementation
 2. **Provide Clear Examples**: Include practical examples that demonstrate real-world usage

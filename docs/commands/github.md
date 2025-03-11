@@ -1,14 +1,14 @@
-# GitHub Command
+## GitHub Command
 
 The `github` command provides a suite of tools for interacting with GitHub repositories directly from the terminal, enabling efficient repository management, issue tracking, and pull request handling without switching to a browser.
 
-## Syntax
+### Syntax
 
 ```bash
 cursor-utils github SUBCOMMAND [OPTIONS]
 ```
 
-## Subcommands
+### Subcommands
 
 | Subcommand | Description | Syntax |
 |------------|-------------|--------|
@@ -19,7 +19,7 @@ cursor-utils github SUBCOMMAND [OPTIONS]
 | `create-pr` | Create a new pull request | `cursor-utils github create-pr [OPTIONS]` |
 | `help` | Show GitHub command help | `cursor-utils github help [SUBCOMMAND]` |
 
-## Common Options
+### Common Options
 
 These options apply to most GitHub subcommands:
 
@@ -30,7 +30,7 @@ These options apply to most GitHub subcommands:
 | `--format` | Output format (plain, markdown, json, rich) | `rich` | `--format json` |
 | `--help` | Show subcommand help | - | `--help` |
 
-## Configuration
+### Configuration
 
 Before using the `github` command, you need to set up your GitHub personal access token:
 
@@ -40,7 +40,7 @@ cursor-utils config set github_token YOUR_GITHUB_TOKEN
 
 You can create a personal access token at [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens). Ensure your token has the appropriate scopes for the operations you want to perform.
 
-## Subcommand Details
+### Subcommand Details
 
 ### Repository Information (`repo`)
 
@@ -212,7 +212,7 @@ Create a detailed draft pull request with reviewers:
 cursor-utils github create-pr --owner your-username --repo your-repo --title "Implement dark mode" --head feature-dark-mode --base develop --body "This PR implements dark mode according to the design specs in issue #42." --draft --reviewers design-lead,frontend-lead
 ```
 
-## Use Cases
+### Use Cases
 
 ### Repository Management
 
@@ -251,7 +251,7 @@ cursor-utils github create-pr --owner your-username --repo your-repo --title "Im
   cursor-utils github create-pr --owner your-username --repo your-repo --title "Add user settings page" --head feature-user-settings --base main
   ```
 
-## Advanced Techniques
+### Advanced Techniques
 
 ### Complex Filtering
 
@@ -270,7 +270,7 @@ Use with other command-line tools for further processing:
 cursor-utils github issues --owner microsoft --repo vscode --format json | jq '.[] | {number: .number, title: .title}'
 ```
 
-### Automation
+#### Automation
 
 Use in scripts for automation:
 
@@ -283,7 +283,7 @@ CHANGES=$(cursor-utils gemini "Generate a changelog for the features and fixes i
 cursor-utils github create-pr --owner your-username --repo your-repo --title "Release v1.2.0" --head develop --base main --body "$CHANGES"
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Use Authentication**: Always set up your GitHub token for full functionality
    ```bash
@@ -310,7 +310,7 @@ cursor-utils github create-pr --owner your-username --repo your-repo --title "Re
    cursor-utils github create-pr --title "Fix for login bug" --body "Resolves #42"
    ```
 
-## Troubleshooting
+### Troubleshooting
 
 ### Authentication Issues
 

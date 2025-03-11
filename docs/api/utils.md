@@ -1,8 +1,8 @@
-# Utilities API
+## Utilities API
 
 Cursor-Utils provides a collection of utility modules that handle common operations for filesystem access, Git operations, text processing, and file ranking. These utilities are used throughout the application to provide consistent behavior and error handling.
 
-## Overview
+### Overview
 
 The utilities are organized into the following modules:
 
@@ -13,7 +13,7 @@ The utilities are organized into the following modules:
 | [Text Processing (text)](#text-utilities) | Text manipulation functions | Text formatting, ANSI handling, code highlighting |
 | [File Ranking (file_rank_algo)](#file-ranking-utilities) | Algorithms for ranking files | File ranking based on multiple factors |
 
-## Filesystem Utilities
+### Filesystem Utilities
 
 The `fs` module provides functions for file and directory operations with consistent error handling.
 
@@ -180,7 +180,7 @@ except FilesystemError as e:
         print(f"Help: {e.help_text}")
 ```
 
-## Git Utilities
+### Git Utilities
 
 The `git` module provides functions for working with Git repositories.
 
@@ -308,7 +308,7 @@ except GitError as e:
         print(f"Help: {e.help_text}")
 ```
 
-## Text Utilities
+### Text Utilities
 
 The `text` module provides functions for text processing and formatting.
 
@@ -401,7 +401,7 @@ highlighted = highlight_code(code, "monokai", language="python", line_numbers=Tr
 print(highlighted)
 ```
 
-## File Ranking Utilities
+### File Ranking Utilities
 
 The `file_rank_algo` module provides algorithms for ranking files by relevance and importance.
 
@@ -518,7 +518,7 @@ files = build_file_list("./my-project")
 ranked_files = ranker.rank_files(files)
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Handle Errors Properly**: All utility functions raise specific exceptions with helpful error messages
    ```python
@@ -543,7 +543,7 @@ ranked_files = ranker.rank_files(files)
 3. **Prefer Path Objects**: Most functions accept both strings and Path objects, but using Path objects provides more flexibility
    ```python
    from pathlib import Path
-   config_dir = ensure_directory(Path.home() / ".config" / "my-app")
+   config_dir = ensure_directory(Path.home() / ".config" / "cursor-utils")
    ```
 
 4. **Use Safe Operations**: Utility functions handle common edge cases and provide safe defaults

@@ -1,20 +1,20 @@
-# Web Command
+## Web Command
 
 The `web` command performs intelligent web research using Perplexity AI, providing curated, up-to-date information from across the internet without requiring you to leave the terminal.
 
-## Syntax
+### Syntax
 
 ```bash
 cursor-utils web [OPTIONS] QUERY
 ```
 
-## Arguments
+### Arguments
 
 | Argument | Description | Required | Example |
 |----------|-------------|----------|---------|
 | `QUERY` | The search query to research | Yes | "How to implement JWT authentication in Express" |
 
-## Options
+### Options
 
 | Option | Description | Default | Example |
 |--------|-------------|---------|---------|
@@ -22,7 +22,7 @@ cursor-utils web [OPTIONS] QUERY
 | `--format` | Output format (plain, markdown, json, rich) | `rich` | `--format markdown` |
 | `--help` | Show command help | - | `--help` |
 
-## Available Models
+### Available Models
 
 | Model | Description | Best For |
 |-------|-------------|----------|
@@ -31,7 +31,7 @@ cursor-utils web [OPTIONS] QUERY
 | `sonar-reasoning` | Model with reasoning capabilities | Technical queries requiring analysis |
 | `sonar-reasoning-pro` | Advanced reasoning model | Complex technical questions, in-depth analysis |
 
-## Configuration
+### Configuration
 
 Before using the `web` command, you need to set up your Perplexity API key:
 
@@ -41,7 +41,7 @@ cursor-utils config set perplexity_api_key YOUR_PERPLEXITY_API_KEY
 
 You can obtain an API key from [Perplexity API documentation](https://docs.perplexity.ai/).
 
-## Examples
+### Examples
 
 ### Basic Usage
 
@@ -79,7 +79,7 @@ Output in JSON format for programmatic use:
 cursor-utils web --format json "List HTTP status codes and meanings"
 ```
 
-## Use Cases
+### Use Cases
 
 ### Technical Research
 
@@ -134,7 +134,7 @@ cursor-utils web --format json "List HTTP status codes and meanings"
   cursor-utils web "How to use fetch API with async/await"
   ```
 
-## Advanced Techniques
+### Advanced Techniques
 
 ### Focused Queries
 
@@ -176,7 +176,7 @@ cursor-utils web "WebRTC NAT traversal techniques"
 cursor-utils web "Implementing WebRTC signaling server in Node.js"
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Be Specific**: Frame your query with specific details for better results
    ```bash
@@ -206,7 +206,7 @@ cursor-utils web "Implementing WebRTC signaling server in Node.js"
    cursor-utils web "How to fix memory leaks in React applications"
    ```
 
-## Troubleshooting
+### Troubleshooting
 
 ### API Key Issues
 

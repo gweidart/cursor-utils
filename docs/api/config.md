@@ -1,8 +1,8 @@
-# Configuration API
+## Configuration API
 
 The Configuration API provides a flexible and consistent way to manage configuration settings for Cursor-Utils. It handles loading, saving, and accessing configuration values with support for environment variable overrides.
 
-## Overview
+### Overview
 
 Configuration in Cursor-Utils follows these principles:
 
@@ -11,7 +11,7 @@ Configuration in Cursor-Utils follows these principles:
 3. **Standard Locations**: Configuration uses platform-specific standard locations
 4. **Error Handling**: Clear error messages when configuration operations fail
 
-## Configuration Storage
+### Configuration Storage
 
 By default, configuration is stored in a JSON file at:
 
@@ -20,7 +20,7 @@ By default, configuration is stored in a JSON file at:
 
 You can customize this location by specifying a different path when loading configuration.
 
-## Key Components
+### Key Components
 
 ### Configuration Class
 
@@ -44,17 +44,15 @@ config.delete("test_key")
 
 ### Environment Variables
 
-Environment variables take precedence over stored configuration. The format is `CURSOR_UTILS_` followed by the uppercase configuration key:
+Environment variables take precedence over stored configuration:
 
 ```bash
 # Set Gemini API key via environment variable
-export CURSOR_UTILS_GEMINI_API_KEY=your-api-key
+export GEMINI_API_KEY=your-api-key
 
-# Set default output format
-export CURSOR_UTILS_DEFAULT_FORMAT=markdown
 ```
 
-## API Reference
+### API Reference
 
 ### `get_default_config_path()`
 
@@ -188,7 +186,7 @@ config = load_configuration()
 custom_config = load_configuration(Path.home() / "my-config.json")
 ```
 
-## Common Configuration Keys
+### Common Configuration Keys
 
 Cursor-Utils uses the following common configuration keys:
 
@@ -201,7 +199,7 @@ Cursor-Utils uses the following common configuration keys:
 | `default_gemini_model` | Default Gemini model | `gemini-1.5-pro` | `gemini`, `project`, `repo` commands |
 | `default_perplexity_model` | Default Perplexity model | `sonar` | `web` command |
 
-## Error Handling
+### Error Handling
 
 Configuration operations can raise `ConfigError` exceptions:
 
@@ -223,11 +221,11 @@ except ConfigError as e:
         print(f"Help: {e.help_text}")
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Use Environment Variables for Sensitive Data**: For CI/CD and shared environments
    ```bash
-   export CURSOR_UTILS_GEMINI_API_KEY=your-api-key
+   export GEMINI_API_KEY=your-api-key
    ```
 
 2. **Set Default Values**: Configure commonly used options as defaults

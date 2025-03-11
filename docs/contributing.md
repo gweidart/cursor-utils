@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to Cursor-Utils! This guide will help you get started with the development process and outline our standards and expectations.
 
-## Development Setup
+### Development Setup
 
 ### Prerequisites
 
@@ -58,41 +58,7 @@ Before you begin, ensure you have the following installed:
    pre-commit install
    ```
 
-## Project Structure
-
-Cursor-Utils follows a modular structure:
-
-```
-cursor-utils/
-├── src/                      # Source code
-│   └── cursor_utils/
-│       ├── cli/              # Command-line interface
-│       │   ├── commands/     # Command implementations
-│       │   └── parser.py     # Argument parsing
-│       ├── core/             # Core functionality
-│       │   ├── config.py     # Configuration management
-│       │   ├── errors.py     # Error handling
-│       │   └── output.py     # Output rendering
-│       ├── services/         # External service clients
-│       │   ├── gemini.py     # Google Gemini API
-│       │   ├── github.py     # GitHub API
-│       │   └── perplexity.py # Perplexity API
-│       ├── utils/            # Utility functions
-│       │   ├── fs.py         # Filesystem operations
-│       │   ├── git.py        # Git operations
-│       │   └── text.py       # Text processing
-│       ├── __init__.py
-│       └── main.py           # Entry point
-├── tests/                    # Test suite
-│   ├── unit/                 # Unit tests
-│   └── integration/          # Integration tests
-├── docs/                     # Documentation
-├── pyproject.toml            # Project configuration
-├── README.md                 # Project overview
-└── CHANGELOG.md              # Version history
-```
-
-## Development Workflow
+### Development Workflow
 
 ### Creating a New Feature
 
@@ -168,7 +134,7 @@ cursor-utils/
 
    Go to the GitHub repository and create a pull request from your branch to the main branch.
 
-## Coding Standards
+### Coding Standards
 
 ### Python Style
 
@@ -209,7 +175,7 @@ cursor-utils/
 - Keep commits focused and atomic
 - Reference issue numbers in commit messages where applicable
 
-## Pull Request Process
+### Pull Request Process
 
 1. **Fill in the pull request template** with all relevant information
 2. **Ensure all checks pass** (tests, linting, etc.)
@@ -218,7 +184,7 @@ cursor-utils/
 5. **Update documentation** if necessary
 6. **Squash commits** if requested by the reviewer
 
-## Adding a New Command
+### Adding a New Command
 
 To add a new command to Cursor-Utils:
 
@@ -228,7 +194,7 @@ To add a new command to Cursor-Utils:
 4. **Add tests** for the new command
 5. **Document the command** in the appropriate documentation files
 
-## Integrating with External Services
+### Integrating with External Services
 
 When adding a new service integration:
 
@@ -238,7 +204,7 @@ When adding a new service integration:
 4. **Add tests** with mocked API responses
 5. **Document the service** in the appropriate documentation files
 
-## Release Process
+### Release Process
 
 Cursor-Utils follows [Semantic Versioning](https://semver.org/):
 
@@ -255,7 +221,7 @@ The release process is as follows:
 5. **Create a tag** for the new version
 6. **Build and publish** the package to PyPI
 
-## Getting Help
+### Getting Help
 
 If you need help with the development process:
 
@@ -263,6 +229,6 @@ If you need help with the development process:
 - **Open an issue** with a question or discussion topic
 - **Reach out to the maintainers** directly
 
-## Code of Conduct
+### Code of Conduct
 
 Please be respectful and constructive in your interactions with other contributors. We aim to foster an inclusive and welcoming community for all developers. 

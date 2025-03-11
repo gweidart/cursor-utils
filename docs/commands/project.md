@@ -1,21 +1,21 @@
-# Project Command
+## Project Command
 
 The `project` command analyzes local project code using Google's Gemini AI to provide insights, context, and answers about your codebase directly from the terminal.
 
-## Syntax
+### Syntax
 
 ```bash
 cursor-utils project [OPTIONS] PROJECT_PATH QUERY
 ```
 
-## Arguments
+### Arguments
 
 | Argument | Description | Required | Example |
 |----------|-------------|----------|---------|
 | `PROJECT_PATH` | Path to the project directory | Yes | `./` or `/path/to/project` |
 | `QUERY` | The question or analysis request about the project | Yes | "Explain the main components" |
 
-## Options
+### Options
 
 | Option | Description | Default | Example |
 |--------|-------------|---------|---------|
@@ -26,7 +26,7 @@ cursor-utils project [OPTIONS] PROJECT_PATH QUERY
 | `--debug/--no-debug` | Enable/disable debug output | `--no-debug` | `--debug` |
 | `--help` | Show command help | - | `--help` |
 
-## Configuration
+### Configuration
 
 Before using the `project` command, you need to set up your Google Gemini API key:
 
@@ -36,7 +36,7 @@ cursor-utils config set gemini_api_key YOUR_GEMINI_API_KEY
 
 You can obtain an API key from [Google AI Studio](https://ai.google.dev/).
 
-## Examples
+### Examples
 
 ### Basic Usage
 
@@ -96,7 +96,7 @@ Enable debug output for troubleshooting:
 cursor-utils project . --debug "Why is the application crashing on startup?"
 ```
 
-## Use Cases
+### Use Cases
 
 ### Code Understanding
 
@@ -166,7 +166,7 @@ cursor-utils project . --debug "Why is the application crashing on startup?"
   cursor-utils project . "Document the user registration flow"
   ```
 
-## Advanced Techniques
+### Advanced Techniques
 
 ### Focused Analysis
 
@@ -215,7 +215,7 @@ Use for onboarding:
 cursor-utils project . "Create an onboarding guide for new developers" > onboarding.md
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Start with Broad Questions**: Get a high-level overview before diving into details
    ```bash
@@ -250,7 +250,7 @@ cursor-utils project . "Create an onboarding guide for new developers" > onboard
    cursor-utils project . --format markdown "Architectural overview" > architecture.md
    ```
 
-## Performance Considerations
+### Performance Considerations
 
 ### Large Codebases
 
@@ -271,7 +271,7 @@ For large codebases, consider:
    cursor-utils project . --ignore "tests,*.test.js,node_modules,build,dist" "Analyze business logic"
    ```
 
-## Troubleshooting
+### Troubleshooting
 
 ### API Key Issues
 

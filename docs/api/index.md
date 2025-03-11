@@ -1,21 +1,21 @@
-# API Reference
+## API Reference
 
 This section provides detailed documentation for all Cursor-Utils commands, their options, arguments, and usage patterns.
 
-## Command Overview
+### Command Overview
 
 Cursor-Utils provides the following core commands:
 
 | Command | Description | Primary Use Cases |
 |---------|-------------|-------------------|
-| [`config`](commands/config.md) | Manage configuration settings | Setting API keys, viewing/updating configurations |
-| [`gemini`](commands/gemini.md) | Generate content with Google's Gemini AI | Code generation, explanations, documentation |
-| [`github`](commands/github.md) | Interact with GitHub repositories | Repository management, issue tracking, PR creation |
-| [`web`](commands/web.md) | Perform web research using Perplexity AI | Technical research, documentation lookup, problem-solving |
-| [`project`](commands/project.md) | Analyze local project code | Code understanding, architecture analysis, onboarding |
-| [`repo`](commands/repo.md) | Analyze remote code repositories | Open-source exploration, dependency evaluation |
+| [`config`](../commands/config.md) | Manage configuration settings | Setting API keys, viewing/updating configurations |
+| [`gemini`](../commands/gemini.md) | Generate content with Google's Gemini AI | Code generation, explanations, documentation |
+| [`github`](../commands/github.md) | Interact with GitHub repositories | Repository management, issue tracking, PR creation |
+| [`web`](../commands/web.md) | Perform web research using Perplexity AI | Technical research, documentation lookup, problem-solving |
+| [`project`](../commands/project.md) | Analyze local project code | Code understanding, architecture analysis, onboarding |
+| [`repo`](../commands/repo.md) | Analyze remote code repositories | Open-source exploration, dependency evaluation |
 
-## Command Structure
+### Command Structure
 
 All Cursor-Utils commands follow a consistent structure:
 
@@ -45,11 +45,11 @@ All commands support the following output formats:
 | `markdown` | Markdown formatted text | Documentation, note-taking |
 | `json` | Structured JSON data | Programmatic use, automation |
 
-## Command Details
+### Command Details
 
 For detailed documentation on each command, refer to the specific command pages:
 
-### [`config` Command](commands/config.md)
+### [`config` Command](../commands/config.md)
 
 The `config` command manages persistent configuration settings, particularly API keys.
 
@@ -57,7 +57,7 @@ The `config` command manages persistent configuration settings, particularly API
 cursor-utils config {get|set|delete|list} [KEY] [VALUE]
 ```
 
-### [`gemini` Command](commands/gemini.md)
+### [`gemini` Command](../commands/gemini.md)
 
 The `gemini` command generates content using Google's Gemini AI models.
 
@@ -65,7 +65,7 @@ The `gemini` command generates content using Google's Gemini AI models.
 cursor-utils gemini [OPTIONS] PROMPT
 ```
 
-### [`github` Command](commands/github.md)
+### [`github` Command](../commands/github.md)
 
 The `github` command provides tools for interacting with GitHub repositories.
 
@@ -73,7 +73,7 @@ The `github` command provides tools for interacting with GitHub repositories.
 cursor-utils github COMMAND [OPTIONS]
 ```
 
-### [`web` Command](commands/web.md)
+### [`web` Command](../commands/web.md)
 
 The `web` command searches the web using Perplexity AI to provide curated results.
 
@@ -81,7 +81,7 @@ The `web` command searches the web using Perplexity AI to provide curated result
 cursor-utils web [OPTIONS] QUERY
 ```
 
-### [`project` Command](commands/project.md)
+### [`project` Command](../commands/project.md)
 
 The `project` command analyzes local project code using Gemini AI.
 
@@ -89,7 +89,7 @@ The `project` command analyzes local project code using Gemini AI.
 cursor-utils project [OPTIONS] PROJECT_PATH QUERY
 ```
 
-### [`repo` Command](commands/repo.md)
+### [`repo` Command](../commands/repo.md)
 
 The `repo` command analyzes and queries remote code repositories.
 
@@ -97,7 +97,7 @@ The `repo` command analyzes and queries remote code repositories.
 cursor-utils repo [OPTIONS] REPO_URL QUERY
 ```
 
-## API Integration
+### API Integration
 
 Cursor-Utils integrates with several external APIs:
 
@@ -107,4 +107,4 @@ Cursor-Utils integrates with several external APIs:
 | Perplexity | `web` | Web search and research |
 | GitHub | `github` | Repository interaction and management |
 
-For information on configuring these APIs, see the [installation guide](../installation.md#api-key-setup) and the [`config` command documentation](commands/config.md). 
+For information on configuring these APIs, see the [installation guide](../installation.md#api-key-setup) and the [`config` command documentation](../commands/config.md). 

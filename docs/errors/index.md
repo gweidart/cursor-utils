@@ -1,8 +1,8 @@
-# Error Reference
+## Error Reference
 
 Cursor-Utils implements a structured error handling system that provides consistent error reporting, exit codes, and recovery mechanisms across all commands. This reference documents the error types, handling patterns, and how to interpret and troubleshoot errors.
 
-## Error Types
+### Error Types
 
 Cursor-Utils defines a hierarchy of error types to handle different categories of issues:
 
@@ -12,7 +12,7 @@ Cursor-Utils defines a hierarchy of error types to handle different categories o
 | `ConfigError` | Configuration-related errors | 2 | Missing API keys, invalid configuration |
 | `ServiceError` | External service errors | 3 | API rate limits, network issues |
 
-## Error Severity Levels
+### Error Severity Levels
 
 Errors are categorized by severity level:
 
@@ -23,7 +23,7 @@ Errors are categorized by severity level:
 | `ERROR` | Issue that prevents successful execution | Must be resolved to proceed |
 | `CRITICAL` | Serious issue that could affect system stability | Immediate action required |
 
-## Exit Codes
+### Exit Codes
 
 Cursor-Utils uses standardized exit codes to indicate different types of failures:
 
@@ -45,7 +45,7 @@ if [ $? -eq 2 ]; then
 fi
 ```
 
-## Common Error Patterns
+### Common Error Patterns
 
 ### API Key Errors
 
@@ -91,7 +91,7 @@ Resolution:
 2. Check if the service is experiencing downtime
 3. Try again later or check for proxy settings if applicable
 
-## Error Handling in Code
+### Error Handling in Code
 
 For developers extending Cursor-Utils, the error handling system provides a consistent pattern:
 
@@ -115,7 +115,7 @@ def my_command(api_key=None):
     # Rest of command implementation
 ```
 
-## Debug Mode
+### Debug Mode
 
 For more detailed error information, enable debug mode:
 
@@ -128,7 +128,7 @@ Debug mode provides:
 2. Request and response details for API calls
 3. Configuration and environment information
 
-## Best Practices for Error Handling
+### Best Practices for Error Handling
 
 1. **Check Configuration First**: Many errors stem from configuration issues
    ```bash

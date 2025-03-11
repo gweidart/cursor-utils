@@ -2,7 +2,7 @@
 
 Cursor-Utils is released under the MIT License, a permissive open-source license that allows for free use, modification, and distribution of the software.
 
-## MIT License
+### MIT License
 
 ```
 MIT License
@@ -28,7 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## What This Means
+### What This Means
 
 The MIT License grants you the following permissions:
 
@@ -42,7 +42,7 @@ With these requirements:
 - Include the original copyright notice
 - Include the permission notice
 
-## Third-Party Components
+### Third-Party Components
 
 Cursor-Utils incorporates several third-party libraries and components, each with its own license:
 
@@ -54,7 +54,7 @@ Cursor-Utils incorporates several third-party libraries and components, each wit
 | PyYAML | MIT | Configuration file processing |
 | GitPython | BSD 3-Clause | Git repository interactions |
 
-## API Service Terms
+### API Service Terms
 
 When using Cursor-Utils with external APIs, you are subject to the terms of service for those APIs:
 
@@ -64,10 +64,10 @@ When using Cursor-Utils with external APIs, you are subject to the terms of serv
 
 It is your responsibility to ensure that your usage of these services complies with their respective terms.
 
-## Contributing
+### Contributing
 
 When you contribute to Cursor-Utils, you agree that your contributions will be licensed under the same MIT License. This allows us to maintain a consistent licensing model for the entire project.
 
-## Questions
+### Questions
 
 If you have questions about licensing or need clarification on permitted usage, please open an issue on our GitHub repository. 

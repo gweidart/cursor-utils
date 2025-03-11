@@ -1,39 +1,23 @@
 site_name: Cursor-Utils
-site_description: Enhanced capabilities for Cursor IDE Agents
+site_description: Give your Cursor Agent superpowers
 site_author: gweidart
 repo_url: https://github.com/gweidart/cursor-utils
 repo_name: gweidart/cursor-utils
+docs_dir: docs
+copyright: Copyright &copy; 2025 gweidart
 
 theme:
   name: material
-  palette:
-    # Palette toggle for dark mode (primary)
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-      
-    # Palette toggle for light mode (secondary)
-    - media: "(prefers-color-scheme: light)"
-      scheme: slate
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-  
-  # Rose Pine Moon custom colors
   custom_dir: docs/overrides
-  
-  # Logo and favicon
   logo: assets/images/cursor-utils-logo.svg
   favicon: assets/images/favicon.svg
   icon:
     repo: fontawesome/brands/github
-  
+  palette:
+    scheme: darkula
+  font:
+    text: JetBrains Mono
+    code: JetBrains Mono
   features:
     - navigation.instant
     - navigation.tracking
@@ -58,7 +42,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: $config_dir
   - pymdownx.tasklist:
       custom_checkbox: true
   - tables
@@ -67,9 +52,14 @@ markdown_extensions:
   - attr_list
   - def_list
   - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
-  - search
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - macros
   - mkdocstrings:
       handlers:
         python:
@@ -80,8 +70,35 @@ plugins:
             docstring_style: google
             docstring_section_style: spacy
 
+# Navigation structure
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: installation.md
+    - Usage: usage.md
+  - Commands:
+    - config: commands/config.md
+    - gemini: commands/gemini.md
+    - github: commands/github.md
+    - project: commands/project.md
+    - repo: commands/repo.md
+    - web: commands/web.md
+  - API Reference:
+    - Overview: api/index.md
+    - CLI: api/cli.md
+    - Commands: api/commands.md
+    - Configuration: api/config.md
+    - Models: api/models.md
+    - Utilities: api/utils.md
+  - Troubleshooting:
+    - Common Errors: errors/index.md
+  - Development:
+    - Contributing: contributing.md
+  - License: license.md
+
 # Extra configuration
 extra:
+  version: {0.1.5}
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/gweidart/cursor-utils
@@ -89,38 +106,8 @@ extra:
       link: https://pypi.org/project/cursor-utils/
   generator: false
 
+# Ensure all internal links are treated as absolute from the docs root
+use_directory_urls: false
+
 extra_css:
   - stylesheets/extra.css
-
-nav:
-  - Home: index.md
-  - Installation: installation.md
-  - Usage: usage.md
-  - API Reference:
-    - Overview: api/index.md
-    - CLI: api/cli.md
-    - Commands: 
-      - Overview: api/commands.md
-      - Config: api/commands/config.md
-      - Gemini: api/commands/gemini.md
-      - GitHub: api/commands/github.md
-      - Web: api/commands/web.md
-      - Project: api/commands/project.md
-      - Repo: api/commands/repo.md
-    - Configuration: api/config.md
-    - Utilities: api/utils.md
-    - Models: api/models.md
-  - Error Reference:
-    - Overview: errors/index.md
-  - Contributing: contributing.md
-  - License: license.md
-
-plugins:
-  - search
-  - mkdocstrings:
-      handlers:
-        python:
-          options:
-            show_source: true
-            show_root_heading: true
-            heading_level: 3 

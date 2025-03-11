@@ -1,21 +1,21 @@
-# Commands Reference
+## Commands Reference
 
 This page provides an overview of all available commands in Cursor-Utils. For detailed documentation on each command, follow the links to the individual command pages.
 
-## Command Overview
+### Command Overview
 
 Cursor-Utils provides the following core commands:
 
 | Command | Description | Documentation |
 |---------|-------------|---------------|
-| [`config`](#config-command) | Manage configuration settings | [Detailed documentation](commands/config.md) |
-| [`gemini`](#gemini-command) | Generate content with Google's Gemini AI | [Detailed documentation](commands/gemini.md) |
-| [`github`](#github-command) | Interact with GitHub repositories | [Detailed documentation](commands/github.md) |
-| [`web`](#web-command) | Perform web research using Perplexity AI | [Detailed documentation](commands/web.md) |
-| [`project`](#project-command) | Analyze local project code | [Detailed documentation](commands/project.md) |
-| [`repo`](#repo-command) | Analyze and query remote code repositories | [Detailed documentation](commands/repo.md) |
+| [`config`](#config-command) | Manage configuration settings | [config command](../commands/config.md) |
+| [`gemini`](#gemini-command) | Generate content with Google's Gemini AI | [gemini command](../commands/gemini.md) |
+| [`github`](#github-command) | Interact with GitHub repositories | [github command](../commands/github.md) |
+| [`web`](#web-command) | Perform web research using Perplexity AI | [web command](../commands/web.md) |
+| [`project`](#project-command) | Analyze local project code | [project command](../commands/project.md) |
+| [`repo`](#repo-command) | Analyze and query remote code repositories | [repo command](../commands/repo.md) |
 
-## Command Summaries
+### Command Summaries
 
 ### Config Command
 
@@ -31,7 +31,7 @@ cursor-utils config {get|set|delete|list} [KEY] [VALUE]
 - Set default values for command options
 - Support for environment variable overrides
 
-[Learn more about the config command →](commands/config.md)
+[Learn more about the config command →](../commands/config.md)
 
 ### Gemini Command
 
@@ -47,7 +47,7 @@ cursor-utils gemini [OPTIONS] PROMPT
 - Customize generation parameters
 - Format output in various formats
 
-[Learn more about the gemini command →](commands/gemini.md)
+[Learn more about the gemini command →](../commands/gemini.md)
 
 ### GitHub Command
 
@@ -63,7 +63,7 @@ cursor-utils github COMMAND [OPTIONS]
 - List and manage pull requests
 - Create new issues and pull requests
 
-[Learn more about the github command →](commands/github.md)
+[Learn more about the github command →](../commands/github.md)
 
 ### Web Command
 
@@ -79,7 +79,7 @@ cursor-utils web [OPTIONS] QUERY
 - Select from multiple Perplexity models
 - Format output in various formats
 
-[Learn more about the web command →](commands/web.md)
+[Learn more about the web command →](../commands/web.md)
 
 ### Project Command
 
@@ -95,7 +95,7 @@ cursor-utils project [OPTIONS] PROJECT_PATH QUERY
 - Ask questions about code functionality
 - Limit analysis to specific files or directories
 
-[Learn more about the project command →](commands/project.md)
+[Learn more about the project command →](../commands/project.md)
 
 ### Repo Command
 
@@ -111,9 +111,9 @@ cursor-utils repo [OPTIONS] REPO_URL QUERY
 - Get AI-powered insights about code structure
 - Ask questions about code functionality
 
-[Learn more about the repo command →](commands/repo.md)
+[Learn more about the repo command →](../commands/repo.md)
 
-## Common Command Patterns
+### Common Command Patterns
 
 All Cursor-Utils commands follow these common patterns:
 
@@ -144,7 +144,7 @@ if [ $? -ne 0 ]; then
 fi
 ```
 
-## Command Relationships
+### Command Relationships
 
 Commands in Cursor-Utils are designed to work together:
 
@@ -154,7 +154,7 @@ Commands in Cursor-Utils are designed to work together:
 - **Code Analysis**: The `project` and `repo` commands analyze code
 - **GitHub Integration**: The `github` command manages GitHub repositories
 
-## Best Practices
+### Best Practices
 
 1. **Set Default Configuration**: Use the `config` command to set default values
    ```bash
@@ -179,4 +179,15 @@ Commands in Cursor-Utils are designed to work together:
 4. **Limit Analysis Scope**: For large repositories, limit the scope
    ```bash
    cursor-utils project . --max-files 20 "Explain the authentication system"
-   ``` 
+   ```
+
+## Command Documentation
+
+For detailed documentation on each command, refer to the dedicated command pages:
+
+- [`config` Command](../commands/config.md)
+- [`gemini` Command](../commands/gemini.md)
+- [`github` Command](../commands/github.md)
+- [`web` Command](../commands/web.md)
+- [`project` Command](../commands/project.md)
+- [`repo` Command](../commands/repo.md) 

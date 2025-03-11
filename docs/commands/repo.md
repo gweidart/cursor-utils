@@ -1,21 +1,21 @@
-# Repo Command
+## Repo Command
 
 The `repo` command analyzes and queries remote code repositories using Google's Gemini AI, allowing you to understand, explore, and extract insights from any public Git repository without cloning it manually.
 
-## Syntax
+### Syntax
 
 ```bash
 cursor-utils repo [OPTIONS] REPO_URL QUERY
 ```
 
-## Arguments
+### Arguments
 
 | Argument | Description | Required | Example |
 |----------|-------------|----------|---------|
 | `REPO_URL` | URL of the Git repository | Yes | `https://github.com/org/repo` |
 | `QUERY` | The question or analysis request about the repository | Yes | "Explain the architecture" |
 
-## Options
+### Options
 
 | Option | Description | Default | Example |
 |--------|-------------|---------|---------|
@@ -28,7 +28,7 @@ cursor-utils repo [OPTIONS] REPO_URL QUERY
 | `--debug/--no-debug` | Enable/disable debug output | `--no-debug` | `--debug` |
 | `--help` | Show command help | - | `--help` |
 
-## Configuration
+### Configuration
 
 Before using the `repo` command, you need to set up your Google Gemini API key:
 
@@ -38,7 +38,7 @@ cursor-utils config set gemini_api_key YOUR_GEMINI_API_KEY
 
 You can obtain an API key from [Google AI Studio](https://ai.google.dev/).
 
-## Examples
+### Examples
 
 ### Basic Usage
 
@@ -114,7 +114,7 @@ Enable debug output for troubleshooting:
 cursor-utils repo https://github.com/pytorch/pytorch --debug "How does autograd work?"
 ```
 
-## Use Cases
+### Use Cases
 
 ### Open Source Exploration
 
@@ -180,7 +180,7 @@ cursor-utils repo https://github.com/pytorch/pytorch --debug "How does autograd 
   cursor-utils repo https://github.com/framework/next-version "What breaking changes are in this version?"
   ```
 
-## Advanced Techniques
+### Advanced Techniques
 
 ### Focused Analysis
 
@@ -238,7 +238,7 @@ Use for learning before contribution:
 cursor-utils repo https://github.com/project/to-contribute "Explain the contribution workflow and standards"
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Be Specific with Your Queries**: More specific questions yield better results
    ```bash
@@ -282,7 +282,7 @@ cursor-utils repo https://github.com/project/to-contribute "Explain the contribu
    cursor-utils repo https://github.com/org/repo "What does the code actually do vs. what the documentation claims?"
    ```
 
-## Performance Considerations
+### Performance Considerations
 
 ### Repository Size
 
@@ -313,7 +313,7 @@ For large repositories:
 2. **Consider caching** for repositories you analyze frequently:
    Repositories are temporarily cached, which speeds up subsequent analyses of the same repository.
 
-## Troubleshooting
+### Troubleshooting
 
 ### Repository Access Issues
 

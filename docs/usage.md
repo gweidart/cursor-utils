@@ -1,52 +1,54 @@
-# Usage Guide
+## Usage Guide
 
 This guide provides detailed information on how to use Cursor-Utils effectively for various development tasks.
 
-However, **cursor-utils and its commands were designed to be used by your Cursor Agent's via terminal commands**. Nonetheless, i have included a fully featured, user friendly CLI interface. Therefore, you can run all cursor-utils commands manually yourself if you wish.
+???+ info
+    We designed **cursor-utils and its commands to be used by your Cursor Agent's via terminal commands**. Nonetheless, i have included a fully featured, user friendly CLI interface. Therefore, you can run all cursor-utils commands manually yourself if you wish.
 
 
-## Command-Line Interface
+### Command-Line Interface
 
 Cursor-Utils provides a consistent command-line interface with a focus on ease of use. You really only need to know a few phrases. Let your Cursor Agent worry about executing the commands and their arguments / options / parameters. while in an Agent Chat use the following phrases:
 
+```
 - `Ask Gemini`
 - `Ask Perplexity`
 - `Use cursor-utils <command>`
+```
+???+ info inline end "Core Commands"
 
-**Note:** core commands are:
-
-- `repo`
-- `gemini` (Ask Gemini)
-- `project`
-- `web` (Ask Perplexity)
-- `github`
-- `config`
-- `update`
+    - `repo`
+    - `gemini` (Ask Gemini)
+    - `project`
+    - `web` (Ask Perplexity)
+    - `github`
+    - `config`
+    - `update`
 
 You will need to configure API keys for the commands that rely on external services before you can use them. We suggest you do this via the `config` command manually so that you dont expose your API key in your chat history.
-## API Key Setup
+### API Key Setup
 
 To manually configure your API keys you can use the following workflow:
 
-### Gemini API Key
+=== "Gemini"
 
-```bash
-cursor-utils config set gemini_api_key YOUR_GEMINI_API_KEY
-```
+    ```bash
+    cursor-utils config set gemini_api_key YOUR_GEMINI_API_KEY
+    ```
 
-### Perplexity API Key
+=== "Perplexity"
 
-```bash
-cursor-utils config set perplexity_api_key YOUR_PERPLEXITY_API_KEY
-```
+    ```bash
+    cursor-utils config set perplexity_api_key YOUR_PERPLEXITY_API_KEY
+    ```
 
-### GitHub Token (Optional)
+=== "GitHub"
 
-```bash
-cursor-utils config set github_token YOUR_GITHUB_TOKEN
-```
+    ```bash
+    cursor-utils config set github_token YOUR_GITHUB_TOKEN
+    ```
 
-## Common Workflows
+### Common Workflows
 
 
 ### Simply ask your Cursor Agent to:
@@ -113,7 +115,7 @@ Use cursor-utils github issues --owner microsoft --repo vscode
 # Create an issue
 Use cursor-utils github create-issue --owner your-username --repo your-repo --title "Bug: Application crashes"
 ```
-## Combination workflows
+### Combination workflows
 
 Commands can be combined for powerful workflows:
 
@@ -202,7 +204,7 @@ Use cursor-utils github to help me create a new branch named "my-new-branch"
 Use cursor-utils github to help me create a new pull request in repo "my-repo"
 ```
 
-## Environment Variables
+### Environment Variables
 
 Cursor-Utils supports configuration via environment variables:
 
@@ -219,7 +221,7 @@ export CURSOR_UTILS_DEFAULT_FORMAT=markdown
 Ask Gemini to "Write a Python class for handling HTTP requests"
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Be Specific with Queries**: More specific queries yield better results
    ```bash
@@ -244,7 +246,7 @@ Ask Gemini to "Write a Python class for handling HTTP requests"
    Ask Gemini to --format markdown "Write documentation for API endpoints" > api-docs.md
    ```
 
-## Troubleshooting
+### Troubleshooting
 
 ### Rate Limiting
 

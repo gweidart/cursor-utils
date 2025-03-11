@@ -2,7 +2,9 @@
 
 **Give your Cursor Agent superpowers.**
 
-[![PyPI Downloads](https://static.pepy.tech/badge/cursor-utils)](https://pepy.tech/projects/cursor-utils)
+[![PyPI Downloads](https://static.pepy.tech/badge/cursor-utils)](https://pypi.org/project/cursor-utils/)
+
+### Read our [docs](https://gweidart.github.io/cursor-utils)
 
 <div align="center">
   <div>
@@ -79,16 +81,14 @@ pipx install cursor-utils
 
 ### Read our [docs](https://gweidart.github.io/cursor-utils)
 
-Cursor Utils is a powerful toolkit designed to extend your Cursor IDE with advanced functionality. It integrates Cursor Agents seamlessly with popular AI services like Google's Gemini and Perplexity to provide context-aware code analysis, web research, content generation, and GitHub management capabilities.
+[Cursor](https://www.cursor.com/) is already an amazing tool for developers. [Cursor-Utils](https://github.com/gweidart/cursor-utils) extends your existing agents with new skills and advanced features via:
 
-## What is Cursor Utils?
-
-Cursor IDE is already an amazing tool for developers. Cursor-Utils is an amazing tool for Cursor Agents:
-
-- Enabling your Cursor Agents to access real-time web information
-- Providing sophisticated project analysis tools
-- Streamlining GitHub interactions and repository management
-- Offering advanced code generation capabilities via Google's Gemini
+- Google's Gemini: Leverage Gemini's 2M token context window for ENTIRE codebase contextual memory, grounding & reasoning.
+- Perplexity: Enabling your Cursor Agents to access real-time web information without the risk of hallucinations.
+- Local & Remote Repository Analysis: Providing sophisticated project analysis tools.
+- Code Generation: Offering advanced code generation capabilities via Google's Gemini.
+- Documentation Generation: Providing sophisticated project analysis tools.
+- GitHub Management: Streamlining GitHub interactions and repository management.
 
 All this functionality is exposed through a clean, intuitive CLI that your Cursor Agents can use directly.
 
@@ -96,11 +96,15 @@ All this functionality is exposed through a clean, intuitive CLI that your Curso
 
 To get started with Cursor-Utils, follow these steps:
 
-1. [Install Cursor-Utils](https://gweidart.github.io/cursor-utils/docs/installation/) on your system
-2. [Configure API keys](https://gweidart.github.io/cursor-utils/docs/usage/#api-key-setup) for external services
-3. We designed cursor-utils to be used by Cursor Agents. Therefore there's really nothing else you need to do besides configuring the api keys. 
+[!NOTE]
+We designed cursor-utils to be used by Cursor Agents. Therefore there's really nothing else you need to do besides configuring the api keys. 
    
-   **However if you want to explore the [available commands](https://gweidart.github.io/cursor-utils/docs/api/) and their options, you can do so.**
+**However if you want to explore the [available commands](https://gweidart.github.io/cursor-utils/) and their options, you can do so.**
+[!NOTE]
+
+1. Read the [installation guide](https://gweidart.github.io/cursor-utils/installation/) to set up Cursor-Utils
+2. Explore the [usage documentation](https://gweidart.github.io/cursor-utils/usage/) for detailed usage patterns
+3. Learn about [configuration options](https://gweidart.github.io/cursor-utils/commands/config/) to customize your experience
 
 ## Why Cursor-Utils?
 
@@ -142,13 +146,7 @@ Ask Gemini to "Write a Python function to validate JWT tokens"
 Use cursor-utils github to create-issue --owner your-org --repo your-repo --title "Improve JWT validation"
 ```
 
-## Next Steps
-
-- Read the [installation guide](https://gweidart.github.io/cursor-utils/docs/installation/) to set up Cursor-Utils
-- Explore the [usage documentation](https://gweidart.github.io/cursor-utils/docs/usage/) for detailed usage patterns
-- Learn about [configuration options](https://gweidart.github.io/cursor-utils/docs/api/) to customize your experience
-
 ## Community and Support
 
-- [Contributing guidelines](https://gweidart.github.io/cursor-utils/docs/contributing/) for developers interested in enhancing Cursor-Utils
-- [License information](https://gweidart.github.io/cursor-utils/docs/license/) for usage terms and conditions 
+- [Contributing guidelines](https://gweidart.github.io/cursor-utils/contributing/) for developers interested in enhancing Cursor-Utils
+- [License information](https://gweidart.github.io/cursor-utils/license/) for usage terms and conditions 
