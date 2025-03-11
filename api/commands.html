@@ -6,32 +6,32 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Enhanced capabilities for Cursor IDE Agents">
+        <meta name="description" content="Give your Cursor Agent superpowers">
       
       
         <meta name="author" content="gweidart">
       
       
       
-        <link rel="prev" href="../cli/">
+        <link rel="prev" href="cli.html">
       
       
-        <link rel="next" href="config/">
+        <link rel="next" href="config.html">
       
       
-      <link rel="icon" href="../../assets/images/favicon.svg">
+      <link rel="icon" href="../assets/images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
-        <title>Overview - Cursor-Utils</title>
+        <title>Commands - Cursor-Utils</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -45,48 +45,39 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=JetBrains+Mono:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"JetBrains Mono";--md-code-font:"JetBrains Mono"}</style>
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <!-- Force dark mode by default -->
-  <script>
-    window.onload = function() {
-      const prefs = document.body.dataset.mdColorScheme = "slate";
-      localStorage.setItem("__prefer-color-scheme__", JSON.stringify({"scheme": "slate"}));
-    };
-  </script>
 
-  <!-- Add custom meta tags -->
-  <meta property="og:image" content="assets/images/cursor-utils-logo.png" />
-  <meta name="twitter:image" content="assets/images/cursor-utils-logo.png" />
-  <meta property="og:description" content="Give your Cursor IDE Agents superpowers." />
-  <meta name="twitter:description" content="Give your Cursor IDE Agents superpowers." />
-  <meta name="theme-color" content="#232136" />
+<!-- Add custom meta tags -->
+<meta property="og:image" content="assets/images/cursor-utils-logo.png" />
+<meta name="twitter:image" content="assets/images/cursor-utils-logo.png" />
+<meta property="og:description" content="Give your Cursor IDE Agents superpowers." />
+<meta name="twitter:description" content="Give your Cursor IDE Agents superpowers." />
+<meta name="theme-color" content="#232136" />
 
   </head>
   
   
     
     
-      
     
     
     
-    
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+    <body dir="ltr" data-md-color-scheme="darkula" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -104,6 +95,10 @@
       
     </div>
     
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
     
       
 
@@ -111,9 +106,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Cursor-Utils" class="md-header__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
+    <a href="../index.html" title="Cursor-Utils" class="md-header__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
       
-  <img src="../../assets/images/cursor-utils-logo.svg" alt="logo">
+  <img src="../assets/images/cursor-utils-logo.svg" alt="logo">
  
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -130,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Commands
             
           </span>
         </div>
@@ -138,33 +133,7 @@
     </div>
     
       
-        <form class="md-header__option" data-md-component="palette">
-  
     
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-</form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -245,9 +214,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Cursor-Utils" class="md-nav__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
+    <a href="../index.html" title="Cursor-Utils" class="md-nav__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
       
-  <img src="../../assets/images/cursor-utils-logo.svg" alt="logo">
+  <img src="../assets/images/cursor-utils-logo.svg" alt="logo">
  
     </a>
     Cursor-Utils
@@ -274,7 +243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -294,8 +263,52 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -308,15 +321,16 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../usage/" class="md-nav__link">
+      <a href="../usage.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -326,6 +340,205 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Commands
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Commands
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/config.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/gemini.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gemini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/github.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/project.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/repo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/web.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    web
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -367,7 +580,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -401,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cli/" class="md-nav__link">
+      <a href="cli.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -424,35 +637,14 @@
   
   
   
-    
-    
+    <li class="md-nav__item md-nav__item--active">
       
-        
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
-        
       
-        
       
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
-        
+        <label class="md-nav__link md-nav__link--active" for="__toc">
           
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     Commands
@@ -460,49 +652,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_3">
-            <span class="md-nav__icon md-icon"></span>
-            Commands
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="commands.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Overview
+    Commands
     
   </span>
   
@@ -515,8 +672,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -525,6 +680,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#command-overview" class="md-nav__link">
     <span class="md-ellipsis">
       Command Overview
@@ -532,16 +697,15 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#command-summaries" class="md-nav__link">
     <span class="md-ellipsis">
       Command Summaries
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Command Summaries">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#config-command" class="md-nav__link">
@@ -597,20 +761,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#common-command-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       Common Command Patterns
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Command Patterns">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#output-formatting" class="md-nav__link">
@@ -639,12 +797,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#command-relationships" class="md-nav__link">
     <span class="md-ellipsis">
       Command Relationships
@@ -652,11 +805,25 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Documentation
     </span>
   </a>
   
@@ -678,147 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="config/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Config
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="gemini/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Gemini
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="github/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GitHub
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="web/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Web
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="project/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Project
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="repo/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Repo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../config/" class="md-nav__link">
+      <a href="config.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -840,11 +867,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../utils/" class="md-nav__link">
+      <a href="models.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Utilities
+    Models
     
   </span>
   
@@ -862,11 +889,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../models/" class="md-nav__link">
+      <a href="utils.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Models
+    Utilities
     
   </span>
   
@@ -911,11 +938,11 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../errors/" class="md-nav__link ">
+            <a href="../errors/index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
-    Error Reference
+    Troubleshooting
     
   </span>
   
@@ -927,7 +954,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Error Reference
+            Troubleshooting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -946,8 +973,50 @@
   
   
   
+    
+    
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../contributing/" class="md-nav__link">
+      <a href="../contributing.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -960,6 +1029,14 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
@@ -968,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../license/" class="md-nav__link">
+      <a href="../license.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -999,8 +1076,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1009,6 +1084,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#command-overview" class="md-nav__link">
     <span class="md-ellipsis">
       Command Overview
@@ -1016,16 +1101,15 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#command-summaries" class="md-nav__link">
     <span class="md-ellipsis">
       Command Summaries
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Command Summaries">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#config-command" class="md-nav__link">
@@ -1081,20 +1165,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#common-command-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       Common Command Patterns
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Command Patterns">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#output-formatting" class="md-nav__link">
@@ -1123,12 +1201,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#command-relationships" class="md-nav__link">
     <span class="md-ellipsis">
       Command Relationships
@@ -1136,11 +1209,25 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Documentation
     </span>
   </a>
   
@@ -1165,9 +1252,11 @@
   
 
 
-<h1 id="commands-reference">Commands Reference<a class="headerlink" href="#commands-reference" title="Permanent link">&para;</a></h1>
+  <h1>Commands</h1>
+
+<h2 id="commands-reference">Commands Reference<a class="headerlink" href="#commands-reference" title="Permanent link">&para;</a></h2>
 <p>This page provides an overview of all available commands in Cursor-Utils. For detailed documentation on each command, follow the links to the individual command pages.</p>
-<h2 id="command-overview">Command Overview<a class="headerlink" href="#command-overview" title="Permanent link">&para;</a></h2>
+<h3 id="command-overview">Command Overview<a class="headerlink" href="#command-overview" title="Permanent link">&para;</a></h3>
 <p>Cursor-Utils provides the following core commands:</p>
 <table>
 <thead>
@@ -1181,36 +1270,36 @@
 <tr>
 <td><a href="#config-command"><code>config</code></a></td>
 <td>Manage configuration settings</td>
-<td><a href="config/">Detailed documentation</a></td>
+<td><a href="../commands/config.html">config command</a></td>
 </tr>
 <tr>
 <td><a href="#gemini-command"><code>gemini</code></a></td>
 <td>Generate content with Google's Gemini AI</td>
-<td><a href="gemini/">Detailed documentation</a></td>
+<td><a href="../commands/gemini.html">gemini command</a></td>
 </tr>
 <tr>
 <td><a href="#github-command"><code>github</code></a></td>
 <td>Interact with GitHub repositories</td>
-<td><a href="github/">Detailed documentation</a></td>
+<td><a href="../commands/github.html">github command</a></td>
 </tr>
 <tr>
 <td><a href="#web-command"><code>web</code></a></td>
 <td>Perform web research using Perplexity AI</td>
-<td><a href="web/">Detailed documentation</a></td>
+<td><a href="../commands/web.html">web command</a></td>
 </tr>
 <tr>
 <td><a href="#project-command"><code>project</code></a></td>
 <td>Analyze local project code</td>
-<td><a href="project/">Detailed documentation</a></td>
+<td><a href="../commands/project.html">project command</a></td>
 </tr>
 <tr>
 <td><a href="#repo-command"><code>repo</code></a></td>
 <td>Analyze and query remote code repositories</td>
-<td><a href="repo/">Detailed documentation</a></td>
+<td><a href="../commands/repo.html">repo command</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="command-summaries">Command Summaries<a class="headerlink" href="#command-summaries" title="Permanent link">&para;</a></h2>
+<h3 id="command-summaries">Command Summaries<a class="headerlink" href="#command-summaries" title="Permanent link">&para;</a></h3>
 <h3 id="config-command">Config Command<a class="headerlink" href="#config-command" title="Permanent link">&para;</a></h3>
 <p>The <code>config</code> command manages persistent configuration settings, particularly API keys.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="o">{</span>get<span class="p">|</span>set<span class="p">|</span>delete<span class="p">|</span>list<span class="o">}</span><span class="w"> </span><span class="o">[</span>KEY<span class="o">]</span><span class="w"> </span><span class="o">[</span>VALUE<span class="o">]</span>
@@ -1220,7 +1309,7 @@
 - List all configuration values
 - Set default values for command options
 - Support for environment variable overrides</p>
-<p><a href="config/">Learn more about the config command →</a></p>
+<p><a href="../commands/config.html">Learn more about the config command →</a></p>
 <h3 id="gemini-command">Gemini Command<a class="headerlink" href="#gemini-command" title="Permanent link">&para;</a></h3>
 <p>The <code>gemini</code> command generates content using Google's Gemini AI models.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cursor-utils<span class="w"> </span>gemini<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PROMPT
@@ -1230,7 +1319,7 @@
 - Select from multiple Gemini models
 - Customize generation parameters
 - Format output in various formats</p>
-<p><a href="gemini/">Learn more about the gemini command →</a></p>
+<p><a href="../commands/gemini.html">Learn more about the gemini command →</a></p>
 <h3 id="github-command">GitHub Command<a class="headerlink" href="#github-command" title="Permanent link">&para;</a></h3>
 <p>The <code>github</code> command provides tools for interacting with GitHub repositories.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cursor-utils<span class="w"> </span>github<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
@@ -1240,7 +1329,7 @@
 - List and manage issues
 - List and manage pull requests
 - Create new issues and pull requests</p>
-<p><a href="github/">Learn more about the github command →</a></p>
+<p><a href="../commands/github.html">Learn more about the github command →</a></p>
 <h3 id="web-command">Web Command<a class="headerlink" href="#web-command" title="Permanent link">&para;</a></h3>
 <p>The <code>web</code> command searches the web using Perplexity AI to provide curated results.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cursor-utils<span class="w"> </span>web<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>QUERY
@@ -1250,7 +1339,7 @@
 - Get curated results for technical queries
 - Select from multiple Perplexity models
 - Format output in various formats</p>
-<p><a href="web/">Learn more about the web command →</a></p>
+<p><a href="../commands/web.html">Learn more about the web command →</a></p>
 <h3 id="project-command">Project Command<a class="headerlink" href="#project-command" title="Permanent link">&para;</a></h3>
 <p>The <code>project</code> command analyzes local project code using Google's Gemini AI.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cursor-utils<span class="w"> </span>project<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PROJECT_PATH<span class="w"> </span>QUERY
@@ -1260,7 +1349,7 @@
 - Get AI-powered insights about code structure
 - Ask questions about code functionality
 - Limit analysis to specific files or directories</p>
-<p><a href="project/">Learn more about the project command →</a></p>
+<p><a href="../commands/project.html">Learn more about the project command →</a></p>
 <h3 id="repo-command">Repo Command<a class="headerlink" href="#repo-command" title="Permanent link">&para;</a></h3>
 <p>The <code>repo</code> command analyzes and queries remote code repositories.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cursor-utils<span class="w"> </span>repo<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>REPO_URL<span class="w"> </span>QUERY
@@ -1270,8 +1359,8 @@
 - Clone and analyze specific branches
 - Get AI-powered insights about code structure
 - Ask questions about code functionality</p>
-<p><a href="repo/">Learn more about the repo command →</a></p>
-<h2 id="common-command-patterns">Common Command Patterns<a class="headerlink" href="#common-command-patterns" title="Permanent link">&para;</a></h2>
+<p><a href="../commands/repo.html">Learn more about the repo command →</a></p>
+<h3 id="common-command-patterns">Common Command Patterns<a class="headerlink" href="#common-command-patterns" title="Permanent link">&para;</a></h3>
 <p>All Cursor-Utils commands follow these common patterns:</p>
 <h3 id="output-formatting">Output Formatting<a class="headerlink" href="#output-formatting" title="Permanent link">&para;</a></h3>
 <p>All commands support multiple output formats:</p>
@@ -1288,7 +1377,7 @@
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Command failed&quot;</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">fi</span>
 </span></code></pre></div>
-<h2 id="command-relationships">Command Relationships<a class="headerlink" href="#command-relationships" title="Permanent link">&para;</a></h2>
+<h3 id="command-relationships">Command Relationships<a class="headerlink" href="#command-relationships" title="Permanent link">&para;</a></h3>
 <p>Commands in Cursor-Utils are designed to work together:</p>
 <ul>
 <li><strong>Configuration</strong>: The <code>config</code> command manages settings used by all other commands</li>
@@ -1297,7 +1386,7 @@
 <li><strong>Code Analysis</strong>: The <code>project</code> and <code>repo</code> commands analyze code</li>
 <li><strong>GitHub Integration</strong>: The <code>github</code> command manages GitHub repositories</li>
 </ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p><strong>Set Default Configuration</strong>: Use the <code>config</code> command to set default values
@@ -1325,6 +1414,16 @@
 </span></code></pre></div></p>
 </li>
 </ol>
+<h2 id="command-documentation">Command Documentation<a class="headerlink" href="#command-documentation" title="Permanent link">&para;</a></h2>
+<p>For detailed documentation on each command, refer to the dedicated command pages:</p>
+<ul>
+<li><a href="../commands/config.html"><code>config</code> Command</a></li>
+<li><a href="../commands/gemini.html"><code>gemini</code> Command</a></li>
+<li><a href="../commands/github.html"><code>github</code> Command</a></li>
+<li><a href="../commands/web.html"><code>web</code> Command</a></li>
+<li><a href="../commands/project.html"><code>project</code> Command</a></li>
+<li><a href="../commands/repo.html"><code>repo</code> Command</a> </li>
+</ul>
 
 
 
@@ -1349,7 +1448,7 @@
         
       </main>
       
-  
+
         <footer class="md-footer">
   
     
@@ -1357,7 +1456,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CLI">
+          <a href="cli.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: CLI">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1374,13 +1473,13 @@
         
         
           
-          <a href="config/" class="md-footer__link md-footer__link--next" aria-label="Next: Config">
+          <a href="config.html" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Config
+                Configuration
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1395,6 +1494,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 gweidart
+    </div>
   
   
 </div>
@@ -1429,12 +1532,12 @@
   </div>
 </footer>
       
-  <div class="md-footer-custom">
-    <div class="md-footer-custom-item">
-      <span>Built with 👾 by <a href="https://github.com/gweidart/">gweidart</a>
-      </span>
-    </div>
+<div class="md-footer-custom">
+  <div class="md-footer-custom-item">
+    <span>Built with 👾 by <a href="https://github.com/gweidart/">gweidart</a>
+    </span>
   </div>
+</div>
 
     </div>
     <div class="md-dialog" data-md-component="dialog">
@@ -1442,24 +1545,88 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "header.autohide", "navigation.footer"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "header.autohide", "navigation.footer"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"0.1.5": null}}</script>
     
     
-  
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
-  <!-- Additional custom scripts -->
-  <script>
-    // Add custom behavior here if needed
-    document.addEventListener('DOMContentLoaded', function() {
-      // For example, add custom class to code blocks
-      const codeBlocks = document.querySelectorAll('pre code');
-      codeBlocks.forEach(block => {
-        block.classList.add('rose-pine-code');
+<!-- Additional custom scripts -->
+<script>
+  // Add custom behavior here if needed
+  document.addEventListener('DOMContentLoaded', function () {
+    // For example, add custom class to code blocks
+    const codeBlocks = document.querySelectorAll('pre code');
+    codeBlocks.forEach(block => {
+      block.classList.add('rose-pine-code');
+    });
+
+    // Copy to clipboard functionality
+    const copyButtons = document.querySelectorAll('.copy-js');
+    copyButtons.forEach(button => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        const textToCopy = this.getAttribute('data-clipboard-text');
+
+        // Create a temporary textarea element to copy from
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+
+        // Select and copy the text
+        textarea.select();
+        document.execCommand('copy');
+
+        // Remove the temporary element
+        document.body.removeChild(textarea);
+
+        // Visual feedback
+        const originalText = this.textContent;
+        this.textContent = 'Copied!';
+
+        // Add a temporary class for styling
+        this.classList.add('md-button--copied');
+
+        // Reset button after a delay
+        setTimeout(() => {
+          this.classList.remove('md-button--copied');
+          this.textContent = originalText;
+        }, 2000);
       });
     });
-  </script>
+  });
+</script>
+
+<script src="https://unpkg.com/@mendable/search@0.0.205/dist/umd/mendable-bundle.min.js"></script>
+<script>
+  Mendable.initialize({
+    anon_key: 'cf486af1-769b-4ca0-9579-8cacfc14e8f3',
+    type: "floatingButton",
+    floatingButtonStyle: {
+      backgroundColor: "#7c4dff",
+    },
+    askAIText: "Ask our Docs",
+    icon: "https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/docs/assets/images/favicon.svg",
+    botIcon: "https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/docs/assets/images/favicon.svg",
+    dismissPopupAfter: 10000,
+    popupText: "Chat with our Docs",
+    welcomeMessage: "Ask me anything about the Cursor Utils docs.",
+    footer: {
+      bottomRightLink: {
+        label: "Cursor Utils",
+        url: "https://github.com/gweidart/cursor-utils",
+      },
+    },
+    messageSettings: {
+      openSourcesInNewTab: true,
+      prettySources: true,
+    },
+  });
+</script>
 
   </body>
 </html>

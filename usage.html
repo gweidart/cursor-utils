@@ -6,20 +6,20 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Enhanced capabilities for Cursor IDE Agents">
+        <meta name="description" content="Give your Cursor Agent superpowers">
       
       
         <meta name="author" content="gweidart">
       
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="installation.html">
       
       
-        <link rel="next" href="../api/">
+        <link rel="next" href="commands/config.html">
       
       
-      <link rel="icon" href="../assets/images/favicon.svg">
+      <link rel="icon" href="assets/images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
@@ -28,10 +28,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -45,48 +45,39 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=JetBrains+Mono:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"JetBrains Mono";--md-code-font:"JetBrains Mono"}</style>
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <!-- Force dark mode by default -->
-  <script>
-    window.onload = function() {
-      const prefs = document.body.dataset.mdColorScheme = "slate";
-      localStorage.setItem("__prefer-color-scheme__", JSON.stringify({"scheme": "slate"}));
-    };
-  </script>
 
-  <!-- Add custom meta tags -->
-  <meta property="og:image" content="assets/images/cursor-utils-logo.png" />
-  <meta name="twitter:image" content="assets/images/cursor-utils-logo.png" />
-  <meta property="og:description" content="Give your Cursor IDE Agents superpowers." />
-  <meta name="twitter:description" content="Give your Cursor IDE Agents superpowers." />
-  <meta name="theme-color" content="#232136" />
+<!-- Add custom meta tags -->
+<meta property="og:image" content="assets/images/cursor-utils-logo.png" />
+<meta name="twitter:image" content="assets/images/cursor-utils-logo.png" />
+<meta property="og:description" content="Give your Cursor IDE Agents superpowers." />
+<meta name="twitter:description" content="Give your Cursor IDE Agents superpowers." />
+<meta name="theme-color" content="#232136" />
 
   </head>
   
   
     
     
-      
     
     
     
-    
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+    <body dir="ltr" data-md-color-scheme="darkula" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -104,6 +95,10 @@
       
     </div>
     
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
     
       
 
@@ -111,9 +106,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Cursor-Utils" class="md-header__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
+    <a href="index.html" title="Cursor-Utils" class="md-header__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
       
-  <img src="../assets/images/cursor-utils-logo.svg" alt="logo">
+  <img src="assets/images/cursor-utils-logo.svg" alt="logo">
  
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -138,33 +133,7 @@
     </div>
     
       
-        <form class="md-header__option" data-md-component="palette">
-  
     
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-</form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -245,9 +214,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Cursor-Utils" class="md-nav__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
+    <a href="index.html" title="Cursor-Utils" class="md-nav__button md-logo" aria-label="Cursor-Utils" data-md-component="logo">
       
-  <img src="../assets/images/cursor-utils-logo.svg" alt="logo">
+  <img src="assets/images/cursor-utils-logo.svg" alt="logo">
  
     </a>
     Cursor-Utils
@@ -274,7 +243,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -292,10 +261,54 @@
       
   
   
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -308,9 +321,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
     
@@ -321,8 +335,6 @@
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
-      
-        
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
@@ -337,7 +349,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="usage.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -354,8 +366,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -364,6 +374,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#command-line-interface" class="md-nav__link">
     <span class="md-ellipsis">
       Command-Line Interface
@@ -371,58 +391,24 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#api-key-setup" class="md-nav__link">
     <span class="md-ellipsis">
       API Key Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API Key Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemini-api-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      Gemini API Key
-    </span>
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#perplexity-api-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      Perplexity API Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#github-token-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Token (Optional)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#common-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       Common Workflows
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Workflows">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#simply-ask-your-cursor-agent-to" class="md-nav__link">
@@ -469,20 +455,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#combination-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       Combination workflows
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Combination workflows">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#command-specific-examples" class="md-nav__link">
@@ -538,12 +518,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       Environment Variables
@@ -551,8 +526,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       Best Practices
@@ -560,16 +535,15 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
       Troubleshooting
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#rate-limiting" class="md-nav__link">
@@ -606,6 +580,205 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Commands
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Commands
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="commands/config.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="commands/gemini.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gemini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="commands/github.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="commands/project.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="commands/repo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="commands/web.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    web
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -648,7 +821,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../api/" class="md-nav__link ">
+            <a href="api/index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -682,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/cli/" class="md-nav__link">
+      <a href="api/cli.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -703,37 +876,9 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="api/commands.html" class="md-nav__link">
         
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     Commands
@@ -741,32 +886,6 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3">
-            <span class="md-nav__icon md-icon"></span>
-            Commands
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/commands/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
       </a>
     </li>
   
@@ -780,147 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/commands/config/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Config
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/commands/gemini/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Gemini
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/commands/github/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    GitHub
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/commands/web/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Web
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/commands/project/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Project
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/commands/repo/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Repo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/config/" class="md-nav__link">
+      <a href="api/config.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -942,11 +921,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/utils/" class="md-nav__link">
+      <a href="api/models.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Utilities
+    Models
     
   </span>
   
@@ -964,11 +943,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/models/" class="md-nav__link">
+      <a href="api/utils.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Models
+    Utilities
     
   </span>
   
@@ -1013,11 +992,11 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../errors/" class="md-nav__link ">
+            <a href="errors/index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
-    Error Reference
+    Troubleshooting
     
   </span>
   
@@ -1029,7 +1008,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Error Reference
+            Troubleshooting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1048,8 +1027,50 @@
   
   
   
+    
+    
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../contributing/" class="md-nav__link">
+      <a href="contributing.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1062,6 +1083,14 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
@@ -1070,7 +1099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../license/" class="md-nav__link">
+      <a href="license.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1101,8 +1130,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1111,6 +1138,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#command-line-interface" class="md-nav__link">
     <span class="md-ellipsis">
       Command-Line Interface
@@ -1118,58 +1155,24 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#api-key-setup" class="md-nav__link">
     <span class="md-ellipsis">
       API Key Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API Key Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemini-api-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      Gemini API Key
-    </span>
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#perplexity-api-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      Perplexity API Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#github-token-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Token (Optional)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#common-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       Common Workflows
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Workflows">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#simply-ask-your-cursor-agent-to" class="md-nav__link">
@@ -1216,20 +1219,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#combination-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       Combination workflows
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Combination workflows">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#command-specific-examples" class="md-nav__link">
@@ -1285,12 +1282,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       Environment Variables
@@ -1298,8 +1290,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       Best Practices
@@ -1307,16 +1299,15 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
       Troubleshooting
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#rate-limiting" class="md-nav__link">
@@ -1369,17 +1360,22 @@
   
 
 
-<h1 id="usage-guide">Usage Guide<a class="headerlink" href="#usage-guide" title="Permanent link">&para;</a></h1>
+  <h1>Usage</h1>
+
+<h2 id="usage-guide">Usage Guide<a class="headerlink" href="#usage-guide" title="Permanent link">&para;</a></h2>
 <p>This guide provides detailed information on how to use Cursor-Utils effectively for various development tasks.</p>
-<p>However, <strong>cursor-utils and its commands were designed to be used by your Cursor Agent's via terminal commands</strong>. Nonetheless, i have included a fully featured, user friendly CLI interface. Therefore, you can run all cursor-utils commands manually yourself if you wish.</p>
-<h2 id="command-line-interface">Command-Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h2>
+<details class="info" open="open">
+<summary>Info</summary>
+<p>We designed <strong>cursor-utils and its commands to be used by your Cursor Agent's via terminal commands</strong>. Nonetheless, i have included a fully featured, user friendly CLI interface. Therefore, you can run all cursor-utils commands manually yourself if you wish.</p>
+</details>
+<h3 id="command-line-interface">Command-Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h3>
 <p>Cursor-Utils provides a consistent command-line interface with a focus on ease of use. You really only need to know a few phrases. Let your Cursor Agent worry about executing the commands and their arguments / options / parameters. while in an Agent Chat use the following phrases:</p>
-<ul>
-<li><code>Ask Gemini</code></li>
-<li><code>Ask Perplexity</code></li>
-<li><code>Use cursor-utils &lt;command&gt;</code></li>
-</ul>
-<p><strong>Note:</strong> core commands are:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>- `Ask Gemini`
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>- `Ask Perplexity`
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>- `Use cursor-utils &lt;command&gt;`
+</span></code></pre></div>
+<details class="info inline end" open="open">
+<summary>Core Commands</summary>
 <ul>
 <li><code>repo</code></li>
 <li><code>gemini</code> (Ask Gemini)</li>
@@ -1389,74 +1385,82 @@
 <li><code>config</code></li>
 <li><code>update</code></li>
 </ul>
+</details>
 <p>You will need to configure API keys for the commands that rely on external services before you can use them. We suggest you do this via the <code>config</code> command manually so that you dont expose your API key in your chat history.</p>
-<h2 id="api-key-setup">API Key Setup<a class="headerlink" href="#api-key-setup" title="Permanent link">&para;</a></h2>
+<h3 id="api-key-setup">API Key Setup<a class="headerlink" href="#api-key-setup" title="Permanent link">&para;</a></h3>
 <p>To manually configure your API keys you can use the following workflow:</p>
-<h3 id="gemini-api-key">Gemini API Key<a class="headerlink" href="#gemini-api-key" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gemini_api_key<span class="w"> </span>YOUR_GEMINI_API_KEY
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Gemini</label><label for="__tabbed_1_2">Perplexity</label><label for="__tabbed_1_3">GitHub</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gemini_api_key<span class="w"> </span>YOUR_GEMINI_API_KEY
 </span></code></pre></div>
-<h3 id="perplexity-api-key">Perplexity API Key<a class="headerlink" href="#perplexity-api-key" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>perplexity_api_key<span class="w"> </span>YOUR_PERPLEXITY_API_KEY
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>perplexity_api_key<span class="w"> </span>YOUR_PERPLEXITY_API_KEY
 </span></code></pre></div>
-<h3 id="github-token-optional">GitHub Token (Optional)<a class="headerlink" href="#github-token-optional" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>github_token<span class="w"> </span>YOUR_GITHUB_TOKEN
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cursor-utils<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>github_token<span class="w"> </span>YOUR_GITHUB_TOKEN
 </span></code></pre></div>
-<h2 id="common-workflows">Common Workflows<a class="headerlink" href="#common-workflows" title="Permanent link">&para;</a></h2>
+</div>
+</div>
+</div>
+<h3 id="common-workflows">Common Workflows<a class="headerlink" href="#common-workflows" title="Permanent link">&para;</a></h3>
 <h3 id="simply-ask-your-cursor-agent-to">Simply ask your Cursor Agent to:<a class="headerlink" href="#simply-ask-your-cursor-agent-to" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>me<span class="w"> </span>an<span class="w"> </span>overview<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>repo<span class="w"> </span><span class="k">then</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span><span class="s2">&quot;Based on that repo analysis, how would I implement feature X?&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>me<span class="w"> </span>an<span class="w"> </span>overview<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>repo<span class="w"> </span><span class="k">then</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span><span class="s2">&quot;Based on that repo analysis, how would I implement feature X?&quot;</span>
 </span></code></pre></div>
 <h3 id="code-understanding">Code Understanding<a class="headerlink" href="#code-understanding" title="Permanent link">&para;</a></h3>
 <p>Quickly understand unfamiliar codebases:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Analyze a local project</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>/path/to/project<span class="w"> </span><span class="s2">&quot;Explain the main components&quot;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Analyze a remote repository</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/organization/repo<span class="w"> </span><span class="s2">&quot;How does the authentication system work?&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Analyze a local project</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>/path/to/project<span class="w"> </span><span class="s2">&quot;Explain the main components&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Analyze a remote repository</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/organization/repo<span class="w"> </span><span class="s2">&quot;How does the authentication system work?&quot;</span>
 </span></code></pre></div>
 <h3 id="content-generation">Content Generation<a class="headerlink" href="#content-generation" title="Permanent link">&para;</a></h3>
 <p>Generate code, documentation, or explanations:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Generate a Python function</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Write a Python function to calculate Fibonacci numbers&quot;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Create project documentation</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Generate API documentation for this endpoint: GET /api/users/:id&quot;</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Explain complex concepts</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Explain OAuth 2.0 authorization flow&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Generate a Python function</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Write a Python function to calculate Fibonacci numbers&quot;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Create project documentation</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Generate API documentation for this endpoint: GET /api/users/:id&quot;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Explain complex concepts</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Explain OAuth 2.0 authorization flow&quot;</span>
 </span></code></pre></div>
 <h3 id="technical-research">Technical Research<a class="headerlink" href="#technical-research" title="Permanent link">&para;</a></h3>
 <p>Find solutions and documentation:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Research best practices</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;Best practices for React state management&quot;</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Find documentation examples</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;How to implement pagination in GraphQL&quot;</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Solve technical problems</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;Fix Docker container networking issues&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Research best practices</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;Best practices for React state management&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Find documentation examples</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;How to implement pagination in GraphQL&quot;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Solve technical problems</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;Fix Docker container networking issues&quot;</span>
 </span></code></pre></div>
 <h3 id="github-workflows">GitHub Workflows<a class="headerlink" href="#github-workflows" title="Permanent link">&para;</a></h3>
 <p>Manage GitHub repositories from the terminal:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Get repository information</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>repo<span class="w"> </span>--owner<span class="w"> </span>microsoft<span class="w"> </span>--repo<span class="w"> </span>vscode
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># List open issues</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>issues<span class="w"> </span>--owner<span class="w"> </span>microsoft<span class="w"> </span>--repo<span class="w"> </span>vscode
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Create an issue</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>create-issue<span class="w"> </span>--owner<span class="w"> </span>your-username<span class="w"> </span>--repo<span class="w"> </span>your-repo<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;Bug: Application crashes&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Get repository information</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>repo<span class="w"> </span>--owner<span class="w"> </span>microsoft<span class="w"> </span>--repo<span class="w"> </span>vscode
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># List open issues</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>issues<span class="w"> </span>--owner<span class="w"> </span>microsoft<span class="w"> </span>--repo<span class="w"> </span>vscode
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Create an issue</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>create-issue<span class="w"> </span>--owner<span class="w"> </span>your-username<span class="w"> </span>--repo<span class="w"> </span>your-repo<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;Bug: Application crashes&quot;</span>
 </span></code></pre></div>
-<h2 id="combination-workflows">Combination workflows<a class="headerlink" href="#combination-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="combination-workflows">Combination workflows<a class="headerlink" href="#combination-workflows" title="Permanent link">&para;</a></h3>
 <p>Commands can be combined for powerful workflows:</p>
 <p>simply ask your Cursor Agent to:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Analyze a repository, then ask specific questions</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>me<span class="w"> </span>an<span class="w"> </span>overview<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>repo<span class="w"> </span><span class="k">then</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span><span class="s2">&quot;Based on that repo analysis, how would I implement feature X?&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Analyze a repository, then ask specific questions</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>me<span class="w"> </span>an<span class="w"> </span>overview<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>repo<span class="w"> </span><span class="k">then</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span><span class="s2">&quot;Based on that repo analysis, how would I implement feature X?&quot;</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Search for information, then apply to your project</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>to<span class="w"> </span>research<span class="w"> </span>best<span class="w"> </span>practices<span class="w"> </span><span class="k">for</span><span class="w"> </span>API<span class="w"> </span>security<span class="w"> </span><span class="k">then</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;audit my API endpoints for security issues&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Search for information, then apply to your project</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>to<span class="w"> </span>research<span class="w"> </span>best<span class="w"> </span>practices<span class="w"> </span><span class="k">for</span><span class="w"> </span>API<span class="w"> </span>security<span class="w"> </span><span class="k">then</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;audit my API endpoints for security issues&quot;</span>
 </span></code></pre></div>
 <h3 id="command-specific-examples">Command Specific Examples:<a class="headerlink" href="#command-specific-examples" title="Permanent link">&para;</a></h3>
 <h3 id="ask-gemini-command">Ask Gemini Command:<a class="headerlink" href="#ask-gemini-command" title="Permanent link">&para;</a></h3>
@@ -1464,31 +1468,31 @@
 <ul>
 <li>
 <p>Use the <code>--system</code> option to guide the model's behavior:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>--system<span class="w"> </span><span class="s2">&quot;You are a security expert&quot;</span><span class="w"> </span><span class="s2">&quot;Review this code for vulnerabilities&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>--system<span class="w"> </span><span class="s2">&quot;You are a security expert&quot;</span><span class="w"> </span><span class="s2">&quot;Review this code for vulnerabilities&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Adjust temperature for more or less creative outputs:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span>--temperature<span class="w"> </span><span class="m">0</span>.8<span class="w"> </span><span class="s2">&quot;Generate test cases for this function&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span>--temperature<span class="w"> </span><span class="m">0</span>.8<span class="w"> </span><span class="s2">&quot;Generate test cases for this function&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ul>
 <h3 id="ask-perplexity-command">Ask Perplexity Command:<a class="headerlink" href="#ask-perplexity-command" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Use specific models for different types of queries:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span>--model<span class="w"> </span>sonar-reasoning<span class="w"> </span><span class="s2">&quot;Compare serverless architectures&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span>--model<span class="w"> </span>sonar-reasoning<span class="w"> </span><span class="s2">&quot;Compare serverless architectures&quot;</span>
 </span></code></pre></div></li>
 </ul>
 <h3 id="project-command">Project Command<a class="headerlink" href="#project-command" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>Limit the number of files for faster analysis:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>.<span class="w"> </span>--max-files<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s2">&quot;Find performance bottlenecks&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>.<span class="w"> </span>--max-files<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s2">&quot;Find performance bottlenecks&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Focus on specific directories:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>./src<span class="w"> </span><span class="s2">&quot;Explain the data flow&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>project<span class="w"> </span>./src<span class="w"> </span><span class="s2">&quot;Explain the data flow&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ul>
@@ -1496,31 +1500,31 @@
 <ul>
 <li>
 <p>Limit the number of files for faster analysis:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>--max-files<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s2">&quot;Find performance bottlenecks&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>--max-files<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s2">&quot;Find performance bottlenecks&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Focus on specific directories:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>./src<span class="w"> </span><span class="s2">&quot;Explain the data flow&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>./src<span class="w"> </span><span class="s2">&quot;Explain the data flow&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Use specific models for different types of queries:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>--model<span class="w"> </span>gemini-2.0-pro-exp<span class="w"> </span><span class="s2">&quot;Find performance bottlenecks&quot;</span>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>repo<span class="w"> </span>https://github.com/user/repo<span class="w"> </span>--model<span class="w"> </span>gemini-2.0-pro-exp<span class="w"> </span><span class="s2">&quot;Find performance bottlenecks&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ul>
 <h3 id="github-command">GitHub Command<a class="headerlink" href="#github-command" title="Permanent link">&para;</a></h3>
 <p>Collab with your Cursor Agents and let them take care of tasks you dont want to. Simply tell your Cursor Agent to use cursor-utils github to help you wwith pretty much anything &amp; everything regarding GitHub repo mgmt:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>repo<span class="w"> </span>named<span class="w"> </span><span class="s2">&quot;my-new-repo&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>repo<span class="w"> </span>named<span class="w"> </span><span class="s2">&quot;my-new-repo&quot;</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>issue<span class="w"> </span><span class="k">in</span><span class="w"> </span>repo<span class="w"> </span><span class="s2">&quot;my-repo&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>issue<span class="w"> </span><span class="k">in</span><span class="w"> </span>repo<span class="w"> </span><span class="s2">&quot;my-repo&quot;</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span>named<span class="w"> </span><span class="s2">&quot;my-new-branch&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span>named<span class="w"> </span><span class="s2">&quot;my-new-branch&quot;</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>pull<span class="w"> </span>request<span class="w"> </span><span class="k">in</span><span class="w"> </span>repo<span class="w"> </span><span class="s2">&quot;my-repo&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Use<span class="w"> </span>cursor-utils<span class="w"> </span>github<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>me<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>pull<span class="w"> </span>request<span class="w"> </span><span class="k">in</span><span class="w"> </span>repo<span class="w"> </span><span class="s2">&quot;my-repo&quot;</span>
 </span></code></pre></div>
-<h2 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h2>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
 <p>Cursor-Utils supports configuration via environment variables:</p>
 <ul>
 <li><code>CURSOR_UTILS_GEMINI_API_KEY</code>: Google Gemini API key</li>
@@ -1530,36 +1534,36 @@
 <li><code>CURSOR_UTILS_DEBUG</code>: Enable debug mode (set to 1)</li>
 </ul>
 <p>Example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CURSOR_UTILS_DEFAULT_FORMAT</span><span class="o">=</span>markdown
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Write a Python class for handling HTTP requests&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CURSOR_UTILS_DEFAULT_FORMAT</span><span class="o">=</span>markdown
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;Write a Python class for handling HTTP requests&quot;</span>
 </span></code></pre></div>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p><strong>Be Specific with Queries</strong>: More specific queries yield better results
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Less effective</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span><span class="s2">&quot;Docker&quot;</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># More effective</span>
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;Docker multi-stage build optimization techniques&quot;</span>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Less effective</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span><span class="s2">&quot;Docker&quot;</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># More effective</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span><span class="s2">&quot;Docker multi-stage build optimization techniques&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Choose the Right Model</strong>: Different models have different strengths
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># For creative content</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span>--model<span class="w"> </span>gemini-2.0-pro-exp<span class="w"> </span><span class="s2">&quot;Generate test scenarios&quot;</span>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># For factual research</span>
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span>--model<span class="w"> </span>sonar-reasoning<span class="w"> </span><span class="s2">&quot;Explain ACID properties&quot;</span>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># For creative content</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span>--model<span class="w"> </span>gemini-2.0-pro-exp<span class="w"> </span><span class="s2">&quot;Generate test scenarios&quot;</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># For factual research</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>Ask<span class="w"> </span>Perplexity<span class="w"> </span>about<span class="w"> </span>--model<span class="w"> </span>sonar-reasoning<span class="w"> </span><span class="s2">&quot;Explain ACID properties&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Use Output Redirection</strong>: Save results to files when needed
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span>--format<span class="w"> </span>markdown<span class="w"> </span><span class="s2">&quot;Write documentation for API endpoints&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>api-docs.md
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Ask<span class="w"> </span>Gemini<span class="w"> </span>to<span class="w"> </span>--format<span class="w"> </span>markdown<span class="w"> </span><span class="s2">&quot;Write documentation for API endpoints&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>api-docs.md
 </span></code></pre></div></p>
 </li>
 </ol>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
 <h3 id="rate-limiting">Rate Limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h3>
 <p>If you encounter rate limiting issues:</p>
 <ol>
@@ -1606,7 +1610,7 @@
         
       </main>
       
-  
+
         <footer class="md-footer">
   
     
@@ -1614,7 +1618,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+          <a href="installation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1631,13 +1635,13 @@
         
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+          <a href="commands/config.html" class="md-footer__link md-footer__link--next" aria-label="Next: config">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Overview
+                config
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1652,6 +1656,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 gweidart
+    </div>
   
   
 </div>
@@ -1686,12 +1694,12 @@
   </div>
 </footer>
       
-  <div class="md-footer-custom">
-    <div class="md-footer-custom-item">
-      <span>Built with 👾 by <a href="https://github.com/gweidart/">gweidart</a>
-      </span>
-    </div>
+<div class="md-footer-custom">
+  <div class="md-footer-custom-item">
+    <span>Built with 👾 by <a href="https://github.com/gweidart/">gweidart</a>
+    </span>
   </div>
+</div>
 
     </div>
     <div class="md-dialog" data-md-component="dialog">
@@ -1699,24 +1707,88 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "header.autohide", "navigation.footer"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.indexes", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "header.autohide", "navigation.footer"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"0.1.5": null}}</script>
     
     
-  
-      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+
+      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
-  <!-- Additional custom scripts -->
-  <script>
-    // Add custom behavior here if needed
-    document.addEventListener('DOMContentLoaded', function() {
-      // For example, add custom class to code blocks
-      const codeBlocks = document.querySelectorAll('pre code');
-      codeBlocks.forEach(block => {
-        block.classList.add('rose-pine-code');
+<!-- Additional custom scripts -->
+<script>
+  // Add custom behavior here if needed
+  document.addEventListener('DOMContentLoaded', function () {
+    // For example, add custom class to code blocks
+    const codeBlocks = document.querySelectorAll('pre code');
+    codeBlocks.forEach(block => {
+      block.classList.add('rose-pine-code');
+    });
+
+    // Copy to clipboard functionality
+    const copyButtons = document.querySelectorAll('.copy-js');
+    copyButtons.forEach(button => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        const textToCopy = this.getAttribute('data-clipboard-text');
+
+        // Create a temporary textarea element to copy from
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+
+        // Select and copy the text
+        textarea.select();
+        document.execCommand('copy');
+
+        // Remove the temporary element
+        document.body.removeChild(textarea);
+
+        // Visual feedback
+        const originalText = this.textContent;
+        this.textContent = 'Copied!';
+
+        // Add a temporary class for styling
+        this.classList.add('md-button--copied');
+
+        // Reset button after a delay
+        setTimeout(() => {
+          this.classList.remove('md-button--copied');
+          this.textContent = originalText;
+        }, 2000);
       });
     });
-  </script>
+  });
+</script>
+
+<script src="https://unpkg.com/@mendable/search@0.0.205/dist/umd/mendable-bundle.min.js"></script>
+<script>
+  Mendable.initialize({
+    anon_key: 'cf486af1-769b-4ca0-9579-8cacfc14e8f3',
+    type: "floatingButton",
+    floatingButtonStyle: {
+      backgroundColor: "#7c4dff",
+    },
+    askAIText: "Ask our Docs",
+    icon: "https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/docs/assets/images/favicon.svg",
+    botIcon: "https://raw.githubusercontent.com/gweidart/cursor-utils/refs/heads/main/docs/assets/images/favicon.svg",
+    dismissPopupAfter: 10000,
+    popupText: "Chat with our Docs",
+    welcomeMessage: "Ask me anything about the Cursor Utils docs.",
+    footer: {
+      bottomRightLink: {
+        label: "Cursor Utils",
+        url: "https://github.com/gweidart/cursor-utils",
+      },
+    },
+    messageSettings: {
+      openSourcesInNewTab: true,
+      prettySources: true,
+    },
+  });
+</script>
 
   </body>
 </html>
