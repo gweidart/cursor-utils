@@ -1,3 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/index.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/installation.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/usage.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/commands/config.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/commands/gemini.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/commands/github.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/commands/project.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/commands/repo.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/commands/web.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/api/index.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/api/cli.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/api/commands.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/api/config.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/api/models.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/api/utils.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/errors/index.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/contributing.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gweidart.github.io/cursor-utils/license.html</loc>
+  <lastmod>2025-03-11T16:35:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
 </urlset>
